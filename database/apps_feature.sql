@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2022 at 01:53 PM
+-- Generation Time: Feb 18, 2022 at 07:04 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `app_feature`
+-- Database: `apps_feature`
 --
 
 -- --------------------------------------------------------
@@ -398,7 +398,7 @@ ALTER TABLE `table_category`
 -- AUTO_INCREMENT for table `table_category_master`
 --
 ALTER TABLE `table_category_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `table_content`
@@ -410,7 +410,7 @@ ALTER TABLE `table_content`
 -- AUTO_INCREMENT for table `table_content_master`
 --
 ALTER TABLE `table_content_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `table_flavour`
