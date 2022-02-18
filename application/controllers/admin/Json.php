@@ -22,7 +22,7 @@ class Json extends CI_Controller{
         $this->load->helper("common_helper");
     }
 
-    //http://localhost/droidapps/admin/json
+    //http://localhost/apps/admin/json
     //This will show item list page
     public function index(){
         $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;

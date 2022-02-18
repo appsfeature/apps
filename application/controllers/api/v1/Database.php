@@ -14,7 +14,7 @@ class Database extends REST_Controller{
   }
 
 
-  //http://localhost/droidapps/api/v1/database/get-apps
+  //http://localhost/apps/api/v1/database/get-apps
   public function get_apps_get(){
       $apps = $this->database_model->get_apps();
       if(count($apps) > 0){
@@ -24,7 +24,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-flavours
+  //http://localhost/apps/api/v1/database/get-flavours
   public function get_flavours_get(){
       $type = $this->input->get("type");
       $whereClause = getFlavourWhereClause($type);
@@ -36,18 +36,18 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/index.php/api/v1/database/insert-category
+  //http://localhost/apps/index.php/api/v1/database/insert-category
   //where: pkg_id, title, sub_cat_id
   public function insert_category_post(){
         // print_r($whereClause);die;
       $this->insertUpdateCategory(false);
   }
-  //http://localhost/droidapps/index.php/api/v1/database/insert-update-category
+  //http://localhost/apps/index.php/api/v1/database/insert-update-category
   //where: pkg_id, title, sub_cat_id
   public function insert_update_category_post(){
       $this->insertUpdateCategory(true);
   }
-  //http://localhost/droidapps/index.php/api/v1/database/update-category
+  //http://localhost/apps/index.php/api/v1/database/update-category
   //where: pkg_id, cat_id, sub_cat_id
   public function update_category_post(){
       $this->insertUpdateCategory(true, true);
@@ -145,7 +145,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/delete-category
+  //http://localhost/apps/api/v1/database/delete-category
   public function delete_category_post(){
       // delete data method
       $pkg_id = $this->input->post("pkg_id");
@@ -160,7 +160,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/index.php/api/v1/database/get-category
+  //http://localhost/apps/index.php/api/v1/database/get-category
   public function get_category_get(){
       $pkg_id = $this->input->get("pkg_id");
       $cat_id = $this->input->get("cat_id");
@@ -177,18 +177,18 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/insert-content
+  //http://localhost/apps/api/v1/database/insert-content
   //where: pkg_id, title, sub_cat_id
   public function insert_content_post(){
       // print_r($whereClause);die;
       $this->insertUpdateContent(false);
   }
-  //http://localhost/droidapps/api/v1/database/insert-update-content
+  //http://localhost/apps/api/v1/database/insert-update-content
   //where: pkg_id, title, sub_cat_id
   public function insert_update_content_post(){
       $this->insertUpdateContent(true);
   }
-  //http://localhost/droidapps/api/v1/database/update-content
+  //http://localhost/apps/api/v1/database/update-content
   //where: pkg_id, cat_id, sub_cat_id
   public function update_content_post(){
       $this->insertUpdateContent(true, true);
@@ -289,7 +289,7 @@ class Database extends REST_Controller{
         }
     }
 
-  //http://localhost/droidapps/api/v1/database/delete-content
+  //http://localhost/apps/api/v1/database/delete-content
   public function delete_content_post(){
       // delete data method
       $pkg_id = $this->input->post("pkg_id");
@@ -305,7 +305,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-content
+  //http://localhost/apps/api/v1/database/get-content
   public function get_content_get(){
       $pkg_id = $this->input->get("pkg_id");
       $id = $this->input->get("id");
@@ -321,7 +321,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-content-by-category
+  //http://localhost/apps/api/v1/database/get-content-by-category
   public function get_content_by_category_get(){
       $pkg_id = $this->input->get("pkg_id");
       $cat_id = $this->input->get("cat_id");
@@ -364,7 +364,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-content-by-sub-category
+  //http://localhost/apps/api/v1/database/get-content-by-sub-category
   public function get_content_by_sub_category_get(){
       $pkg_id = $this->input->get("pkg_id");
       $cat_id = $this->input->get("cat_id");
@@ -382,7 +382,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-data-by-category
+  //http://localhost/apps/api/v1/database/get-data-by-category
   public function get_data_by_category_get(){
       $pkg_id = $this->input->get("pkg_id");
       $cat_id = $this->input->get("cat_id");
@@ -415,7 +415,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-data-by-sub-category
+  //http://localhost/apps/api/v1/database/get-data-by-sub-category
   public function get_data_by_sub_category_get(){
       $pkg_id = $this->input->get("pkg_id");
       $cat_id = $this->input->get("cat_id");
@@ -449,18 +449,18 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/insert-data
+  //http://localhost/apps/api/v1/database/insert-data
   //where: pkg_id, title, sub_cat_id
   public function insert_data_post(){
         // print_r($whereClause);die;
         $this->insertUpdateData(false);
   }
-  //http://localhost/droidapps/api/v1/database/insert-update-data
+  //http://localhost/apps/api/v1/database/insert-update-data
   //where: pkg_id, title, sub_cat_id
   public function insert_update_data_post(){
       $this->insertUpdateData(false);
   }
-  //http://localhost/droidapps/api/v1/database/update-data
+  //http://localhost/apps/api/v1/database/update-data
   //where: pkg_id, cat_id, sub_cat_id
   public function update_data_post(){
       $this->insertUpdateData(true);
@@ -502,7 +502,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/delete-data
+  //http://localhost/apps/api/v1/database/delete-data
   public function delete_data_post(){
       // delete data method
       $pkg_id = $this->input->post("pkg_id");
@@ -516,7 +516,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/get-data
+  //http://localhost/apps/api/v1/database/get-data
   public function get_data_get(){
       $pkg_id = $this->input->get("pkg_id");
       $cat_id = $this->input->get("cat_id");
@@ -530,12 +530,12 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/insert-item-type
+  //http://localhost/apps/api/v1/database/insert-item-type
   //where: $pkg_id, $id, $title
   public function insert_item_type_post(){
         $this->insertItemtype(false);
   }
-  //http://localhost/droidapps/api/v1/database/update-item-type
+  //http://localhost/apps/api/v1/database/update-item-type
   //where: $pkg_id, $id, $title
   public function update_item_type_post(){
       $this->insertItemtype(true);
@@ -595,7 +595,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/api/v1/database/delete-item-type
+  //http://localhost/apps/api/v1/database/delete-item-type
   public function delete_item_type_post(){
       // delete data method
       $pkg_id = $this->input->post("pkg_id");
@@ -609,7 +609,7 @@ class Database extends REST_Controller{
       }
   }
 
-  //http://localhost/droidapps/index.php/api/v1/database/get-item-type
+  //http://localhost/apps/index.php/api/v1/database/get-item-type
   public function get_item_type_get(){
       $pkg_id = $this->input->get("pkg_id");
       $id = $this->input->get("id");

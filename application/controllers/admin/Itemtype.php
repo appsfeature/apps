@@ -22,7 +22,7 @@ class Itemtype extends CI_Controller{
         $this->load->helper("common_helper");
     }
 
-    //http://localhost/droidapps/admin/itemtype
+    //http://localhost/apps/admin/itemtype
     //This will show itemtype list page
     public function index(){
         $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';

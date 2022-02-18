@@ -13,7 +13,7 @@ class Login extends CI_Controller{
     $this->load->helper("common_helper");
   }
 
-  //http://localhost/droidapps/admin/login
+  //http://localhost/apps/admin/login
     public function index() {
         $admin = $this->session->userdata('admin');
         if(!empty($admin)){

@@ -3,7 +3,7 @@
 This is a developed community where you will find several interesting blog articles with short and cool codes. It contains Laravel 8, CodeIgniter 4, MySQL, WordPress, Node Js etc. Please visit once and see the power of learning from this blog.
 
 
-API Base Url: `http://yourdomain.com/droidapps/api/v1/database/`
+API Base Url: `http://yourdomain.com/apps/api/v1/database/`
 
 # Common API's methods
 - GET: get-apps
@@ -191,13 +191,13 @@ Params & Where :?pkg_id=package&cat_id=0
 ## Table Category
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/appsfeature/droidapps/master/screenshots/tableCategory.png" alt="Preview 1" width="600" />
+  <img src="https://raw.githubusercontent.com/appsfeature/apps/master/screenshots/tableCategory.png" alt="Preview 1" width="600" />
 </p>
 
 ## Table Content
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/appsfeature/droidapps/master/screenshots/tableContent.png" alt="Preview 1" width="600" />
+  <img src="https://raw.githubusercontent.com/appsfeature/apps/master/screenshots/tableContent.png" alt="Preview 1" width="600" />
 </p>
 
 ## Views configuration
@@ -370,9 +370,9 @@ $db['default'] = array(
 ```
 PATH -> application\config\config.php
 ```php
-$config['base_url'] = 'http://localhost/droidapps/';
+$config['base_url'] = 'http://localhost/apps/';
 replace with your domain
-$config['base_url'] = 'http://yourdomain.com/droidapps/';
+$config['base_url'] = 'http://yourdomain.com/apps/';
 ```
 Change Default Welcome.php controller
 PATH -> application\config\routes.php
