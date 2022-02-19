@@ -32,10 +32,6 @@ class Category extends CI_Controller{
         $itemTypeSelected = getPref('itemTypeSelected');
         $querySearch = '';
         if(!empty($queryString)){
-            if(array_key_exists("sub_cat_id", $queryString)){
-                $subCatIdSelected = $queryString['sub_cat_id'];
-                savePref('subCatIdSelected', $subCatIdSelected);
-            }
             if(array_key_exists("item_type", $queryString)){
                 $itemTypeSelected = $queryString['item_type'];
                 savePref('itemTypeSelected', $itemTypeSelected);
@@ -43,10 +39,7 @@ class Category extends CI_Controller{
             if(array_key_exists("title", $queryString)){
                 $querySearch = $queryString['title'];
             }
-        }else{
-            $queryString['sub_cat_id'] = $subCatIdSelected;
         }
-        // print_r($queryString);die;
         $whereClause = getCategoryWhereClause($pkg_id, null, null);
 
         $subCategories = $this->database_model->get_category($whereClause);
@@ -85,9 +78,10 @@ class Category extends CI_Controller{
     }
 
     //This will show create page
-    public function create(){
-        echo "<pre>";
-        print_r($_POST);die;
+    public function create($subCatId = null){
+        if(isset($subCatId)){
+            savePref('subCatIdSelected', $subCatId);
+        }
         $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
         $whereClause = getCategoryWhereClause($pkg_id, null, null);
         $categories = $this->database_model->get_category($whereClause);
@@ -102,23 +96,6 @@ class Category extends CI_Controller{
         $data['mainModule'] = 'category';
         $data['subModule'] = 'createCategory';
         $this->load->view($this->module_url.'/create', $data);
-    }
-    //This will show create page
-    public function mapping(){
-        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
-        $whereClause = getCategoryWhereClause($pkg_id, null, null);
-        $categories = $this->database_model->get_category($whereClause);
-        $whereClause['flavour'] = $this->flavour;
-        $itemTypes = $this->database_model->get_item_type_flavour($whereClause);
-        $subCatIdSelected = getPref('subCatIdSelected');
-        $itemTypeSelected = getPref('itemTypeSelected');
-        $data['categories'] = $categories;
-        $data['itemTypes'] = $itemTypes;
-        $data['subCatIdSelected'] = $subCatIdSelected;
-        $data['itemTypeSelected'] = $itemTypeSelected;
-        $data['mainModule'] = 'category';
-        $data['subModule'] = 'createCategory';
-        $this->load->view($this->module_url.'/mapping', $data);
     }
 
     //This will show edit page
@@ -143,6 +120,24 @@ class Category extends CI_Controller{
             $this->session->set_flashdata('error', 'Category not found');
             redirect(base_url().$this->module_url);
         }
+    }
+
+    //This will show create page
+    public function mapping(){
+        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
+        $whereClause = getCategoryWhereClause($pkg_id, null, null);
+        $categories = $this->database_model->get_category($whereClause);
+        $whereClause['flavour'] = $this->flavour;
+        $itemTypes = $this->database_model->get_item_type_flavour($whereClause);
+        $subCatIdSelected = '';//getPref('subCatIdSelected');
+        $itemTypeSelected = getPref('itemTypeSelected');
+        $data['categories'] = $categories;
+        $data['itemTypes'] = $itemTypes;
+        $data['subCatIdSelected'] = $subCatIdSelected;
+        $data['itemTypeSelected'] = $itemTypeSelected;
+        $data['mainModule'] = 'category';
+        $data['subModule'] = 'mappingCategory';
+        $this->load->view($this->module_url.'/mapping', $data);
     }
 
     //This will show delete page

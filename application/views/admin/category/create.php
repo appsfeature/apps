@@ -39,22 +39,24 @@
                     <input type="hidden" name="" value="">
 
                     <div class="row">
-                        <div class="col-sm-4 mb-3">
-                            <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
-                            <select class="form-control" name="sub_cat_id" id="sub_cat_id">
-                                <option value="0">Select Sub Category</option>
-                                <?php
-                                    if(!empty($categories)){
-                                        foreach ($categories as $item) {
-                                            $selected = ($subCatIdSelected == $item['cat_id']) ? true : false;
-                                            ?>
-                                             <option <?php echo set_select('sub_cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
-                                             <?php
+                        <?php if(!empty($subCatIdSelected)) {?>
+                            <div class="col-sm-4 mb-3">
+                                <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
+                                <select class="form-control" name="sub_cat_id" id="sub_cat_id">
+                                    <option value="0">Select Sub Category</option>
+                                    <?php
+                                        if(!empty($categories)){
+                                            foreach ($categories as $item) {
+                                                $selected = ($subCatIdSelected == $item['cat_id']) ? true : false;
+                                                ?>
+                                                 <option <?php echo set_select('sub_cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
+                                                 <?php
+                                            }
                                         }
-                                    }
-                                 ?>
-                            </select>
-                        </div>
+                                     ?>
+                                </select>
+                            </div>
+                        <?php } ?>
                         <div class="col-sm-4 mb-3">
                             <label for="item_type" class="formbuilder-number-label">Item Type</label>
                             <select class="form-control" name="item_type" id="item_type">

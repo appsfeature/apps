@@ -85,8 +85,7 @@
                   <table class="table">
                     <tr>
                       <th width="50" class="text-center">CatId</th>
-                      <th width="100" class="text-center">SubCatId</th>
-                      <th width="100" class="text-center">ItemType</th>
+                      <th width="250" class="text-center">ItemType</th>
                       <th>Name</th>
                       <th width="100" class="text-center">Status</th>
                       <th width="160" class="text-center">Action</th>
@@ -96,7 +95,6 @@
                         <?php foreach ($categories as $categoryRow) {?>
                             <tr>
                               <td class="text-center"><?php echo $categoryRow['cat_id'];?></td>
-                              <td class="text-center" ><p style="font-size:13px"><?php echo isset($categoryMap[$categoryRow['sub_cat_id']]) ? $categoryMap[$categoryRow['sub_cat_id']].'</br>'.$categoryRow['sub_cat_id'].'' : 'Undefined';?></p></td>
                               <td class="text-center"><p style="font-size:13px"><?php echo isset($itemTypeMap[$categoryRow['item_type']]) ? $itemTypeMap[$categoryRow['item_type']] : 'Undefined';?></p></td>
                               <td><?php echo $categoryRow['title'];?></td>
                               <td class="text-center">
