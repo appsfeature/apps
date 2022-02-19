@@ -105,6 +105,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p><?php echo getMenuTitle('Add Category');?></p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url().getMenuLink('admin/category/mapping');?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='category' && !empty($subModule) && $subModule =='createCategory') ? 'active' : ''; ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><?php echo getMenuTitle('Mapping Category');?></p>
+                </a>
+              </li>
             </ul>
           </li>
           <!-- Category section end -->

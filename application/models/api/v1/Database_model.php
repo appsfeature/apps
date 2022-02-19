@@ -218,5 +218,34 @@ class Database_model extends CI_Model{
           $query = $this->db->get_where("table_item_type", $whereClause);
           return $query->result_array();
       }
+
+      public function selectAllFromWhere($tableName=null,$condition=null,$getColumn=null)
+      {
+    	$query = $this->db->get_where($tableName,$condition)->result_array();
+    	if($getColumn==null)
+    	{
+    	             return $this->db->affected_rows()?$query:FALSE;
+    	 }
+    	 else
+    	 {
+    	 	return $this->db->affected_rows()?$query[0][$getColumn]:FALSE;
+    	 }
+      }
+
+      public function getSubcategoriesByParent($parent)
+      {
+          $query="SELECT table_category.cat_id, table_category.title FROM `table_category_master` JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.sub_cat_id=".$parent;
+
+          $q = $this->db->query($query)->result_array();
+
+          if($this->db->affected_rows())
+        {
+        	return $q;
+        }
+        else
+        {
+        	return false;
+        }
+      }
 }
 ?>

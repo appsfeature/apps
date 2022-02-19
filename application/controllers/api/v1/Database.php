@@ -625,6 +625,27 @@ class Database extends REST_Controller{
       }
   }
 
+
+
+  public function fetchChildCategories_post()
+  {
+      $parentcatId= '';
+      if(!isset($_POST['parentcatId']))
+      {
+        $this->responseResult(STATUS_FAILURE," Category id not found");
+      }
+      $parentcatId=$_POST['parentcatId'];
+
+      $allsubcat=$this->database_model->getSubcategoriesByParent($parentcatId);
+
+      if(is_array($allsubcat) && count($allsubcat) > 0){
+          $this->responseResult(STATUS_SUCCESS, "data found", $allsubcat);
+      }else{
+          $this->responseResult(STATUS_FAILURE," No data found");
+      }
+
+  }
+
 }
 
  ?>
