@@ -174,4 +174,12 @@ function dd($data){
     print_r($data);
     die;
 }
+
+function ddd($message){
+    // echo "<pre>";
+    // echo "<script>alert('$message');</script>";
+    // echo "<script>console.log('Debug Objects: " . $message . "' );</script>";
+    echo("<script>console.log('PHP: " . $message . "');</script>");
+    die;
+}
 ?>

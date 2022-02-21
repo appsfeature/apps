@@ -95,7 +95,7 @@ $(document).ready(function() {
         $("#submitBtn").prop("disabled", true);
 
         var formData= new FormData($("#categoryForm")[0]);
-        console.log('my message' + formData);
+        formData.append('sub_cat_ids', formData.getAll('sub_cat_id'));
 
         $.ajax({
             type: "POST",

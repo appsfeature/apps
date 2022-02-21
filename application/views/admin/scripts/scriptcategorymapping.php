@@ -1,31 +1,4 @@
 
-<!-- <script type="text/javascript">
-$(document).ready(function() {
-    $("#submitBtn").click(function(e) {
-        e.preventDefault();
-        // $("#submitBtn").prop("disabled", true);
-
-
-        let lastsubcat=$(".selectClass").eq($(".selectClass").length-1).val();
-
-        if (lastsubcat==='')
-        {
-            lastsubcat=$(".selectClass").eq($(".selectClass").length-2).val();
-        }
-
-        console.log(lastsubcat);
-
-
-
-        var createUrl = "<?php echo base_url().$CI->module_url_create.'/'; ?>" + lastsubcat;
-
-        // console.log('Log: ' + createUrl);
-        window.location.href=createUrl;
-
-    });
-});
-</script> -->
-
 <script type = "text/javascript" >
     $(function() {
 
