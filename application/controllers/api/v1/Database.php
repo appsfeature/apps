@@ -75,7 +75,7 @@ class Database extends REST_Controller {
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
-            $this->responseResult(0, strip_tags(validation_errors()));
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
         } else {
             $category = array(
                 "pkg_id" => $pkg_id,
@@ -223,7 +223,7 @@ class Database extends REST_Controller {
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
-            $this->responseResult(0, strip_tags(validation_errors()));
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
         } else {
             $content = array(
                 "pkg_id" => $pkg_id,
@@ -466,7 +466,7 @@ class Database extends REST_Controller {
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
-            $this->responseResult(0, strip_tags(validation_errors()));
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
         } else {
             $content = array("pkg_id" => $pkg_id, "cat_id" => $cat_id == null ? 0 : $cat_id, "json_data" => $json_data);
             if ($isUpdateOnly) {
@@ -537,7 +537,7 @@ class Database extends REST_Controller {
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
-            $this->responseResult(0, strip_tags(validation_errors()));
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
         } else {
             $content = array("pkg_id" => $pkg_id, "flavour" => $flavour == null ? 0 : $flavour, "item_type" => $itemType == null ? 0 : $itemType, "title" => $title, "ranking" => $ranking == null ? 0 : $ranking, "visibility" => $visibility == null ? 1 : $visibility);
             if ($isUpdateOnly) {
@@ -603,7 +603,7 @@ class Database extends REST_Controller {
         $this->form_validation->set_rules("sub_cat_id", "Category id", "required");
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
-            $this->responseResult(0, strip_tags(validation_errors()));
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
         } else {
             $allsubcat = $this->database_model->getCategoryByParentId($pkgId, $subCatId);
             if (is_array($allsubcat) && count($allsubcat) > 0) {
