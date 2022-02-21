@@ -37,8 +37,6 @@ class Database extends REST_Controller {
     //http://localhost/apps/index.php/api/v1/database/insert-category
     //where: pkg_id, title, sub_cat_id
     public function insert_category_post() {
-        // print_r($whereClause);die;
-            // dd($_POST);
         $this->insertUpdateCategory(false);
     }
 

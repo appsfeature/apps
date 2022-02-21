@@ -168,8 +168,7 @@ class Category extends CI_Controller{
     }
 
 
-    public function createPartialCategoryPage()
-    {
+    public function createPartialCategoryPage() {
         if(isset($subCatId)){
             savePref('subCatIdSelected', $subCatId);
         }
