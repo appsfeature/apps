@@ -166,6 +166,28 @@ class Category extends CI_Controller{
         }
         redirect(base_url().$this->module_url);
     }
+
+
+    public function createPartialCategoryPage()
+    {
+        if(isset($subCatId)){
+            savePref('subCatIdSelected', $subCatId);
+        }
+        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
+        $whereClause = getCategoryWhereClause($pkg_id, null, null);
+        $categories = $this->database_model->get_category($whereClause);
+        $whereClause['flavour'] = $this->flavour;
+        $itemTypes = $this->database_model->get_item_type_flavour($whereClause);
+        $subCatIdSelected = getPref('subCatIdSelected');
+        $itemTypeSelected = getPref('itemTypeSelected');
+        $data['categories'] = $categories;
+        $data['itemTypes'] = $itemTypes;
+        $data['subCatIdSelected'] = $subCatIdSelected;
+        $data['itemTypeSelected'] = $itemTypeSelected;
+        $data['mainModule'] = 'category';
+        $data['subModule'] = 'createCategory';
+        return $this->load->view($this->module_url.'/ajaxcreate', $data);
+    }
 }
 
 ?>

@@ -168,4 +168,11 @@ function getAppName(){
 function getPersonName(){
   return isset($_SESSION['admin']['name'])?$_SESSION['admin']['name']:'User';
 }
+
+function dd($data)
+{
+    echo "<pre>";
+    print_r($data);
+    die;
+}
 ?>

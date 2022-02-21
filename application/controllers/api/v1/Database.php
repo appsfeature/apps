@@ -38,6 +38,7 @@ class Database extends REST_Controller {
     //where: pkg_id, title, sub_cat_id
     public function insert_category_post() {
         // print_r($whereClause);die;
+            // dd($_POST);
         $this->insertUpdateCategory(false);
     }
 
@@ -54,6 +55,7 @@ class Database extends REST_Controller {
     }
 
     private function insertUpdateCategory($isInsertUpdate = false, $isUpdateOnly = false) {
+
         $pkg_id = $this->input->post("pkg_id");
         $cat_id = $this->input->post("cat_id");
         $sub_cat_id = $this->input->post("sub_cat_id");
