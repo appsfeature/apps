@@ -168,7 +168,7 @@ class Category extends CI_Controller{
     }
 
 
-    public function createPartialCategoryPage() {
+    public function attachFragmentCreate() {
         if(isset($subCatId)){
             savePref('subCatIdSelected', $subCatId);
         }
@@ -185,7 +185,7 @@ class Category extends CI_Controller{
         $data['itemTypeSelected'] = $itemTypeSelected;
         $data['mainModule'] = 'category';
         $data['subModule'] = 'createCategory';
-        return $this->load->view($this->module_url.'/ajaxcreate', $data);
+        return $this->load->view($this->module_url.'/fragment/fragmentcreate', $data);
     }
 }
 

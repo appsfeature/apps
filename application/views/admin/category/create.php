@@ -22,67 +22,60 @@
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card card-primary">
-              <div class="card-header">
-                <div class="card-title">
-                    Create New Category
+            <form name="categoryForm" id="categoryForm" action=""  method="post" enctype="multipart/form-data">
+                <div class="row">
+                <div class="col-md-8">
+                  <div class="card card-primary">
+                      <div class="card-header">
+                         <h3 class="card-title">Create New Category</h3>
+                      </div>
+                      <div class="card-body">
+                          <div class="col-sm-12">
+
+                                <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
+                                <input type="hidden" name="" value="">
+
+                                <div class="container_to_load"></div>
+
+                                 <div class="formbuilder-button form-group field-submit">
+                                    <button type="submit" class="btn-success btn" name="submit" access="false" style="success" id="submitBtn">Submit</button>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+
                 </div>
-
-              </div>
-
-              <div class="card-body">
-                  <form name="categoryForm" id="categoryForm" action=""  method="post" enctype="multipart/form-data">
-
-                    <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
-                    <input type="hidden" name="" value="">
-
-                    <div class="row categorybx">
-                        <div class="col-sm-12">
-                            <div class="col-sm-4 mb-3">
-                                <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
-                                <select class="form-control selectClass" name="sub_cat_id" id="sub_cat_id" >
-                                    <option value="">Select Category</option>
-                                    <?php
-                                        if(!empty($categories)){
-                                            foreach ($categories as $item) {
-                                                $selected = ($subCatIdSelected == $item['cat_id']) ? true : false;
-                                                ?>
-                                                 <option <?php echo set_select('sub_cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
-                                                 <?php
-                                            }
-                                        }
-                                     ?>
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-                     <div class="formbuilder-button form-group field-">
-                        <!-- <button type="submit" class="btn-success btn ml-2 mr-4" name="submit" access="false" style="success" id="submitBtn"><i class="fa fa-plus"> Create</i></button> -->
-
-                        <button type="mapping" class="btn-info btn ml-3 mr-4" name="mapping" access="false" style="success" id="mappingBtn"><i class="fa fa-link"> Mapping</i></button>
-
-                        <button type="view" class="btn-danger btn ml-3" name="view" access="false" style="success" id="viewBtn"><i class="fa fa-eye"> View</i></button>
-                    </div>
-                    <div class="container_to_load">
-
-
+                <div class="col-md-4">
+                  <div class="card card-success">
+                     <div class="card-header">
+                        <h3 class="card-title">Select Category</h3>
                      </div>
+                     <div class="card-body">
 
-                     <div class="formbuilder-button form-group field-submit">
-                        <button type="submit" class="btn-success btn" name="submit" access="false" style="success" id="submitBtn">Submit</button>
-                    </div>
-                  </form>
-              </div>
+                         <div class="row categorybx">
+                             <div class="col-sm-12 mb-3">
+                                 <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
+                                 <select class="form-control selectClass" name="sub_cat_id" id="sub_cat_id" >
+                                     <option value="">Select Category</option>
+                                     <?php
+                                         if(!empty($categories)){
+                                             foreach ($categories as $item) {
+                                                 $selected = ($subCatIdSelected == $item['cat_id']) ? true : false;
+                                                 ?>
+                                                  <option <?php echo set_select('sub_cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
+                                                  <?php
+                                             }
+                                         }
+                                      ?>
+                                 </select>
+                             </div>
 
-            </div>
-
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
-        <!-- /.row -->
+                         </div>
+                     </div>
+                  </div>
+                </div>
+                </div>
+            </form>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -90,11 +83,11 @@
   <!-- /.content-wrapper -->
 
 <?php $this->load->view('admin/footer'); ?>
-<?php $this->load->view('admin/scripts/categorymapping'); ?>
+<?php $this->load->view('admin/scripts/scriptcategorymapping'); ?>
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $( ".container_to_load" ).load( "<?php echo base_url().'admin/category/createPartialCategoryPage' ?>" );
+    $( ".container_to_load" ).load( "<?php echo base_url().'admin/category/attachFragmentCreate' ?>" );
 
 
     $("#categoryForm").submit(function(e) {
@@ -125,7 +118,7 @@ $(document).ready(function() {
                 // $("textarea").val('');
                 // $("[name='item_type']").val(0);
 
-                $( ".container_to_load" ).load( "<?php echo base_url().'admin/category/createPartialCategoryPage' ?>" );
+                $( ".container_to_load" ).load( "<?php echo base_url().'admin/category/attachFragmentCreate' ?>" );
               // if(successURL!==null) {
               //   window.location.href=successURL;
               // }

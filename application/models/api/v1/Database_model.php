@@ -22,12 +22,19 @@ class Database_model extends CI_Model {
     public function insert_category($isUpdate = false, $whereClause = array(), $data = array()) {
         $query = $this->db->get_where('table_category', $whereClause);
         if ($query->num_rows() <= 0) {
-            return $this->db->insert("table_category", $data);
+            $this->db->insert("table_category", $data);
+            $lastId = $this->db->insert_id();
+            return $lastId;
         } else {
             if ($isUpdate) {
-                return $this->db->update("table_category", $data, $whereClause);
+                $this->db->update("table_category", $data, $whereClause);
+                if($this->db->affected_rows() > 0){
+                   return $whereClause['cat_id'];
+                } else {
+                   return 0;
+                }
             } else {
-                return false;
+                return 0;
             }
         }
     }
@@ -35,7 +42,30 @@ class Database_model extends CI_Model {
     public function update_category($whereClause = array(), $data = array()) {
         $query = $this->db->get_where('table_category', $whereClause);
         if ($query->num_rows() > 0) {
-            return $this->db->update("table_category", $data, $whereClause);
+            $this->db->update("table_category", $data, $whereClause);
+            if($this->db->affected_rows() > 0){
+               return $whereClause['cat_id'];
+            } else {
+               return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public function insert_category_master($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_category_master', $whereClause);
+        if ($query->num_rows() <= 0) {
+            return $this->db->insert("table_category_master", $data);
+        } else {
+            return false;
+        }
+    }
+
+    public function update_category_master($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_category_master', $whereClause);
+        if ($query->num_rows() > 0) {
+            return $this->db->update("table_category_master", $data, $whereClause);
         } else {
             return false;
         }

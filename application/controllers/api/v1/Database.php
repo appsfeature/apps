@@ -118,19 +118,34 @@ class Database extends REST_Controller {
                 }
             }
             if ($isUpdateOnly) {
-                if ($this->database_model->update_category($whereClause, $category)) {
+                $resultCatId = $this->database_model->update_category($whereClause, $category);
+                if ($resultCatId > 0) {
+                    $this->insertCategoryMaster($pkg_id, $resultCatId, $sub_cat_id, $ranking);
                     $this->responseStatus(STATUS_SUCCESS, "Category has been updated");
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to update Category");
                 }
             } else {
-                if ($this->database_model->insert_category($isInsertUpdate, $whereClause, $category)) {
+                $resultCatId = $this->database_model->insert_category($isInsertUpdate, $whereClause, $category);
+                if ($resultCatId > 0) {
+                    $this->insertCategoryMaster($pkg_id, $resultCatId, $sub_cat_id, $ranking);
                     $this->responseStatus(STATUS_SUCCESS, "Category has been " . ($isInsertUpdate ? "updated" : "created"));
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to " . ($isInsertUpdate ? "update" : "create") . " Category");
                 }
             }
         }
+    }
+
+    public function insertCategoryMaster($pkg_id, $cat_id, $sub_cat_id, $ranking){
+        $data = array(
+            "pkg_id" => $pkg_id,
+            "cat_id" => $cat_id,
+            "sub_cat_id" => $sub_cat_id == null ? 0 : $sub_cat_id,
+            "ranking" => $ranking == null ? 0 : $ranking
+        );
+        $whereClause = getCategoryWhereClause($pkg_id, $cat_id, $sub_cat_id);
+        $this->database_model->insert_category_master($whereClause, $data);
     }
 
     //http://localhost/apps/api/v1/database/delete-category

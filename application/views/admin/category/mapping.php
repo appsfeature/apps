@@ -65,7 +65,7 @@
 
                         <button type="view" class="btn-danger btn ml-3" name="view" access="false" style="success" id="viewBtn"><i class="fa fa-eye"> View</i></button>
                     </div>
-                  
+
               </div>
 
             </div>
@@ -81,4 +81,4 @@
   <!-- /.content-wrapper -->
 
 <?php $this->load->view('admin/footer'); ?>
-<?php $this->load->view('admin/scripts/categorymapping'); ?>
+<?php $this->load->view('admin/scripts/scriptcategorymapping'); ?>

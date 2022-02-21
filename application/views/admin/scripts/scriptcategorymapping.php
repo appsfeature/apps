@@ -58,8 +58,8 @@ $(document).ready(function() {
                 var data = result.data;
 
                 if (data != null && result.data.length) {
-                    var html = '<div class="col-sm-12">' +
-                        '<div class="col-sm-4 mb-3">' +
+                    var html =
+                        '<div class="col-sm-12 mb-3">' +
                         '<label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>' +
                         '<select class="form-control selectClass" name="sub_cat_id" id="sub_cat_id">' +
                         '<option value="">Select category</option>';
@@ -68,7 +68,7 @@ $(document).ready(function() {
                         html += '<option value="' + data[i]['cat_id'] + '">' + data[i]['title'] + '</option>';
                     }
 
-                    html += '</select></div></div>';
+                    html += '</select></div>';
 
                     $(".categorybx").append(html);
 
