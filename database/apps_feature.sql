@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2022 at 01:19 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 7.4.27
+-- Generation Time: Feb 22, 2022 at 02:28 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -148,8 +148,6 @@ INSERT INTO `table_category_master` (`pkg_id`, `id`, `cat_id`, `sub_cat_id`, `vi
 CREATE TABLE `table_content` (
   `pkg_id` varchar(100) NOT NULL,
   `id` int(100) NOT NULL,
-  `cat_id` int(100) NOT NULL DEFAULT 0,
-  `sub_cat_id` int(100) NOT NULL DEFAULT 0,
   `title` varchar(1000) NOT NULL,
   `description` varchar(1000) DEFAULT NULL,
   `item_type` int(100) DEFAULT 0,
@@ -167,23 +165,23 @@ CREATE TABLE `table_content` (
 -- Dumping data for table `table_content`
 --
 
-INSERT INTO `table_content` (`pkg_id`, `id`, `cat_id`, `sub_cat_id`, `title`, `description`, `item_type`, `image`, `link`, `visibility`, `ranking`, `json_data`, `other_property`, `updated_at`, `created_at`) VALUES
-('com.appsfeature', 39, 0, 109, 'Android Phones', '', 0, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:21:14'),
-('com.appsfeature', 40, 0, 109, 'Apple Phones', '', 0, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:21:35'),
-('com.appsfeature', 41, 0, 110, 'Womens Cloth', '', 0, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:23:39'),
-('com.appsfeature', 42, 0, 110, 'Mens Cloth', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:23:51'),
-('com.appsfeature', 43, 0, 112, 'Dell Laptop', '', 150, NULL, '', 1, 0, '', '', NULL, '2022-02-03 19:24:25'),
-('com.katyayanschool.katyayanschool', 45, 0, 116, 'Live Classes', '', 107, 'f88d3e71037eded195690054bdc3cda7.png', '', 1, 0, '', '', NULL, '2022-02-14 09:33:34'),
-('com.katyayanschool.katyayanschool', 46, 0, 116, 'Test Series', '', 102, '9e67fd16f5ad2e3f0fcea3bda0d2e0e4.png', 'https://www.katyayangroups.com/erp/index.php/Stu_app_exam/test/', 1, 0, '', '', NULL, '2022-02-14 09:33:59'),
-('com.katyayanschool.katyayanschool', 47, 0, 116, 'My Profile', '', 108, 'd60b2444fe7e286fd2b8b35c18214cfe.png', '', 1, 0, '', '', NULL, '2022-02-14 09:37:13'),
-('com.katyayanschool.katyayanschool', 48, 0, 116, 'Previous Classes', '', 106, '247f356e5f8c978a03d6388ba5e9fcdb.png', '', 1, 0, '', '', NULL, '2022-02-14 09:37:55'),
-('com.katyayanschool.katyayanschool', 49, 0, 121, 'Slider 1', '', 100, '8f8ecd2ff351223233a0ae8c08d9d4e0.jpg', '', 1, 0, '', '', NULL, '2022-02-14 11:02:33'),
-('com.katyayanschool.katyayanschool', 50, 0, 121, 'Slider 2', '', 100, '2e5a09673bb7aa5d8fc9363bc8bbe561.jpg', '', 1, 0, '', '', NULL, '2022-02-16 05:16:38'),
-('com.katyayanschool.katyayanschool', 51, 0, 121, 'dfg', '', 100, NULL, '', 1, 0, '', '', NULL, '2022-02-16 10:33:07'),
-('com.katyayanschool.katyayanschool', 52, 0, 122, 'Mathematics 1st', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 11:56:04'),
-('com.katyayanschool.katyayanschool', 53, 0, 122, 'Mathematics 2nd', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 11:56:16'),
-('com.katyayanschool.katyayanschool', 54, 0, 122, 'Chemistry 1', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 14:29:53'),
-('com.katyayanschool.katyayanschool', 55, 0, 122, 'Chemistry 2', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 14:30:15');
+INSERT INTO `table_content` (`pkg_id`, `id`, `title`, `description`, `item_type`, `image`, `link`, `visibility`, `ranking`, `json_data`, `other_property`, `updated_at`, `created_at`) VALUES
+('com.appsfeature', 39, 'Android Phones', '', 0, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:21:14'),
+('com.appsfeature', 40, 'Apple Phones', '', 0, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:21:35'),
+('com.appsfeature', 41, 'Womens Cloth', '', 0, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:23:39'),
+('com.appsfeature', 42, 'Mens Cloth', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-03 18:23:51'),
+('com.appsfeature', 43, 'Dell Laptop', '', 150, NULL, '', 1, 0, '', '', NULL, '2022-02-03 19:24:25'),
+('com.katyayanschool.katyayanschool', 45, 'Live Classes', '', 107, 'f88d3e71037eded195690054bdc3cda7.png', '', 1, 0, '', '', NULL, '2022-02-14 09:33:34'),
+('com.katyayanschool.katyayanschool', 46, 'Test Series', '', 102, '9e67fd16f5ad2e3f0fcea3bda0d2e0e4.png', 'https://www.katyayangroups.com/erp/index.php/Stu_app_exam/test/', 1, 0, '', '', NULL, '2022-02-14 09:33:59'),
+('com.katyayanschool.katyayanschool', 47, 'My Profile', '', 108, 'd60b2444fe7e286fd2b8b35c18214cfe.png', '', 1, 0, '', '', NULL, '2022-02-14 09:37:13'),
+('com.katyayanschool.katyayanschool', 48, 'Previous Classes', '', 106, '247f356e5f8c978a03d6388ba5e9fcdb.png', '', 1, 0, '', '', NULL, '2022-02-14 09:37:55'),
+('com.katyayanschool.katyayanschool', 49, 'Slider 1', '', 100, '8f8ecd2ff351223233a0ae8c08d9d4e0.jpg', '', 1, 0, '', '', NULL, '2022-02-14 11:02:33'),
+('com.katyayanschool.katyayanschool', 50, 'Slider 2', '', 100, '2e5a09673bb7aa5d8fc9363bc8bbe561.jpg', '', 1, 0, '', '', NULL, '2022-02-16 05:16:38'),
+('com.katyayanschool.katyayanschool', 51, 'dfg', '', 100, NULL, '', 1, 0, '', '', NULL, '2022-02-16 10:33:07'),
+('com.katyayanschool.katyayanschool', 52, 'Mathematics 1st', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 11:56:04'),
+('com.katyayanschool.katyayanschool', 53, 'Mathematics 2nd', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 11:56:16'),
+('com.katyayanschool.katyayanschool', 54, 'Chemistry 1', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 14:29:53'),
+('com.katyayanschool.katyayanschool', 55, 'Chemistry 2', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 14:30:15');
 
 -- --------------------------------------------------------
 
@@ -389,25 +387,25 @@ ALTER TABLE `table_app`
 -- AUTO_INCREMENT for table `table_category`
 --
 ALTER TABLE `table_category`
-  MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `table_category_master`
 --
 ALTER TABLE `table_category_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `table_content`
 --
 ALTER TABLE `table_content`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `table_content_master`
 --
 ALTER TABLE `table_content_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `table_flavour`
