@@ -152,7 +152,7 @@ class Database extends REST_Controller {
     }
 
     public function insertCategoryMasterData($pkg_id, $cat_id, $subCatId, $ranking){
-        if(!empty($subCatId)){
+        if(!empty($subCatId)){//dfd
             if($subCatId != null && $subCatId > 0){
                 $data = array(
                     "pkg_id" => $pkg_id,
