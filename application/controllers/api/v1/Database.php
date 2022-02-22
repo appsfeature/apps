@@ -131,7 +131,6 @@ class Database extends REST_Controller {
                     $this->insertCategoryMaster($pkg_id, $resultCatId, $sub_cat_id, $ranking, $subCatIds);
                     $this->responseStatus(STATUS_SUCCESS, "Category has been " . ($isInsertUpdate ? "updated" : "created"));
                 } else {
-                    $this->insertCategoryMaster($pkg_id, $resultCatId, $sub_cat_id, $ranking, $subCatIds);
                     $this->responseStatus(STATUS_FAILURE, "Failed to " . ($isInsertUpdate ? "update" : "create") . " Category");
                 }
             }
@@ -157,8 +156,8 @@ class Database extends REST_Controller {
     }
 
 
-    //http://localhost/apps/index.php/api/v1/database/insert-category
-    //where: pkg_id, title, sub_cat_id
+    //http://localhost/apps/index.php/api/v1/database/insert-category-master
+    //where: pkg_id, cat_id, sub_cat_ids
     public function insert_category_master_post() {
         $pkg_id = $this->input->post("pkg_id");
         $cat_id = $this->input->post("cat_id");
@@ -270,6 +269,7 @@ class Database extends REST_Controller {
         $item_type = $this->input->post("item_type");
         $link = $this->input->post("link");
         $visibility = $this->input->post("visibility");
+        $ranking = $this->input->post("ranking");
         $json_data = $this->input->post("json_data");
         $other_property = $this->input->post("other_property");
         $updated_at = $this->input->post("updated_at");
@@ -321,19 +321,62 @@ class Database extends REST_Controller {
                 }
             }
             if ($isUpdateOnly) {
-                if ($this->database_model->update_content($whereClause, $content)) {
+                $resultCatId = $this->database_model->update_content($whereClause, $content);
+                if ($resultCatId > 0) {
+                    $this->insertContentMasterData($pkg_id, $resultCatId, $sub_cat_id, $ranking);
                     $this->responseStatus(STATUS_SUCCESS, "Content has been updated");
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to update Content");
                 }
             } else {
-                if ($this->database_model->insert_content($isInsertUpdate, $whereClause, $content)) {
+                $resultCatId = $this->database_model->insert_content($isInsertUpdate, $whereClause, $content);
+                if ($resultCatId > 0) {
+                    $this->insertContentMasterData($pkg_id, $resultCatId, $sub_cat_id, $ranking);
                     $this->responseStatus(STATUS_SUCCESS, "Content has been " . ($isInsertUpdate ? "updated" : "created"));
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to " . ($isInsertUpdate ? "update" : "create") . " Content");
                 }
             }
         }
+    }
+
+    //http://localhost/apps/index.php/api/v1/database/insert-content-master
+    //where: pkg_id, cat_id, sub_cat_ids
+    public function insert_content_master_post() {
+        $pkg_id = $this->input->post("pkg_id");
+        $content_id = $this->input->post("content_id");
+        $sub_cat_id = $this->input->post("sub_cat_id");
+        $ranking = 0;
+
+        $this->form_validation->set_rules("content_id", "Content Id", "required");
+        $this->form_validation->set_rules("sub_cat_ids", "Sub Category Id", "required");
+        if ($this->form_validation->run() === FALSE) {
+            // we have some errors
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
+        } else {
+            if($this->insertContentMasterData($pkg_id, $content_id, $sub_cat_id, $ranking)){
+                $this->responseStatus(STATUS_SUCCESS, "Content mapping successful");
+            }else {
+                $this->responseStatus(STATUS_FAILURE, "Content mapping failed");
+            }
+        }
+    }
+
+    public function insertContentMasterData($pkg_id, $content_id, $subCatId, $ranking){
+        if(!empty($subCatId) && !empty($content_id)){
+            if($subCatId != null && $subCatId > 0){
+                $data = array(
+                    "pkg_id" => $pkg_id,
+                    "content_id" => $content_id,
+                    "sub_cat_id" => $subCatId,
+                    "ranking" => $ranking == null ? 0 : $ranking
+                );
+                $whereClause = getContentWhereClause($pkg_id, null, $subCatId, $content_id, null);
+                $this->database_model->insert_content_master($whereClause, $data);
+                return true;
+            }
+        }
+        return false;
     }
 
     //http://localhost/apps/api/v1/database/delete-content

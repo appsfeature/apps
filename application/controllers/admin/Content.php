@@ -43,13 +43,11 @@ class Content extends CI_Controller{
             if(array_key_exists("title", $queryString)){
                 $querySearch = $queryString['title'];
             }
-        }else{
-            $queryString['sub_cat_id'] = $catIdSelected;
         }
         $whereClause = getContentWhereClause($pkg_id, null, null, null, null);
         $categories = $this->database_model->get_category($whereClause);
 
-        $contents = $this->database_model->get_content($whereClause, $queryString);
+        $contents = $this->database_model->get_content_master($whereClause, $queryString);
 
         $whereClause['flavour'] = $this->flavour;
         $itemTypes = $this->database_model->get_item_type_flavour($whereClause);

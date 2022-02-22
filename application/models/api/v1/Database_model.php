@@ -72,7 +72,12 @@ class Database_model extends CI_Model {
     }
 
     public function delete_category($whereClause = array()) {
+        $this->delete_category_master($whereClause);
         return $this->db->delete("table_category", $whereClause);
+    }
+
+    public function delete_category_master($whereClause = array()) {
+        return $this->db->delete("table_category_master", $whereClause);
     }
 
     public function get_category_selected($whereClause = array(), $searchQuery = []) {
@@ -95,12 +100,19 @@ class Database_model extends CI_Model {
     public function insert_content($isUpdate = false, $whereClause = array(), $data = array()) {
         $query = $this->db->get_where('table_content', $whereClause);
         if ($query->num_rows() <= 0) {
-            return $this->db->insert("table_content", $data);
+            $this->db->insert("table_content", $data);
+            $lastId = $this->db->insert_id();
+            return $lastId;
         } else {
             if ($isUpdate) {
-                return $this->db->update("table_content", $data, $whereClause);
+                $this->db->update("table_content", $data, $whereClause);
+                if($this->db->affected_rows() > 0){
+                   return $whereClause['id'];
+                } else {
+                   return 0;
+                }
             } else {
-                return false;
+                return 0;
             }
         }
     }
@@ -108,14 +120,44 @@ class Database_model extends CI_Model {
     public function update_content($whereClause = array(), $data = array()) {
         $query = $this->db->get_where('table_content', $whereClause);
         if ($query->num_rows() > 0) {
-            return $this->db->update("table_content", $data, $whereClause);
+            $this->db->update("table_content", $data, $whereClause);
+            if($this->db->affected_rows() > 0){
+               return $whereClause['id'];
+            } else {
+               return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    public function insert_content_master($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_content_master', $whereClause);
+        if ($query->num_rows() <= 0) {
+            return $this->db->insert("table_content_master", $data);
+        } else {
+            return false;
+        }
+    }
+
+    public function update_content_master($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_content_master', $whereClause);
+        if ($query->num_rows() > 0) {
+            return $this->db->update("table_content_master", $data, $whereClause);
         } else {
             return false;
         }
     }
 
     public function delete_content($whereClause = array()) {
+        $this->delete_content_master($whereClause);
         return $this->db->delete("table_content", $whereClause);
+    }
+
+    public function delete_content_master($whereClause = array()) {
+        $whereClause2['pkg_id'] = $whereClause['pkg_id'];
+        $whereClause2['content_id'] = $whereClause['id'];
+        return $this->db->delete("table_content_master", $whereClause2);
     }
 
     public function get_content_selected($whereClause = array(), $searchQuery = []) {
@@ -134,6 +176,32 @@ class Database_model extends CI_Model {
         $this->db->order_by('created_at', 'DESC');
         $query = $this->db->get_where("table_content", $whereClause);
         return $query->result_array();
+    }
+
+    public function get_content_master($whereClause = array(), $searchQuery = [], $selection = array()) {
+        // if ($searchQuery != null && count($searchQuery) > 0) {
+        //     $this->db->like($searchQuery);
+        // }
+
+        $query = "SELECT table_content.*, table_content_master.sub_cat_id FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" . $whereClause['pkg_id'] . "'";
+
+        $q = $this->db->query($query)->result_array();
+        if ($this->db->affected_rows()) {
+            return $q;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function getContentByParentId($pkgId, $subCatId) {
+        $query = "SELECT table_content.*, table_content_master.sub_cat_id FROM `table_content_master` JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" . $pkgId . "' ";
+        $q = $this->db->query($query)->result_array();
+        if ($this->db->affected_rows()) {
+            return $q;
+        } else {
+            return false;
+        }
     }
 
     public function insert_json($isUpdate = false, $whereClause = array(), $data = array()) {
