@@ -104,7 +104,7 @@ $(document).ready(function() {
         $("#submitBtn").prop("disabled", true);
 
         var formData= new FormData($("#categoryForm")[0]);
-        console.log('my message' + formData.getAll('sub_cat_id')); 
+        console.log('my message' + formData.getAll('sub_cat_id'));
         formData.append('sub_cat_ids', formData.getAll('sub_cat_id'));
 
         $.ajax({
@@ -126,8 +126,8 @@ $(document).ready(function() {
                 // $('input:not([name="visibility"])').val('')
                 // $("[name='ranking']").val(0);
                 // $("textarea").val('');
-                $("[name='cat_id']").val(0);
-
+                // $("[name='cat_id']").val('0');
+                $('#cat_id').val( $('#cat_id').prop('defaultSelected') );
 
               // if(successURL!==null) {
               //   window.location.href=successURL;
