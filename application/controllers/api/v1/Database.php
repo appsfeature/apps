@@ -143,16 +143,51 @@ class Database extends REST_Controller {
             $subCatIds = explode(",",$subCatIdsString);
             if(count($subCatIds) == 1){
                 $this->insertCategoryMasterData($pkg_id, $cat_id, $subCatIdsString, $ranking);
+            }else {
+                foreach ($subCatIds as $key => $subCatId){
+                    if($key > 0 && $subCatId > 0){
+                        $mSubCatId = $subCatIds[$key-1];
+                        $mCatId = $subCatIds[$key];
+                        $this->insertCategoryMasterData($pkg_id, $mCatId, $mSubCatId, $ranking);
+                    }
+                }
+                $this->insertCategoryMasterData($pkg_id, $cat_id, $mSubCatId, $ranking);
             }
-            foreach ($subCatIds as $key => $subCatId){
-                $mSubCatId = $subCatIds[$key];
-                $this->insertCategoryMasterData($pkg_id, $cat_id, $subCatId, $ranking);
+        }
+    }
+
+
+    //http://localhost/apps/index.php/api/v1/database/insert-category
+    //where: pkg_id, title, sub_cat_id
+    public function insert_category_master_post() {
+        $pkg_id = $this->input->post("pkg_id");
+        $cat_id = $this->input->post("cat_id");
+        $subCatIdsString = $this->input->post("sub_cat_ids");
+        $ranking = 0;
+        $mSubCatId = null;
+        $subCatIds = explode(",",$subCatIdsString);
+        foreach ($subCatIds as $key => $value){
+            if($value > 0){
+                $mSubCatId = $value;
+            }
+        }
+
+        $this->form_validation->set_rules("cat_id", "Cat Id", "required");
+        $this->form_validation->set_rules("sub_cat_ids", "Sub Category Id", "required");
+        if ($this->form_validation->run() === FALSE) {
+            // we have some errors
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
+        } else {
+            if($this->insertCategoryMasterData($pkg_id, $cat_id, $mSubCatId, $ranking)){
+                $this->responseStatus(STATUS_SUCCESS, "Category mapping successful");
+            }else {
+                $this->responseStatus(STATUS_FAILURE, "Category mapping failed");
             }
         }
     }
 
     public function insertCategoryMasterData($pkg_id, $cat_id, $subCatId, $ranking){
-        if(!empty($subCatId)){//dfd
+        if(!empty($subCatId) && $cat_id != $subCatId){
             if($subCatId != null && $subCatId > 0){
                 $data = array(
                     "pkg_id" => $pkg_id,
@@ -162,8 +197,10 @@ class Database extends REST_Controller {
                 );
                 $whereClause = getCategoryWhereClause($pkg_id, $cat_id, $subCatId);
                 $this->database_model->insert_category_master($whereClause, $data);
+                return true;
             }
         }
+        return false;
     }
 
     //http://localhost/apps/api/v1/database/delete-category

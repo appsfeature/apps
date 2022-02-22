@@ -169,19 +169,16 @@ class Category extends CI_Controller{
 
 
     public function attachFragmentCreate() {
-        if(isset($subCatId)){
-            savePref('subCatIdSelected', $subCatId);
-        }
         $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
         $whereClause = getCategoryWhereClause($pkg_id, null, null);
-        $categories = $this->database_model->get_category($whereClause);
+        // $categories = $this->database_model->get_category($whereClause);
         $whereClause['flavour'] = $this->flavour;
         $itemTypes = $this->database_model->get_item_type_flavour($whereClause);
-        $subCatIdSelected = getPref('subCatIdSelected');
+        // $subCatIdSelected = getPref('subCatIdSelected');
         $itemTypeSelected = getPref('itemTypeSelected');
-        $data['categories'] = $categories;
+        // $data['categories'] = $categories;
         $data['itemTypes'] = $itemTypes;
-        $data['subCatIdSelected'] = $subCatIdSelected;
+        // $data['subCatIdSelected'] = $subCatIdSelected;
         $data['itemTypeSelected'] = $itemTypeSelected;
         $data['mainModule'] = 'category';
         $data['subModule'] = 'createCategory';
