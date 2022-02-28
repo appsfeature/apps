@@ -104,14 +104,14 @@ function getFlavourWhereClause($type){
 
 function savePreferences(){
     $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-    if($pkg_id == 'com.appsfeature.bizwiz'){
+    if($pkg_id == 'p2'){
         savePref('catSpinnerSelected', '114');
     }
 }
 
 function isVisibleSideMenu($menuName){
   $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-  if($pkg_id == 'com.appsfeature.bizwiz'){
+  if($pkg_id == 'p2'){
       if($menuName == 'Categories' || $menuName == 'Contents' || $menuName == 'ItemType'){
           return false;
       }
@@ -121,7 +121,7 @@ function isVisibleSideMenu($menuName){
 
 function isVisibleDashboardMenu($menuName){
   $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-  if($pkg_id == 'com.appsfeature.bizwiz'){
+  if($pkg_id == 'p2'){
       // if($menuName == 'Categories'){
       //     return false;
       // }
@@ -131,7 +131,7 @@ function isVisibleDashboardMenu($menuName){
 
 function getMenuTitle($menuName){
   $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-  if($pkg_id == 'com.appsfeature.bizwiz'){
+  if($pkg_id == 'p2'){
       switch ($menuName) {
           case 'Contents':
               return 'Home Items';
@@ -146,7 +146,7 @@ function getMenuTitle($menuName){
 
 function getMenuLink($menuLink){
   $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-  if($pkg_id == 'com.appsfeature.bizwiz'){
+  if($pkg_id == 'p2'){
       switch ($menuLink) {
           case 'admin/content':
           case 'admin/content/list':
