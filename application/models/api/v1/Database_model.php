@@ -12,6 +12,16 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_pkg_id($pkgName) {
+        if(isset($pkgName)){
+            $whereClause['pkg_name'] = $pkgName;
+            $query = $this->db->get_where('table_app', $whereClause);
+            return $query->result_array();
+        }else {
+            return array();
+        }
+    }
+
     public function get_flavours($whereClause = array()) {
         $this->db->order_by('ranking', 'ASC');
         $this->db->where('visibility =', '1');
@@ -80,10 +90,10 @@ class Database_model extends CI_Model {
         return $this->db->delete("table_category_master", $whereClause);
     }
 
-    public function get_category_selected($whereClause = array(), $searchQuery = []) {
-        $selection = array('cat_id', 'sub_cat_id', 'title', 'item_type', 'image', 'ranking', 'other_property', 'created_at');
-        return $this->get_category($whereClause, $searchQuery, $selection);
-    }
+    // public function get_category_selected($whereClause = array(), $searchQuery = []) {
+    //     $selection = array('cat_id', 'sub_cat_id', 'title', 'item_type', 'image', 'ranking', 'other_property', 'created_at');
+    //     return $this->get_category($whereClause, $searchQuery, $selection);
+    // }
 
     public function get_category($whereClause = array(), $searchQuery = [], $selection = array()) {
         if ($searchQuery != null && count($searchQuery) > 0) {
@@ -95,6 +105,21 @@ class Database_model extends CI_Model {
         $this->db->order_by('created_at', 'DESC');
         $query = $this->db->get_where("table_category", $whereClause);
         return $query->result_array();
+    }
+
+    public function get_category_master($whereClause = array(), $searchQuery = [], $selection = array()) {
+        if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.cat_id='" .$whereClause['cat_id']. "' ORDER BY table_category.ranking ASC";
+        }else if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.sub_cat_id='" .$whereClause['sub_cat_id']. "' ORDER BY table_category.ranking ASC";
+        }else if(isset($whereClause['pkg_id'])){
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' ORDER BY table_category.ranking ASC";
+        }else{
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id ORDER BY table_category.ranking ASC";
+        }
+
+        $q = $this->db->query($query)->result_array();
+        return $q;
     }
 
     public function insert_content($isUpdate = false, $whereClause = array(), $data = array()) {
@@ -160,10 +185,10 @@ class Database_model extends CI_Model {
         return $this->db->delete("table_content_master", $whereClause2);
     }
 
-    public function get_content_selected($whereClause = array(), $searchQuery = []) {
-        $selection = array('id', 'cat_id', 'sub_cat_id', 'title', 'description', 'item_type', 'image', 'link', 'ranking', 'other_property', 'created_at');
-        return $this->get_content($whereClause, $searchQuery, $selection);
-    }
+    // public function get_content_selected($whereClause = array(), $searchQuery = []) {
+    //     $selection = array('id', 'cat_id', 'sub_cat_id', 'title', 'description', 'item_type', 'image', 'link', 'ranking', 'other_property', 'created_at');
+    //     return $this->get_content($whereClause, $searchQuery, $selection);
+    // }
 
     public function get_content($whereClause = array(), $searchQuery = [], $selection = array()) {
         if ($searchQuery != null && count($searchQuery) > 0) {
@@ -179,18 +204,21 @@ class Database_model extends CI_Model {
     }
 
     public function get_content_master($whereClause = array(), $searchQuery = [], $selection = array()) {
-        // if ($searchQuery != null && count($searchQuery) > 0) {
-        //     $this->db->like($searchQuery);
-        // }
-
-        $query = "SELECT table_content.*, table_content_master.sub_cat_id FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" . $whereClause['pkg_id'] . "'";
+        if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "' ORDER BY table_content.ranking ASC";
+        }else if(isset($whereClause['pkg_id'])){
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' ORDER BY table_content.ranking ASC";
+        }else{
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id ORDER BY table_content.ranking ASC";
+        }
 
         $q = $this->db->query($query)->result_array();
-        if ($this->db->affected_rows()) {
-            return $q;
-        } else {
-            return false;
-        }
+        // if ($this->db->affected_rows()) {
+        //
+        // } else {
+        //     return false;
+        // }
+        return $q;
     }
 
 
