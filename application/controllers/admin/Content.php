@@ -103,7 +103,7 @@ class Content extends CI_Controller{
         $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
 
         $whereClause = getContentWhereClause($pkg_id, null, null, $contentId, null);
-        $content = $this->database_model->get_content($whereClause);
+        $content = $this->database_model->get_content_master($whereClause);
 
         $whereClause = getCategoryWhereClause($pkg_id, null, null);
         $allCategories = $this->database_model->get_category($whereClause);

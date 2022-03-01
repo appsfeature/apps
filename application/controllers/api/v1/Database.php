@@ -427,7 +427,7 @@ class Database extends REST_Controller {
                     "sub_cat_id" => $subCatId,
                     "ranking" => $ranking == null ? 0 : $ranking
                 );
-                $whereClause = getContentWhereClause($pkg_id, null, $subCatId, $content_id, null);
+                $whereClause = getContentMasterWhereClause($pkg_id, null, $subCatId, $content_id, null);
                 $this->database_model->insert_content_master($whereClause, $data);
                 return true;
             }

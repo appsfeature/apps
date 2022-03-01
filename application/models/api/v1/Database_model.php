@@ -206,6 +206,8 @@ class Database_model extends CI_Model {
     public function get_content_master($whereClause = array(), $searchQuery = [], $selection = array()) {
         if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
             $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "' ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+        }else if(isset($whereClause['pkg_id']) && isset($whereClause['id'])){
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "' ORDER BY table_content.ranking ASC, table_content.created_at DESC";
         }else if(isset($whereClause['pkg_id'])){
             $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' ORDER BY table_content.ranking ASC, table_content.created_at DESC";
         }else{

@@ -66,6 +66,26 @@ function getContentWhereClause($pkg_id, $cat_id, $sub_cat_id, $id, $title){
     return $whereClause;
 }
 
+function getContentMasterWhereClause($pkg_id, $cat_id, $sub_cat_id, $content_id, $title){
+    $whereClause = null;
+    if($pkg_id != null){
+        $whereClause['pkg_id'] = $pkg_id;
+    }
+    if($cat_id != null){
+        $whereClause['cat_id'] = $cat_id;
+    }
+    if($sub_cat_id != null){
+        $whereClause['sub_cat_id'] = $sub_cat_id;
+    }
+    if($content_id != null){
+        $whereClause['content_id'] = $content_id;
+    }
+    if($title != null){
+        $whereClause['title'] = $title;
+    }
+    return $whereClause;
+}
+
 function getDataWhereClause($pkg_id, $cat_id, $id){
     $whereClause = null;
     if($pkg_id != null){
