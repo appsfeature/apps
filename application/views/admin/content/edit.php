@@ -90,6 +90,10 @@
                                  ?>
                             </select>
                         </div>
+                        <div class="col-sm-4 mb-3">
+                            <label for="ranking" class="formbuilder-number-label">Ranking</label>
+                            <input type="number" placeholder="Enter Ranking" value="<?php echo $content['ranking']; ?>" class="form-control" name="ranking" access="false" id="ranking">
+                        </div>
                     </div>
 
                     <div class="row">

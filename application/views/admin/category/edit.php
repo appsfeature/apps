@@ -40,7 +40,7 @@
                     <input type="hidden" name="image_old" access="false" id="image_old" value="<?php echo $category['image']; ?>">
 
                     <div class="row">
-                        <div class="col-sm-4 mb-3">
+                        <!-- <div class="col-sm-4 mb-3">
 
                             <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
                             <select class="form-control" name="sub_cat_id" id="sub_cat_id">
@@ -56,7 +56,7 @@
                                     }
                                  ?>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="col-sm-4 mb-3">
                             <label for="item_type" class="formbuilder-number-label">Item Type</label>
                             <select class="form-control" name="item_type" id="item_type">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-sm-4 mb-3">
                             <label for="ranking" class="formbuilder-number-label">Ranking</label>
-                            <input type="number" placeholder="Enter Ranking" value="<?php echo $category['ranking']; ?>" class="form-control" name="ranking" access="false" value="0" id="ranking">
+                            <input type="number" placeholder="Enter Ranking" value="<?php echo $category['ranking']; ?>" class="form-control" name="ranking" access="false" id="ranking">
                         </div>
                     </div>
                      <div class="formbuilder-text form-group field-title">

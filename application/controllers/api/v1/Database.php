@@ -337,6 +337,7 @@ class Database extends REST_Controller {
                 "description" => $description,
                 "item_type" => $item_type,
                 "link" => $link,
+                "ranking" => $ranking == null ? 0 : $ranking,
                 "visibility" => $visibility == null ? 1 : $visibility,
                 "json_data" => $json_data,
                 "other_property" => $other_property,
@@ -823,7 +824,7 @@ class Database extends REST_Controller {
             // we have some errors
             $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
         } else {
-            $allsubcat = $this->database_model->getCategoryByParentId($pkgId, $subCatId);
+            $allsubcat = $this->database_model->getCategoryByParentId($pkg_id, $subCatId);
             if (is_array($allsubcat) && count($allsubcat) > 0) {
                 $this->responseResult(STATUS_SUCCESS, "data found", $allsubcat);
             } else {

@@ -2,6 +2,10 @@
 
 This is a developed community where you will find several interesting blog articles with short and cool codes. It contains Laravel 8, CodeIgniter 4, MySQL, WordPress, Node Js etc. Please visit once and see the power of learning from this blog.
 
+## Integration Pending
+- Remove Mapping category
+- List Mapping Category
+
 
 API Base Url: `http://yourdomain.com/apps/api/v1/database/`
 

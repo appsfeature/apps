@@ -86,6 +86,11 @@
                                  ?>
                             </select>
                         </div>
+
+                        <div class="col-sm-4 mb-3">
+                           <label for="ranking" class="formbuilder-number-label">Ranking</label>
+                           <input type="number" placeholder="Enter Ranking" class="form-control" name="ranking" access="false" value="0" id="ranking">
+                        </div>
                     </div>
 
                     <div class="row">

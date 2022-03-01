@@ -143,6 +143,9 @@ class Database_model extends CI_Model {
     }
 
     public function update_content($whereClause = array(), $data = array()) {
+        // print_r('<pre>');
+        // print_r($whereClause);
+        // print_r($data);
         $query = $this->db->get_where('table_content', $whereClause);
         if ($query->num_rows() > 0) {
             $this->db->update("table_content", $data, $whereClause);
