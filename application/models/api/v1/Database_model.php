@@ -108,16 +108,31 @@ class Database_model extends CI_Model {
     }
 
     public function get_category_master($whereClause = array(), $searchQuery = [], $selection = array()) {
+
         if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
-            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.cat_id='" .$whereClause['cat_id']. "' ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.cat_id='" .$whereClause['cat_id']. "'";
         }else if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
-            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.sub_cat_id='" .$whereClause['sub_cat_id']. "' ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.sub_cat_id='" .$whereClause['sub_cat_id']. "'";
         }else if(isset($whereClause['pkg_id'])){
-            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "'";
         }else{
-            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+            $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id ";
         }
 
+
+
+        if ($searchQuery != null && count($searchQuery) > 0) {
+            if(isset($searchQuery['title'])){
+                $query .= " AND table_category.title LIKE '%".$searchQuery['title']."%'";
+            }
+            if(isset($searchQuery['sub_cat_id'])){
+                $query .= " AND table_category_master.sub_cat_id = '".$searchQuery['sub_cat_id']."' ";
+            }
+        }
+
+        $query .= " ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+
+        // echo($query);die;
         $q = $this->db->query($query)->result_array();
         return $q;
     }

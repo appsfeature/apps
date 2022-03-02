@@ -154,8 +154,11 @@
 <?php $this->load->view('admin/scripts/scriptcategorymapping'); ?>
 <script type="text/javascript">
 $(document).ready(function() {
-
-    $( ".container_to_load" ).load( "<?php echo base_url().'admin/itemtype/attachFragmentList' ?>" );
+    var title= $("[name='title']").val();
+    var flavour= $("[name='flavour']").val();
+    var url= "<?php echo base_url().'admin/itemtype/attachFragmentList' ?>?title="+title+"&flavour="+flavour;
+    console.log(url);
+    $( ".container_to_load" ).load(url);
 
     $("#itemForm").submit(function(e) {
         e.preventDefault();

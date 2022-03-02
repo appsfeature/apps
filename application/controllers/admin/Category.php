@@ -44,7 +44,7 @@ class Category extends CI_Controller{
 
         $subCategories = $this->database_model->get_category($whereClause);
 
-        $category = $this->database_model->get_category($whereClause, $queryString);
+        $category = $this->database_model->get_category_master($whereClause, $queryString);
 
         $whereClause['flavour'] = $this->flavour;
         $itemTypes = $this->database_model->get_item_type_flavour($whereClause);

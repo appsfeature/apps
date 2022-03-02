@@ -72,7 +72,6 @@ class Itemtype extends CI_Controller{
         }
         $whereClause = getItemTypeWhereClause($pkg_id, null, null);
         $flavours = $this->database_model->get_flavours();
-
         $itemtypes = $this->database_model->get_item_type($whereClause, $queryString);
         $data['itemtypes'] = $itemtypes;
         $data['flavours'] = $flavours;
@@ -97,7 +96,7 @@ class Itemtype extends CI_Controller{
         }
         $whereClause = getItemTypeWhereClause($pkg_id, null, null);
         $flavours = $this->database_model->get_flavours();
-
+        // dd($queryString);
         $itemtypes = $this->database_model->get_item_type($whereClause, $queryString);
         $data['itemtypes'] = $itemtypes;
         $data['flavours'] = $flavours;
