@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="container_to_load"></div> 
+                        <div class="container_to_load"></div>
                     </div>
 
                 </div>
@@ -79,26 +79,67 @@
                   <h3 class="card-title">Create Item Type</h3>
                </div>
                <div class="card-body">
+                   <form name="itemForm" id="itemForm" action=""  method="post" enctype="multipart/form-data">
 
-                   <div class="row categorybx">
-                       <div class="col-sm-12 mb-3">
-                           <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
-                           <select class="form-control selectClass" name="sub_cat_id" id="sub_cat_id" >
-                               <option value="0">Select Category</option>
-                               <?php
-                                   if(!empty($categories)){
-                                       foreach ($categories as $item) {
-                                           $selected = ($subCatIdSelected == $item['cat_id']) ? true : false;
-                                           ?>
-                                            <option <?php echo set_select('sub_cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
-                                            <?php
-                                       }
-                                   }
-                                ?>
-                           </select>
-                       </div>
+                     <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
+                     <input type="hidden" name="" value="">
 
-                   </div>
+                     <div class="row">
+                         <div class="col-sm-12 mb-3">
+                             <label for="flavour" class="Flavour">Flavour</label>
+                             <select class="form-control" name="flavour" id="flavour">
+                                 <option value="0">Select Flavour</option>
+                                 <?php
+                                     if(!empty($flavours)){
+                                         foreach ($flavours as $item) {
+                                              ?>
+                                              <option <?php echo set_select('flavour', $item['id'], false); ?> value="<?php echo $item['id'];?>"><?php echo $item['title'];?></option>
+                                              <?php
+                                         }
+                                     }
+                                  ?>
+                             </select>
+                         </div>
+                     </div>
+
+                      <div class="row">
+                          <div class="col-sm-12 mb-3">
+                              <label for="description" class="formbuilder-number-label">ItemType</label>
+                              <input type="number" value="0" placeholder="Enter Item Type"class="form-control" name="item_type" access="false" id="item_type">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 mb-3">
+                              <label for="title" class="formbuilder-text-label">Title <span style="color:red">*</span></label>
+                              <input type="text" placeholder="Enter Title" class="form-control <?php echo (form_error('title') != "") ? 'is-invalid' : ''; ?>" name="title" access="false" id="title">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 mb-3">
+                              <label for="ranking" class="formbuilder-number-label">Ranking</label>
+                              <input type="number" placeholder="Enter Ranking" class="form-control" name="ranking" access="false" value="0" id="ranking">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 mb-3">
+                              <label for="radio-group-1642854908703" class="formbuilder-radio-group-label">Visibility</label>
+                              <div class="radio-group row">
+                                  <div class="ml-3">
+                                      <input name="visibility"  id="radio_active" value="1" type="radio" checked="checked">
+                                      <label for="radio_active">Active</label>
+                                  </div>
+                                  <div class="ml-3">
+                                      <input name="visibility"  id="radio-deactive" value="2" type="radio" >
+                                      <label for="radio-deactive">Deactive</label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="formbuilder-button form-group field-submit">
+                         <button type="submit" class="btn-success btn" name="submit" access="false" style="success" id="submitBtn">Create</button>
+                     </div>
+                   </form>
                </div>
             </div>
           </div>

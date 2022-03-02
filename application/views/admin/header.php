@@ -174,6 +174,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <?php } ?>
           <!-- Itemtype section end -->
 
+          <li class="nav-item">
+            <a href="<?php echo base_url().getMenuLink('admin/itemtype/master');?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtypemaster') ? 'active' : ''; ?>">
+              <i class="far fa-circle nav-icon"></i>
+              <p><?php echo getMenuTitle('ItemType-master');?></p>
+            </a>
+          </li>
+
           <!-- Data section start -->
           <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='item') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='item') ? 'active' : ''; ?>">
