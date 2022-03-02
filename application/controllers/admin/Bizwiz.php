@@ -36,8 +36,8 @@ class Bizwiz extends CI_Controller{
         $contents = $this->database_model->get_content($whereClause, $queryString);
         $data['contents'] = $contents;
         $data['querySearch'] = $querySearch;
-        $data['mainModule'] = 'item';
-        $data['subModule'] = 'viewItem';
+        $data['mainModule'] = 'homeItem';
+        $data['subModule'] = 'viewHomeItem';
         $this->load->view($this->module_url.'/list', $data);
     }
 
@@ -50,8 +50,8 @@ class Bizwiz extends CI_Controller{
         $catSpinnerSelected = getPref('catSpinnerSelected');
         $data['categories'] = $categories;
         $data['catSpinnerSelected'] = $catSpinnerSelected;
-        $data['mainModule'] = 'item';
-        $data['subModule'] = 'createItem';
+        $data['mainModule'] = 'homeItem';
+        $data['subModule'] = 'createHomeItem';
         $this->load->view($this->module_url.'/create', $data);
     }
 
@@ -68,7 +68,7 @@ class Bizwiz extends CI_Controller{
         if($content != null && count($content) == 1){
             $data['content'] = $content[0];
             $data['categories'] = $categories;
-            $data['mainModule'] = 'item';
+            $data['mainModule'] = 'homeItem';
             $data['subModule'] = '';
             $this->load->view($this->module_url.'/edit', $data);
         }else {

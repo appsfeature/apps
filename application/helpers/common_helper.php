@@ -132,7 +132,11 @@ function savePreferences(){
 function isVisibleSideMenu($menuName){
   $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
   if($pkg_id == 'p2'){
-      if($menuName == 'Categories' || $menuName == 'Contents' || $menuName == 'ItemType'){
+      if($menuName == 'JsonData'){
+          return false;
+      }
+  }else{
+      if($menuName == 'HomeItems'){
           return false;
       }
   }
