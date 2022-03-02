@@ -157,41 +157,50 @@ $(document).ready(function() {
 
     $( ".container_to_load" ).load( "<?php echo base_url().'admin/itemtype/attachFragmentList' ?>" );
 
-
-    $("#categoryForm").submit(function(e) {
+    $("#itemForm").submit(function(e) {
         e.preventDefault();
         $("#submitBtn").prop("disabled", true);
 
-        var formData= new FormData($("#categoryForm")[0]);
-        formData.append('sub_cat_ids', formData.getAll('sub_cat_id'));
+        var formData= new FormData($("#itemForm")[0]);
+        // console.log('my message' + formData);
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url().version_prefix.'database/insert_category' ?>",
+            url: "<?php echo base_url().version_prefix.'database/insert_item_type' ?>",
             data: formData,
             processData: false,
             contentType: false,
             encode: true,
         }).done(function(data) {
-            $("#submitBtn").prop("disabled", false);
-            var successURL = "<?php echo base_url().$CI->module_url_list ?>";
+            var successURL = "<?php echo base_url().$CI->module_url_master; ?>";
             if(data.status=='failure'){
               showToast(false, data.message);
               $("button[type='submit']").prop("disabled", false);
             } else {
-                showToast(true, data.message);
-                //
-                // $('input:not([name="visibility"])').val('')
-                // $("[name='ranking']").val(0);
-                // $("textarea").val('');
-                // $("[name='item_type']").val(0);
+              if(successURL!==null) {
+                  //$( ".container_to_load" ).load( "<?php echo base_url().'admin/itemtype/attachFragmentList' ?>" );
 
-                $( ".container_to_load" ).load( "<?php echo base_url().'admin/itemtype/attachFragmentList' ?>" );
-              // if(successURL!==null) {
-              //   window.location.href=successURL;
-              // }
+                window.location.href=successURL;
+              }
             }
         });
     });
 });
+</script>
+
+<script type="text/javascript">
+    if('<?php echo $this->session->flashdata('success'); ?>' != ""){
+        showToast(true, "<?php echo $this->session->flashdata('success'); ?>");
+    }
+    if('<?php echo $this->session->flashdata('error'); ?>' != ""){
+        showToast(false, "<?php echo $this->session->flashdata('error'); ?>");
+    }
+</script>
+
+<script type="text/javascript">
+    function deleteRow(id) {
+        if(confirm("Are you sure you want to delete item?")){
+            window.location.href='<?php echo base_url().$CI->module_url_delete.'/'; ?>' + id;
+        }
+    }
 </script>

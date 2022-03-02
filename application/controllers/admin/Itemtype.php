@@ -6,6 +6,7 @@ class Itemtype extends CI_Controller{
     public $module_title = 'Itemtypes';
     public $module_url = 'admin/itemtype';
     public $module_url_list = 'admin/itemtype';
+    public $module_url_master = 'admin/itemtype/master';
     public $module_url_create = 'admin/itemtype/create';
     public $module_url_edit = 'admin/itemtype/edit';
     public $module_url_delete = 'admin/itemtype/delete';
@@ -161,7 +162,7 @@ class Itemtype extends CI_Controller{
         }else {
             $this->session->set_flashdata('error', 'Itemtype not found');
         }
-        redirect(base_url().$this->module_url);
+        redirect(base_url().$this->module_url_master);
     }
 }
 
