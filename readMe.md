@@ -362,12 +362,9 @@ class Home extends CI_Controller{
 PATH -> application\config\database.php
 ```php
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
 	'username' => 'katyayan_school',
 	'password' => 'katyayan@@123',
-	'database' => 'droid_apps',
-	'dbdriver' => 'mysqli',
+	'database' => 'apps_feature',
 	...
     ...
 );
