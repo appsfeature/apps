@@ -199,6 +199,12 @@ function dd($data){
     die;
 }
 
+function ee($data){
+    echo "<pre>";
+    echo($data);
+    die;
+}
+
 function ddd($message){
     // echo "<pre>";
     // echo "<script>alert('$message');</script>";

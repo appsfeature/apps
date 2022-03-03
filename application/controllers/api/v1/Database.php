@@ -325,6 +325,7 @@ class Database extends REST_Controller {
         $other_property = $this->input->post("other_property");
         $updated_at = $this->input->post("updated_at");
         $this->form_validation->set_rules("pkg_id", "Package Id", "required");
+        $this->form_validation->set_rules("sub_cat_id", "Category", "required");
         $this->form_validation->set_rules("title", "Title", "required");
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {

@@ -39,15 +39,15 @@
 
                     <div class="row">
                         <div class="col-sm-3 mb-3">
-                            <label for="cat_id" class="formbuilder-number-label">Category</label>
-                            <select class="form-control" name="cat_id" id="cat_id">
-                                <option value="0">Select Category</option>
+                            <label for="sub_cat_id" class="formbuilder-number-label">Category <span style="color:red">*</span></label>
+                            <select class="form-control" name="sub_cat_id" id="sub_cat_id">
+                                <option value="">Select Category</option>
                                 <?php
                                     if(!empty($categories)){
                                         foreach ($categories as $item) {
                                             $selected = ($catSpinnerSelected == $item['cat_id']) ? true : false;
                                             ?>
-                                             <option <?php echo set_select('cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
+                                             <option <?php echo set_select('sub_cat_id', $item['cat_id'], $selected); ?> value="<?php echo $item['cat_id'];?>"><?php echo $item['title'];?></option>
                                              <?php
                                         }
                                     }

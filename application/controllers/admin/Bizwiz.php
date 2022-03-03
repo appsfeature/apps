@@ -31,9 +31,11 @@ class Bizwiz extends CI_Controller{
         if($queryString != null){
             $querySearch = $queryString['title'];
         }
-        $whereClause = getContentWhereClause($pkg_id, null, null, null, null);
+        // $queryString['sub_cat_id'] = getPref('catSpinnerSelected');
+        $subCatId = getPref('catSpinnerSelected');
+        $whereClause = getContentWhereClause($pkg_id, null, $subCatId, null, null);
 
-        $contents = $this->database_model->get_content($whereClause, $queryString);
+        $contents = $this->database_model->get_content_master($whereClause, $queryString);
         $data['contents'] = $contents;
         $data['querySearch'] = $querySearch;
         $data['mainModule'] = 'homeItem';

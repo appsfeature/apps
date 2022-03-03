@@ -225,13 +225,13 @@ class Database_model extends CI_Model {
 
     public function get_content_master($whereClause = array(), $searchQuery = []) {
         if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "'";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "'";
         }else if(isset($whereClause['pkg_id']) && isset($whereClause['id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "'";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "'";
         }else if(isset($whereClause['pkg_id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "'";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "'";
         }else{
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id";
         }
 
         if ($searchQuery != null && count($searchQuery) > 0) {

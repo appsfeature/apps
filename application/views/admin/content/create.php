@@ -40,9 +40,9 @@
 
                     <div class="row">
                         <div class="col-sm-4 mb-3">
-                            <label for="cat_id" class="formbuilder-number-label">Category</label>
+                            <label for="cat_id" class="formbuilder-number-label">Category <span style="color:red">*</span></label>
                             <select class="form-control" name="sub_cat_id" id="sub_cat_id">
-                                <option value="0">Select Category</option>
+                                <option value="">Select Category</option>
                                 <?php
                                     if(!empty($categories)){
                                         foreach ($categories as $item) {
