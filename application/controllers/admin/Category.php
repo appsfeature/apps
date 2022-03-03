@@ -11,6 +11,11 @@ class Category extends CI_Controller{
     public $module_url_edit = 'admin/category/edit';
     public $module_url_delete = 'admin/category/delete';
 
+    public $module_url_mapping = 'admin/category/mapping';
+    public $module_url_listmaster = 'admin/category/listmaster';
+    public $module_url_editmaster = 'admin/category/editmaster';
+    public $module_url_deletemaster = 'admin/category/deletemaster';
+
     public function __construct(){
         parent::__construct();
         $admin = $this->session->userdata('admin');
@@ -141,7 +146,88 @@ class Category extends CI_Controller{
         $data['itemTypeSelected'] = $itemTypeSelected;
         $data['mainModule'] = 'category';
         $data['subModule'] = 'mappingCategory';
-        $this->load->view($this->module_url.'/mapping', $data);
+        $this->load->view($this->module_url.'/master/mapping', $data);
+    }
+
+    //This will show create page
+    public function listmaster(){
+        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
+        $queryString = $this->input->get();
+        $catIdSelected = '';
+        $subCatIdSelected = '';
+        if(!empty($queryString)){
+            if(array_key_exists("cat_id", $queryString)){
+                $catIdSelected = $queryString['cat_id'];
+            }
+            if(array_key_exists("sub_cat_id", $queryString)){
+                $subCatIdSelected = $queryString['sub_cat_id'];
+            }
+        }
+
+        $whereClause = getCategoryWhereClause($pkg_id, null, null);
+
+        $categories = $this->database_model->get_category($whereClause);
+        $categoryMap = null;
+        foreach ($categories as $value1) {
+            $categoryMap[$value1['cat_id']] = $value1['title'];
+        }
+
+        $categoriesMaster = $this->database_model->get_cat_master($whereClause, $queryString);
+
+        $data['categories'] = $categories;
+        $data['categoriesMaster'] = $categoriesMaster;
+        $data['categoryMap'] = $categoryMap;
+        $data['catIdSelected'] = $catIdSelected;
+        $data['subCatIdSelected'] = $subCatIdSelected;
+        $data['mainModule'] = 'category';
+        $data['subModule'] = 'listmaster';
+        $this->load->view($this->module_url.'/master/list', $data);
+    }
+
+    //This will show edit page
+    public function editmaster($id = null){
+        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
+
+        $whereClause1 = getCategoryWhereClause($pkg_id, null, null);
+        $categories = $this->database_model->get_category($whereClause1);
+        $categoryMap = null;
+        foreach ($categories as $value1) {
+            $categoryMap[$value1['cat_id']] = $value1['title'];
+        }
+
+        $whereClause['id'] = $id;
+        $categoriesMaster = $this->database_model->get_cat_master($whereClause);
+
+        if($categoriesMaster != null && count($categoriesMaster) == 1){
+            $data['categoriesMaster'] = $categoriesMaster[0];
+            $data['categories'] = $categories;
+            $data['categoryMap'] = $categoryMap;
+            $data['mainModule'] = 'category';
+            $data['subModule'] = '';
+            $this->load->view($this->module_url.'/master/edit', $data);
+        }else {
+            $this->session->set_flashdata('error', 'Category not found');
+            redirect(base_url().$this->module_url.'/master/list');
+        }
+    }
+
+    //This will show delete page
+    public function deletemaster($id){
+        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
+
+        $whereClause['id'] = $id;
+        $categoriesMaster = $this->database_model->get_cat_master($whereClause);
+
+        if($categoriesMaster != null && count($categoriesMaster) == 1){
+            if($this->database_model->delete_category_master($whereClause)){
+                $this->session->set_flashdata('success', 'Category Master has been deleted');
+            }else{
+                $this->session->set_flashdata('error', 'Failed to delete Category Master');
+            }
+        }else {
+            $this->session->set_flashdata('error', 'Category Master not found');
+        }
+        redirect(base_url().$this->module_url_listmaster);
     }
 
     //This will show delete page

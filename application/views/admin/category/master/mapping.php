@@ -10,8 +10,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/home' ?>">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?php echo base_url().$CI->module_url_list ?>"><?php echo $CI->module_title;?></a></li>
-              <li class="breadcrumb-item active">Mapping Category</li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url().$CI->module_url_listmaster ?>"><?php echo $CI->module_title;?> Master</a></li>
+              <li class="breadcrumb-item active">Mapping</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

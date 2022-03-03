@@ -131,9 +131,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url().'admin/category/mapping';?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='category' && !empty($subModule) && $subModule =='mappingCategory') ? 'active' : ''; ?>">
+                <a href="<?php echo base_url().'admin/category/listmaster';?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='category' && !empty($subModule) && $subModule =='listmaster') ? 'active' : ''; ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p> Mapping </p>
+                  <p> Master </p>
                 </a>
               </li>
             </ul>

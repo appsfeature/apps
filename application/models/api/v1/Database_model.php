@@ -131,6 +131,15 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_cat_master($whereClause = array(), $searchQuery = []) {
+        if ($searchQuery != null && count($searchQuery) > 0) {
+            $this->db->like($searchQuery);
+        }
+        $this->db->order_by('id', 'ASC');
+        $query = $this->db->get_where("table_category_master", $whereClause);
+        return $query->result_array();
+    }
+
     public function get_category_master($whereClause = array(), $searchQuery = [], $isSortById = false) {
 
         if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){

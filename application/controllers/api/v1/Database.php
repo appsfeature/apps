@@ -952,5 +952,31 @@ class Database extends REST_Controller {
             }
         }
     }
+
+    public function update_category_master_post() {
+        $id = $this->input->post("id");
+        $pkg_id = $this->input->post("pkg_id");
+        $cat_id = $this->input->post("cat_id");
+        $sub_cat_id = $this->input->post("sub_cat_id");
+
+        $this->form_validation->set_rules("pkg_id", "Package Id", "required");
+        $this->form_validation->set_rules("cat_id", "Cat Id", "required");
+        $this->form_validation->set_rules("sub_cat_id", "Sub Cat Id", "required");
+        // checking form submittion have any error or not
+        if ($this->form_validation->run() === FALSE) {
+            // we have some errors
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
+        } else {
+            $content = array(
+                "sub_cat_id" => $sub_cat_id
+            );
+            $whereClause = array("id" => $id);
+            if ($this->database_model->update_category_master($whereClause, $content)) {
+                $this->responseStatus(STATUS_SUCCESS, "SubCatId has been updated");
+            } else {
+                $this->responseStatus(STATUS_FAILURE, "Failed to update SubCatId");
+            }
+        }
+    }
 }
 ?>
