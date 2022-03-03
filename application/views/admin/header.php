@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </li>
 
 
-       <!-- Content section start -->
+       <!-- BizWiz section start -->
        <?php if(isVisibleSideMenu('HomeItems') == true) {?>
        <!-- Content section start -->
        <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='homeItem') ? 'menu-open' : ''; ?>">
@@ -108,11 +108,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </ul>
        </li>
        <?php } ?>
-       <!-- Content section end -->
+       <!-- BizWiz section end -->
 
-
-         <?php if(isVisibleSideMenu('Categories') == true) {?>
-         <!-- Category section start -->
+       <!-- Category section start -->
+       <?php if(isVisibleSideMenu('Categories') == true) {?>
           <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='category') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='category') ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -139,12 +138,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          <!-- Category section end -->
           <?php } ?>
+          <!-- Category section end -->
 
           <!-- Content section start -->
           <?php if(isVisibleSideMenu('Contents') == true) {?>
-          <!-- Content section start -->
           <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='content') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='content') ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -169,8 +167,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Content section end -->
 
           <!-- Itemtype section start -->
-          <?php if(isVisibleSideMenu('ItemType') == true) {?>
-          <!-- Content section start -->
+          <!-- <?php if(isVisibleSideMenu('ItemType') == true) {?>
           <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='itemtype') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtype') ? 'active' : ''; ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -191,17 +188,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-          <?php } ?>
+          <?php } ?> -->
           <!-- Itemtype section end -->
 
           <li class="nav-item">
             <a href="<?php echo base_url().'admin/itemtype/master';?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtypemaster') ? 'active' : ''; ?>">
               <i class="far fa-circle nav-icon"></i>
-              <p> ItemType-master </p>
+              <p> ItemType </p>
             </a>
           </li>
 
-          <!-- Data section start -->
+          <!-- JSONData section start -->
           <?php if(isVisibleSideMenu('JsonData') == true) {?>
           <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='item') ? 'menu-open' : ''; ?>">
             <a href="#" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='item') ? 'active' : ''; ?>">
@@ -224,7 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
           </li>
           <?php } ?>
-          <!-- Data section end -->
+          <!-- JSONData section end -->
 
         </ul>
       </nav>

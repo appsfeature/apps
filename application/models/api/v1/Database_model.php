@@ -119,20 +119,22 @@ class Database_model extends CI_Model {
             $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id ";
         }
 
-
-
         if ($searchQuery != null && count($searchQuery) > 0) {
-            if(isset($searchQuery['title'])){
+            if(!empty($searchQuery['title'])){
                 $query .= " AND table_category.title LIKE '%".$searchQuery['title']."%'";
             }
-            if(isset($searchQuery['sub_cat_id'])){
+            if(isset($searchQuery['item_type'])){
+                if($searchQuery['item_type'] != ''){
+                    $query .= " AND table_category.item_type = '".$searchQuery['item_type']."' ";
+                }
+            }
+            if(!empty($searchQuery['sub_cat_id'])){
                 $query .= " AND table_category_master.sub_cat_id = '".$searchQuery['sub_cat_id']."' ";
             }
         }
 
         $query .= " ORDER BY table_category.ranking ASC, table_category.created_at ASC";
 
-        // echo($query);die;
         $q = $this->db->query($query)->result_array();
         return $q;
     }
@@ -221,16 +223,32 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_content_master($whereClause = array(), $searchQuery = [], $selection = array()) {
+    public function get_content_master($whereClause = array(), $searchQuery = []) {
         if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "' ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "'";
         }else if(isset($whereClause['pkg_id']) && isset($whereClause['id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "' ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "'";
         }else if(isset($whereClause['pkg_id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "'";
         }else{
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id";
         }
+
+        if ($searchQuery != null && count($searchQuery) > 0) {
+            if(!empty($searchQuery['title'])){
+                $query .= " AND table_content.title LIKE '%".$searchQuery['title']."%'";
+            }
+            if(isset($searchQuery['item_type'])){
+                if($searchQuery['item_type'] != ''){
+                    $query .= " AND table_content.item_type = '".$searchQuery['item_type']."' ";
+                }
+            }
+            if(!empty($searchQuery['sub_cat_id'])){
+                $query .= " AND table_content_master.sub_cat_id = '".$searchQuery['sub_cat_id']."' ";
+            }
+        }
+
+        $query .= " ORDER BY table_content.ranking ASC, table_content.created_at DESC";
 
         $q = $this->db->query($query)->result_array();
         // if ($this->db->affected_rows()) {

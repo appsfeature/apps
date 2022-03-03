@@ -39,6 +39,10 @@ class Category extends CI_Controller{
             if(array_key_exists("title", $queryString)){
                 $querySearch = $queryString['title'];
             }
+            if(array_key_exists("sub_cat_id", $queryString)){
+                $subCatIdSelected = $queryString['sub_cat_id'];
+                savePref('subCatIdSelected', $subCatIdSelected);
+            }
         }
         $whereClause = getCategoryWhereClause($pkg_id, null, null);
 
