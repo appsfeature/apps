@@ -158,9 +158,9 @@ function getMenuTitle($menuName){
   if($pkg_id == 'p2'){
       switch ($menuName) {
           case 'Contents':
-              return 'Home Items';
+              return 'Home Slider';
           case 'Json data':
-              return 'Home Items';
+              return 'Home Slider';
           default:
               return $menuName;
       }

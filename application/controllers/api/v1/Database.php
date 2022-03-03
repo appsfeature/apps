@@ -202,7 +202,7 @@ class Database extends REST_Controller {
         $mSubCatId = null;
         $subCatIds = explode(",",$subCatIdsString);
         foreach ($subCatIds as $key => $value){
-            if($value > 0){
+            if($value != ''){
                 $mSubCatId = $value;
             }
         }
@@ -222,8 +222,8 @@ class Database extends REST_Controller {
     }
 
     public function insertCategoryMasterData($pkg_id, $cat_id, $subCatId, $ranking){
-        if(!empty($subCatId) && $cat_id != $subCatId){
-            if($subCatId != null && $subCatId > 0){
+        if($subCatId != null && $subCatId != '' && $cat_id != $subCatId){
+            if($subCatId != null){
                 $data = array(
                     "pkg_id" => $pkg_id,
                     "cat_id" => $cat_id,

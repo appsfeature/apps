@@ -67,7 +67,8 @@
                              <div class="col-sm-12 mb-3">
                                  <label for="sub_cat_id" class="formbuilder-number-label">Sub Category</label>
                                  <select class="form-control selectClass" name="sub_cat_id" id="sub_cat_id" >
-                                     <option value="0">Select Category</option>
+                                     <option value="">Select Category</option>
+                                     <option value="0">No Parent</option>
                                      <?php
                                          if(!empty($categories)){
                                              foreach ($categories as $item) {
