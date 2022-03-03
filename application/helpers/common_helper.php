@@ -144,11 +144,11 @@ function isVisibleSideMenu($menuName){
 }
 
 function isVisibleDashboardMenu($menuName){
-  $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-  if($pkg_id == 'p2'){
-      // if($menuName == 'Categories'){
-      //     return false;
-      // }
+  $role = isset($_SESSION['admin']['role'])?$_SESSION['admin']['role']:'';
+  if($role == '0'){
+      if($menuName == 'AdminPannel'){
+          return false;
+      }
   }
   return true;
 }

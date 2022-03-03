@@ -25,77 +25,91 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="card">
-              <div class="card-body text-left" style="height:450px">
-
-                <div class="row">
-                    <!-- Box Category start -->
-                    <?php if(isVisibleDashboardMenu('Categories') == true) {?>
-                      <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-info">
-                          <div class="inner ml-2" >
-                            <h3><?php echo count($categories) ?></h3>
-
-                            <h4><?php echo getMenuTitle('Categories');?></h4>
-                          </div>
-                          <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                          </div>
-                          <a href="<?php echo base_url().getMenuLink('admin/category/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <?php if(isVisibleDashboardMenu('AdminPannel') == true) {?>
+                <div class="col-md-12">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                           <h3 class="card-title">Admin Pannel</h3>
                         </div>
-                      </div>
-                    <?php } ?>
-                    <!-- Box Category end -->
+                        <div class="card-body">
+                          <div class="row">
+                              <!-- Box Account start -->
+                              <div class="col-lg-3 col-6">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                  <div class="inner ml-2">
+                                    <h3><?php echo count($accounts) ?></h3>
+                                    <h4>Accounts</h4>
+                                  </div>
+                                  <div class="icon">
+                                    <i class="ion ion-stats-bars"></i>
+                                  </div>
+                                  <a href="<?php echo base_url().getMenuLink('admin/account/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
+                              </div>
+                              <!-- Box Account end -->
 
-                    <!-- Box Content start -->
-                    <?php if(isVisibleDashboardMenu('Contents') == true) {?>
+                          </div>
+
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <div class="col-md-12">
+                <div class="card card-secondary">
+                <div class="card-header">
+                   <h3 class="card-title">User Pannel</h3>
+                </div>
+                <div class="card-body text-left" style="height:450px">
+                  <div class="row">
+                      <!-- Box Category start -->
+                      <?php if(isVisibleDashboardMenu('Categories') == true) {?>
                         <div class="col-lg-3 col-6">
                           <!-- small box -->
-                          <div class="small-box bg-success">
-                            <div class="inner ml-2">
-                              <h3><?php echo count($contents) ?></h3>
+                          <div class="small-box bg-info">
+                            <div class="inner ml-2" >
+                              <h3><?php echo count($categories) ?></h3>
 
-                              <h4><?php echo getMenuTitle('Contents');?></h4>
+                              <h4><?php echo getMenuTitle('Categories');?></h4>
                             </div>
                             <div class="icon">
                               <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="<?php echo base_url().getMenuLink('admin/content/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="<?php echo base_url().getMenuLink('admin/category/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                           </div>
                         </div>
-                    <?php } ?>
-                    <!-- Box Content end -->
+                      <?php } ?>
+                      <!-- Box Category end -->
 
-                    <!-- Box Account start -->
-                    <?php if(isVisibleDashboardMenu('Account') == true) {?>
-                        <div class="col-lg-3 col-6">
-                          <!-- small box -->
-                          <div class="small-box bg-success">
-                            <div class="inner ml-2">
-                              <h3><?php echo count($accounts) ?></h3>
-                              <h4>Accounts</h4>
+                      <!-- Box Content start -->
+                      <?php if(isVisibleDashboardMenu('Contents') == true) {?>
+                          <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                              <div class="inner ml-2">
+                                <h3><?php echo count($contents) ?></h3>
+
+                                <h4><?php echo getMenuTitle('Contents');?></h4>
+                              </div>
+                              <div class="icon">
+                                <i class="ion ion-stats-bars"></i>
+                              </div>
+                              <a href="<?php echo base_url().getMenuLink('admin/content/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
-                            <div class="icon">
-                              <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="<?php echo base_url().getMenuLink('admin/account/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                           </div>
-                        </div>
-                    <?php } ?>
-                    <!-- Box Account end -->
+                      <?php } ?>
+                      <!-- Box Content end -->
+
+
+                  </div>
 
                 </div>
-
-              </div>
             </div>
-
-          </div>
-          <!-- /.col-md-6 -->
+            </div>
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
+
     </div>
     <!-- /.content -->
   </div>

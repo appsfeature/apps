@@ -87,7 +87,7 @@
 
                          <div class="col-sm-4 mb-3">
                              <label for="radio-group-1642854908703" class="formbuilder-radio-group-label">Visibility</label>
-                             <div class="radio-group row">
+                             <div class="radio-group row mt-2">
                                  <div class="ml-3">
                                      <input name="active"  id="radio_active" value="1" type="radio" <?php echo ($account['active'] == 1) ? 'checked' : ''; ?>>
                                      <label for="radio_active">Active</label>
@@ -127,11 +127,11 @@ $(document).ready(function() {
         $("#submitBtn").prop("disabled", true);
 
         var formData= new FormData($("#itemForm")[0]);
-        console.log('my message' + formData);
+        // console.log('my message' + formData);
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url().version_prefix.'database/update_item_type' ?>",
+            url: "<?php echo base_url().version_prefix.'database/update_account' ?>",
             data: formData,
             processData: false,
             contentType: false,
