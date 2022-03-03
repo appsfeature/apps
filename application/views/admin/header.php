@@ -166,30 +166,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <?php } ?>
           <!-- Content section end -->
 
-          <!-- Itemtype section start -->
-          <!-- <?php if(isVisibleSideMenu('ItemType') == true) {?>
-          <li class="nav-item has-treeview <?php echo (!empty($mainModule) && $mainModule =='itemtype') ? 'menu-open' : ''; ?>">
-            <a href="#" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtype') ? 'active' : ''; ?>">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p> ItemType <i class="right fas fa-angle-left"></i> </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="<?php echo base_url().'admin/itemtype/list';?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtype' && !empty($subModule) && $subModule =='viewItemtype') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> List </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url().'admin/itemtype/create';?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtype' && !empty($subModule) && $subModule =='createItemtype') ? 'active' : ''; ?>">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p> Add </p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <?php } ?> -->
-          <!-- Itemtype section end -->
+          <div class="border-top my-3"></div>
 
           <li class="nav-item">
             <a href="<?php echo base_url().'admin/itemtype/master';?>" class="nav-link <?php echo (!empty($mainModule) && $mainModule =='itemtypemaster') ? 'active' : ''; ?>">
@@ -197,6 +174,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p> ItemType </p>
             </a>
           </li>
+
+          <?php if(isVisibleSideMenu('OneSignal') == true) {?>
+          <li class="nav-item has-treeview ">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p> Notification <i class="right fas fa-angle-left"></i> </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                  <a href="https://app.onesignal.com/apps/656370d9-dc90-47a4-9823-132fcbebcf3a/campaigns" target="_blank" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p> Campaigns </p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a href="https://app.onesignal.com/login" target="_blank" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> Login </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <?php } ?>
 
           <!-- JSONData section start -->
           <?php if(isVisibleSideMenu('JsonData') == true) {?>

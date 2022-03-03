@@ -4,9 +4,8 @@
 
     <table class="table">
       <tr>
-        <th width="50" class="text-center">Id</th>
-        <th width="100" class="text-center">Flavour</th>
         <th width="100" class="text-center">ItemType</th>
+        <th width="100" class="text-center">Flavour</th>
         <th>Title</th>
         <th width="100" class="text-center">Status</th>
         <th width="160" class="text-center">Action</th>
@@ -15,9 +14,8 @@
       <?php if(!empty($itemtypes)) {?>
           <?php foreach ($itemtypes as $itemRow) {?>
               <tr>
-                <td class="text-center"><?php echo $itemRow['id'];?></td>
-                <td class="text-center"><?php echo $itemRow['flavour'];?></td>
                 <td class="text-center"><?php echo $itemRow['item_type'];?></td>
+                <td class="text-center"><?php echo $itemRow['flavour'];?></td>
                 <td><?php echo $itemRow['title'];?></td>
 
                 <td class="text-center">

@@ -116,7 +116,7 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-            <form name="formAccount" id="formAccount" action=""  method="post" enctype="multipart/form-data">
+            <form name="formCreate" id="formCreate" action=""  method="post" enctype="multipart/form-data">
 
               <!-- <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
               <input type="hidden" name="" value=""> -->
@@ -212,11 +212,11 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $("#formAccount").submit(function(e) {
+    $("#formCreate").submit(function(e) {
         e.preventDefault();
         $("#submitBtn").prop("disabled", true);
 
-        var formData= new FormData($("#formAccount")[0]);
+        var formData= new FormData($("#formCreate")[0]);
         // console.log('my message' + formData);
 
         $.ajax({

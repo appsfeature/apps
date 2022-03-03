@@ -47,7 +47,7 @@ class Content extends CI_Controller{
         $whereClause = getContentWhereClause($pkg_id, null, null, null, null);
         $categories = $this->database_model->get_category($whereClause);
 
-        $contents = $this->database_model->get_content_master($whereClause, $queryString);
+        $contents = $this->database_model->get_content_master($whereClause, $queryString, true);
 
         $whereClause['flavour'] = $this->flavour;
         $itemTypes = $this->database_model->get_item_type_flavour($whereClause);

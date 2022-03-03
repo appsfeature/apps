@@ -139,6 +139,9 @@ function isVisibleSideMenu($menuName){
       if($menuName == 'HomeItems'){
           return false;
       }
+      if($menuName == 'OneSignal'){
+          return false;
+      }
   }
   return true;
 }

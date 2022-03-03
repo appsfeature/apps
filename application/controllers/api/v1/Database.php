@@ -172,16 +172,20 @@ class Database extends REST_Controller {
         if(!empty($subCatIdsString)){
             $subCatIds = explode(",",$subCatIdsString);
             if(count($subCatIds) == 1){
-                $this->insertCategoryMasterData($pkg_id, $cat_id, $subCatIdsString, $ranking);
+                $this->insertCategoryMasterData($pkg_id, $cat_id, $subCatIds[0], $ranking);
             }else {
+                $lastCatId = null;
                 foreach ($subCatIds as $key => $subCatId){
                     if($key > 0 && $subCatId > 0){
                         $mSubCatId = $subCatIds[$key-1];
                         $mCatId = $subCatIds[$key];
                         $this->insertCategoryMasterData($pkg_id, $mCatId, $mSubCatId, $ranking);
                     }
+                    if(!empty($subCatId)){
+                        $lastCatId = $subCatId;
+                    }
                 }
-                $this->insertCategoryMasterData($pkg_id, $cat_id, $mSubCatId, $ranking);
+                $this->insertCategoryMasterData($pkg_id, $cat_id, $lastCatId, $ranking);
             }
         }
     }
@@ -834,13 +838,13 @@ class Database extends REST_Controller {
         }
     }
 
-    //http://localhost/apps/api/v1/database/insert-item-type
+    //http://localhost/apps/api/v1/database/insert-account
     //where: $pkg_id, $id, $title
     public function insert_account_post() {
         $this->insertAccount(false);
     }
 
-    //http://localhost/apps/api/v1/database/update-item-type
+    //http://localhost/apps/api/v1/database/update-account
     //where: $pkg_id, $id, $title
     public function update_account_post() {
         $this->insertAccount(true);
@@ -893,6 +897,57 @@ class Database extends REST_Controller {
                     $this->responseStatus(STATUS_SUCCESS, "Account has been created");
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to create Account");
+                }
+            }
+        }
+    }
+
+    //http://localhost/apps/api/v1/database/insert-app
+    //where: $pkg_id, $id, $title
+    public function insert_app_post() {
+        $this->insertApp(false);
+    }
+
+    //http://localhost/apps/api/v1/database/update-app
+    //where: $pkg_id, $id, $title
+    public function update_app_post() {
+        $this->insertApp(true);
+    }
+
+    private function insertApp($isUpdateOnly = false) {
+        $app_id = $this->input->post("app_id");
+        $pkg_id = $this->input->post("pkg_id");
+        $pkg_name = $this->input->post("pkg_name");
+        $app_name = $this->input->post("app_name");
+        $visibility = $this->input->post("visibility");
+
+        $this->form_validation->set_rules("pkg_id", "Package Id", "required");
+        $this->form_validation->set_rules("pkg_name", "Package Name", "required");
+        $this->form_validation->set_rules("app_name", "App Name", "required");
+        // checking form submittion have any error or not
+        if ($this->form_validation->run() === FALSE) {
+            // we have some errors
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
+        } else {
+            $content = array(
+                "pkg_id" => $pkg_id,
+                "pkg_name" => $pkg_name,
+                "app_name" => $app_name,
+                "visibility" => $visibility
+            );
+            if ($isUpdateOnly) {
+                $whereClause = array("app_id" => $app_id);
+                if ($this->database_model->update_app($whereClause, $content)) {
+                    $this->responseStatus(STATUS_SUCCESS, "App has been updated");
+                } else {
+                    $this->responseStatus(STATUS_FAILURE, "Failed to update App");
+                }
+            } else {
+                $whereClause = array("pkg_id" => $pkg_name, "pkg_name" => $pkg_name);
+                if ($this->database_model->insert_app($whereClause, $content)) {
+                    $this->responseStatus(STATUS_SUCCESS, "App has been created");
+                } else {
+                    $this->responseStatus(STATUS_FAILURE, "Failed to create App");
                 }
             }
         }

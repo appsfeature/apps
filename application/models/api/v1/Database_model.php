@@ -12,6 +12,15 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_app($whereClause = array(), $searchQuery = []) {
+        if ($searchQuery != null && count($searchQuery) > 0) {
+            $this->db->like($searchQuery);
+        }
+        $this->db->order_by('app_id', 'DESC');
+        $query = $this->db->get_where("table_app", $whereClause);
+        return $query->result_array();
+    }
+
     public function get_accounts() {
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get('table_account');
@@ -122,7 +131,7 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_category_master($whereClause = array(), $searchQuery = [], $selection = array()) {
+    public function get_category_master($whereClause = array(), $searchQuery = [], $isSortById = false) {
 
         if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
             $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.cat_id='" .$whereClause['cat_id']. "'";
@@ -148,7 +157,11 @@ class Database_model extends CI_Model {
             }
         }
 
-        $query .= " ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+        if($isSortById){
+            $query .= " ORDER BY table_category.cat_id DESC";
+        }else {
+            $query .= " ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+        }
 
         $q = $this->db->query($query)->result_array();
         return $q;
@@ -238,15 +251,15 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_content_master($whereClause = array(), $searchQuery = []) {
+    public function get_content_master($whereClause = array(), $searchQuery = [], $isSortById = false) {
         if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "'";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.sub_cat_id='" .$whereClause['sub_cat_id']. "'";
         }else if(isset($whereClause['pkg_id']) && isset($whereClause['id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "'";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_content_master.content_id='" .$whereClause['id']. "'";
         }else if(isset($whereClause['pkg_id'])){
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "'";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id WHERE table_content_master.pkg_id='" .$whereClause['pkg_id']. "'";
         }else{
-            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content JOIN table_content_master ON table_content_master.content_id=table_content.id";
+            $query = "SELECT table_content_master.sub_cat_id, table_content.* FROM table_content_master JOIN table_content ON table_content_master.content_id=table_content.id";
         }
 
         if ($searchQuery != null && count($searchQuery) > 0) {
@@ -262,8 +275,11 @@ class Database_model extends CI_Model {
                 $query .= " AND table_content_master.sub_cat_id = '".$searchQuery['sub_cat_id']."' ";
             }
         }
-
-        $query .= " ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+        if($isSortById){
+            $query .= " ORDER BY table_content.id DESC";
+        }else {
+            $query .= " ORDER BY table_content.ranking ASC, table_content.created_at DESC";
+        }
 
         $q = $this->db->query($query)->result_array();
         // if ($this->db->affected_rows()) {
@@ -435,6 +451,28 @@ class Database_model extends CI_Model {
 
     public function delete_account($whereClause = array()) {
         return $this->db->delete("table_account", $whereClause);
+    }
+
+    public function insert_app($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_app', $whereClause);
+        if ($query->num_rows() <= 0) {
+            return $this->db->insert("table_app", $data);
+        } else {
+            return false;
+        }
+    }
+
+    public function update_app($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_app', $whereClause);
+        if ($query->num_rows() > 0) {
+            return $this->db->update("table_app", $data, $whereClause);
+        } else {
+            return false;
+        }
+    }
+
+    public function delete_app($whereClause = array()) {
+        return $this->db->delete("table_app", $whereClause);
     }
 }
 ?>

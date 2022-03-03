@@ -108,15 +108,15 @@ class Itemtype extends CI_Controller{
     }
 
     //This will show create page
-    public function create(){
-        $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
-        $whereClause = getCategoryWhereClause($pkg_id, null, null);
-        $flavours = $this->database_model->get_flavours();
-        $data['flavours'] = $flavours;
-        $data['mainModule'] = 'itemtype';
-        $data['subModule'] = 'createItemtype';
-        $this->load->view($this->module_url.'/create', $data);
-    }
+    // public function create(){
+    //     $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';
+    //     $whereClause = getCategoryWhereClause($pkg_id, null, null);
+    //     $flavours = $this->database_model->get_flavours();
+    //     $data['flavours'] = $flavours;
+    //     $data['mainModule'] = 'itemtype';
+    //     $data['subModule'] = 'createItemtype';
+    //     $this->load->view($this->module_url.'/create', $data);
+    // }
 
     //This will show edit page
     public function edit($itemtypeId = null){

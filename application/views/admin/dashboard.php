@@ -38,13 +38,13 @@
                                 <!-- small box -->
                                 <div class="small-box bg-danger">
                                   <div class="inner ml-2">
-                                    <h3><?php echo count($accounts) ?></h3>
+                                    <h3><?php echo count($apps) ?></h3>
                                     <h4>Apps</h4>
                                   </div>
                                   <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                   </div>
-                                  <a href="<?php echo base_url().getMenuLink('admin/account/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                  <a href="<?php echo base_url().getMenuLink('admin/apps/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
                               </div>
                               <!-- Box Apps end -->

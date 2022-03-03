@@ -84,9 +84,9 @@
               <div class="card-body">
                   <table class="table">
                     <tr>
-                      <th width="50" class="text-center">CatId</th>
-                      <th width="250" class="text-center">ItemType</th>
-                      <th>Name</th>
+                      <th width="100" class="text-center">Cat Id</th>
+                      <th>Cat Name</th>
+                      <th width="250" class="text-left">ItemType</th>
                       <th width="100" class="text-center">Status</th>
                       <th width="160" class="text-center">Action</th>
                     </tr>
@@ -95,8 +95,8 @@
                         <?php foreach ($categories as $categoryRow) {?>
                             <tr>
                               <td class="text-center"><?php echo $categoryRow['cat_id'];?></td>
-                              <td class="text-center"><p style="font-size:13px"><?php echo isset($itemTypeMap[$categoryRow['item_type']]) ? $itemTypeMap[$categoryRow['item_type']] : 'Undefined';?></p></td>
                               <td><?php echo $categoryRow['title'];?></td>
+                              <td class="text-left"><p style="font-size:13px"><?php echo isset($itemTypeMap[$categoryRow['item_type']]) ? $itemTypeMap[$categoryRow['item_type']] : 'Undefined';?></p></td>
                               <td class="text-center">
                                   <?php if($categoryRow['visibility'] == 1) {?>
                                     <span class="badge badge-success">Active</span>
