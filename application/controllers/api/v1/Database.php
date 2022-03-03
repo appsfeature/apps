@@ -833,5 +833,69 @@ class Database extends REST_Controller {
             }
         }
     }
+
+    //http://localhost/apps/api/v1/database/insert-item-type
+    //where: $pkg_id, $id, $title
+    public function insert_account_post() {
+        $this->insertAccount(false);
+    }
+
+    //http://localhost/apps/api/v1/database/update-item-type
+    //where: $pkg_id, $id, $title
+    public function update_account_post() {
+        $this->insertAccount(true);
+    }
+
+    private function insertAccount($isUpdateOnly = false) {
+        $pkg_name = $this->input->post("pkg_name");
+        if(isset($pkg_name)){
+            $pkg_id = $this->getPackageId($pkg_name);
+        }else {
+            $pkg_id = $this->input->post("pkg_id");
+        }
+        $id = $this->input->post("id");
+        $role = $this->input->post("role");
+        $name = $this->input->post("name");
+        $user_id = $this->input->post("user_id");
+        $password = $this->input->post("password");
+        $active = $this->input->post("active");
+        $validity = $this->input->post("validity");
+
+
+        $this->form_validation->set_rules("pkg_id", "Package Id", "required");
+        $this->form_validation->set_rules("name", "Name", "required");
+        $this->form_validation->set_rules("user_id", "User Id", "required");
+        $this->form_validation->set_rules("password", "Password", "required");
+        // checking form submittion have any error or not
+        if ($this->form_validation->run() === FALSE) {
+            // we have some errors
+            $this->responseResult(STATUS_FAILURE, strip_tags(validation_errors()));
+        } else {
+            $content = array(
+                "pkg_id" => $pkg_id,
+                "name" => $name,
+                "role" => $role,
+                "user_id" => $user_id,
+                "password" => $password,
+                "active" => $active,
+                "validity" => $validity
+            );
+            if ($isUpdateOnly) {
+                $whereClause = array("id" => $id);
+                if ($this->database_model->update_account($whereClause, $content)) {
+                    $this->responseStatus(STATUS_SUCCESS, "Account has been updated");
+                } else {
+                    $this->responseStatus(STATUS_FAILURE, "Failed to update Account");
+                }
+            } else {
+                $whereClause = array("pkg_id" => $pkg_id, "name" => $name, "user_id" => $user_id);
+                if ($this->database_model->insert_account($whereClause, $content)) {
+                    $this->responseStatus(STATUS_SUCCESS, "Account has been created");
+                } else {
+                    $this->responseStatus(STATUS_FAILURE, "Failed to create Account");
+                }
+            }
+        }
+    }
 }
 ?>

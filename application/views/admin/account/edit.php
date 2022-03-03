@@ -11,7 +11,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/home' ?>">Home</a></li>
               <li class="breadcrumb-item"><a href="<?php echo base_url().$CI->module_url_list ?>"><?php echo $CI->module_title;?></a></li>
-              <li class="breadcrumb-item active">Create New Item</li>
+              <li class="breadcrumb-item active">Edit Account</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -23,11 +23,11 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-6">
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                    Create New Item
+                    Edit Account
                 </div>
 
               </div>
@@ -35,55 +35,65 @@
               <div class="card-body">
                   <form name="itemForm" id="itemForm" action=""  method="post" enctype="multipart/form-data">
 
-                    <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
-                    <input type="hidden" name="" value="">
+                    <input type="hidden" name="id" access="false" id="id" value="<?php echo $account['id']; ?>">
 
                     <div class="row">
-                        <div class="col-sm-4 mb-3">
-                            <label for="flavour" class="Flavour">Flavour</label>
-                            <select class="form-control" name="flavour" id="flavour">
-                                <option value="0">Select Flavour</option>
+                        <div class="col-sm-6 mb-3">
+                            <label for="pkg_id" class="PackageId">Application</label>
+                            <select class="form-control" name="pkg_id" id="pkg_id">
+                                <option value="">Select Application</option>
                                 <?php
-                                    if(!empty($flavours)){
-                                        foreach ($flavours as $item) {
+                                    if(!empty($apps)){
+                                        foreach ($apps as $value) {
+                                            $selected = ($account['pkg_id'] == $value['pkg_id']) ? true : false;
                                              ?>
-                                             <option <?php echo set_select('flavour', $item['id'], false); ?> value="<?php echo $item['id'];?>"><?php echo $item['title'];?></option>
+                                             <option <?php echo set_select('pkg_id', $value['pkg_id'], $selected); ?> value="<?php echo $value['pkg_id'];?>"><?php echo $value['app_name'];?></option>
                                              <?php
                                         }
                                     }
                                  ?>
                             </select>
                         </div>
+
+                        <div class="col-sm-6 mb-3">
+                            <label for="role" class="formbuilder-number-label">Role</label>
+                            <input type="number" value="<?php echo $account['role'];?>" placeholder="Enter Role"class="form-control" name="role" access="false" id="role">
+                        </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <label for="name" class="formbuilder-text-label">Name <span style="color:red">*</span></label>
+                            <input type="text" placeholder="Enter Name" value="<?php echo $account['name'];?>" class="form-control" name="name" access="false" id="name">
+                        </div>
+                    </div>
                      <div class="row">
-                         <div class="col-sm-4 mb-3">
-                             <label for="description" class="formbuilder-number-label">ItemType</label>
-                             <input type="number" value="0" placeholder="Enter Item Type"class="form-control" name="item_type" access="false" id="item_type">
+                         <div class="col-sm-6 mb-3">
+                             <label for="user_id" class="formbuilder-number-label">UserId</label>
+                             <input type="text" placeholder="Enter UserId" value="<?php echo $account['user_id'];?>" class="form-control" name="user_id" access="false" id="user_id">
+                         </div>
+
+                         <div class="col-sm-6 mb-3">
+                             <label for="password" class="formbuilder-number-label">Password</label>
+                             <input type="text" placeholder="Enter Password" value="<?php echo $account['password'];?>" class="form-control" name="password" access="false" id="password">
                          </div>
                      </div>
+
                      <div class="row">
-                         <div class="col-sm-4 mb-3">
-                             <label for="title" class="formbuilder-text-label">Title <span style="color:red">*</span></label>
-                             <input type="text" placeholder="Enter Title" class="form-control <?php echo (form_error('title') != "") ? 'is-invalid' : ''; ?>" name="title" access="false" id="title">
+                         <div class="col-sm-6 mb-3">
+                             <label for="validity" class="formbuilder-number-label">Validity</label>
+                             <input type="text"  value="<?php echo $account['validity'];?>" placeholder="Enter Validity" class="form-control" name="validity" access="false" id="validity">
                          </div>
-                     </div>
-                     <div class="row">
-                         <div class="col-sm-4 mb-3">
-                             <label for="ranking" class="formbuilder-number-label">Ranking</label>
-                             <input type="number" placeholder="Enter Ranking" class="form-control" name="ranking" access="false" value="0" id="ranking">
-                         </div>
-                     </div>
-                     <div class="row">
+
                          <div class="col-sm-4 mb-3">
                              <label for="radio-group-1642854908703" class="formbuilder-radio-group-label">Visibility</label>
                              <div class="radio-group row">
                                  <div class="ml-3">
-                                     <input name="visibility"  id="radio_active" value="1" type="radio" checked="checked">
+                                     <input name="active"  id="radio_active" value="1" type="radio" <?php echo ($account['active'] == 1) ? 'checked' : ''; ?>>
                                      <label for="radio_active">Active</label>
                                  </div>
                                  <div class="ml-3">
-                                     <input name="visibility"  id="radio-deactive" value="0" type="radio" >
+                                     <input name="active"  id="radio-deactive" value="0" type="radio" <?php echo ($account['active'] == 0) ? 'checked' : ''; ?>>
                                      <label for="radio-deactive">Deactive</label>
                                  </div>
                              </div>
@@ -104,9 +114,9 @@
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content -->
+    <!-- /.account -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.account-wrapper -->
 
 <?php $this->load->view('admin/footer'); ?>
 
@@ -117,11 +127,11 @@ $(document).ready(function() {
         $("#submitBtn").prop("disabled", true);
 
         var formData= new FormData($("#itemForm")[0]);
-        // console.log('my message' + formData);
+        console.log('my message' + formData);
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url().version_prefix.'database/insert_item_type' ?>",
+            url: "<?php echo base_url().version_prefix.'database/update_item_type' ?>",
             data: formData,
             processData: false,
             contentType: false,

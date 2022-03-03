@@ -28,26 +28,7 @@
                 <div class="card-title">
                   <form id="searchForm" name="searchForm" method="get" action="">
                     <div class="input-group input-group-sm">
-                      <input type="text" value="<?php  echo $querySearch;?>" class="form-control" placeholder="Search" name="title">
-                      <div class="input-group-append">
-                        <button class="input-group-text" id="basic-addon1">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-
-                      <select class="form-control ml-3" name="flavour" id="flavour">
-                          <option value="">Select Flavour</option>
-                          <?php
-                              if(!empty($flavours)){
-                                  foreach ($flavours as $item) {
-                                      $selected = ($flavourSelected == $item['id']) ? true : false;
-                                       ?>
-                                       <option <?php echo set_select('flavour', $item['id'], $selected); ?> value="<?php echo $item['id'];?>"><?php echo $item['title'];?></option>
-                                       <?php
-                                  }
-                              }
-                           ?>
-                      </select>
+                      <input type="text" value="" class="form-control" placeholder="Search" name="title">
                       <div class="input-group-append">
                         <button class="input-group-text" id="basic-addon1">
                           <i class="fas fa-search"></i>
@@ -57,32 +38,33 @@
                   </form>
                 </div>
                 <div class="card-tools">
-                    <!-- <a href="<?php echo base_url().$CI->module_url_create; ?>" class="btn btn-primary"><i class="fas fa-plus"></i>  Create</a> -->
-                  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i>  Create</a>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modelCreate"><i class="fas fa-plus"></i>  Create</a>
                 </div>
               </div>
 
               <div class="card-body">
                   <table class="table">
                     <tr>
-                      <th width="50" class="text-center">Id</th>
-                      <th width="100" class="text-center">Flavour</th>
-                      <th width="100" class="text-center">ItemType</th>
-                      <th>Title</th>
-                      <th width="100" class="text-center">Status</th>
-                      <th width="160" class="text-center">Action</th>
+                        <th width="50" class="text-center">Role</th>
+                        <th width="100" class="text-center">PkgId</th>
+                        <th width="100" class="text-center">UserId</th>
+                        <th>Name</th>
+                        <th width="100" class="text-center">Validity</th>
+                        <th width="100" class="text-center">Visibility</th>
+                        <th width="160" class="text-center">Action</th>
                     </tr>
 
-                    <?php if(!empty($itemtypes)) {?>
-                        <?php foreach ($itemtypes as $itemRow) {?>
+                    <?php if(!empty($accounts)) {?>
+                        <?php foreach ($accounts as $itemRow) {?>
                             <tr>
-                              <td class="text-center"><?php echo $itemRow['id'];?></td>
-                              <td class="text-center"><?php echo $itemRow['flavour'];?></td>
-                              <td class="text-center"><?php echo $itemRow['item_type'];?></td>
-                              <td><?php echo $itemRow['title'];?></td>
+                              <td class="text-center"><?php echo $itemRow['role'];?></td>
+                              <td class="text-center"><?php echo $itemRow['pkg_id'];?></td>
+                              <td class="text-center"><?php echo $itemRow['user_id'];?></td>
+                                <td><?php echo $itemRow['name'];?></td>
+                              <td class="text-center"><?php echo $itemRow['validity'];?></td>
 
                               <td class="text-center">
-                                  <?php if($itemRow['visibility'] == 1) {?>
+                                  <?php if($itemRow['active'] == 1) {?>
                                     <span class="badge badge-success">Active</span>
                                   <?php } else { ?>
                                     <span class="badge badge-danger">Block</span>
@@ -122,69 +104,77 @@
 <?php $this->load->view('admin/footer'); ?>
 
 
-<div class="modal" id="myModal">
+<div class="modal" id="modelCreate">
     <div class="modal-dialog">
       <div class="modal-content">
 
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Create Item</h4>
+          <h4 class="modal-title">Create Account</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
         <!-- Modal body -->
         <div class="modal-body">
-            <form name="itemForm" id="itemForm" action=""  method="post" enctype="multipart/form-data">
+            <form name="formAccount" id="formAccount" action=""  method="post" enctype="multipart/form-data">
 
-              <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
-              <input type="hidden" name="" value="">
+              <!-- <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
+              <input type="hidden" name="" value=""> -->
 
               <div class="row">
-                  <div class="col-sm-12 mb-3">
-                      <label for="flavour" class="Flavour">Flavour</label>
-                      <select class="form-control" name="flavour" id="flavour">
-                          <option value="0">Select Flavour</option>
+                  <div class="col-sm-8 mb-3">
+                      <label for="pkg_id" class="PackageId">Application</label>
+                      <select class="form-control" name="pkg_id" id="pkg_id">
+                          <option value="">Select Application</option>
                           <?php
-                              if(!empty($flavours)){
-                                  foreach ($flavours as $item) {
+                              if(!empty($apps)){
+                                  foreach ($apps as $item) {
                                        ?>
-                                       <option <?php echo set_select('flavour', $item['id'], false); ?> value="<?php echo $item['id'];?>"><?php echo $item['title'];?></option>
+                                       <option <?php echo set_select('pkg_id', $item['pkg_id'], false); ?> value="<?php echo $item['pkg_id'];?>"><?php echo $item['app_name'];?></option>
                                        <?php
                                   }
                               }
                            ?>
                       </select>
                   </div>
+
+                  <div class="col-sm-4 mb-3">
+                      <label for="role" class="formbuilder-number-label">Role</label>
+                      <input type="number" value="0" placeholder="Enter Role"class="form-control" name="role" access="false" id="role">
+                  </div>
               </div>
 
+              <div class="row">
+                  <div class="col-sm-12 mb-3">
+                      <label for="name" class="formbuilder-text-label">Name <span style="color:red">*</span></label>
+                      <input type="text" placeholder="Enter Name" class="form-control" name="name" access="false" id="name">
+                  </div>
+              </div>
                <div class="row">
-                   <div class="col-sm-12 mb-3">
-                       <label for="description" class="formbuilder-number-label">ItemType</label>
-                       <input type="number" value="0" placeholder="Enter Item Type"class="form-control" name="item_type" access="false" id="item_type">
+                   <div class="col-sm-6 mb-3">
+                       <label for="user_id" class="formbuilder-number-label">UserId</label>
+                       <input type="text" placeholder="Enter UserId" class="form-control" name="user_id" access="false" id="user_id">
+                   </div>
+
+                   <div class="col-sm-6 mb-3">
+                       <label for="password" class="formbuilder-number-label">Password</label>
+                       <input type="text" placeholder="Enter Password" class="form-control" name="password" access="false" id="password">
                    </div>
                </div>
                <div class="row">
-                   <div class="col-sm-12 mb-3">
-                       <label for="title" class="formbuilder-text-label">Title <span style="color:red">*</span></label>
-                       <input type="text" placeholder="Enter Title" class="form-control <?php echo (form_error('title') != "") ? 'is-invalid' : ''; ?>" name="title" access="false" id="title">
+                   <div class="col-sm-6 mb-3">
+                       <label for="validity" class="formbuilder-number-label">Validity</label>
+                       <input type="text" value="2024-01-01 12:00:00" placeholder="Enter Validity" class="form-control" name="validity" access="false" id="validity">
                    </div>
-               </div>
-               <div class="row">
-                   <div class="col-sm-12 mb-3">
-                       <label for="ranking" class="formbuilder-number-label">Ranking</label>
-                       <input type="number" placeholder="Enter Ranking" class="form-control" name="ranking" access="false" value="0" id="ranking">
-                   </div>
-               </div>
-               <div class="row">
-                   <div class="col-sm-12 mb-3">
+                   <div class="col-sm-6 mb-3">
                        <label for="radio-group-1642854908703" class="formbuilder-radio-group-label">Visibility</label>
-                       <div class="radio-group row">
+                       <div class="radio-group row mt-2">
                            <div class="ml-3">
-                               <input name="visibility"  id="radio_active" value="1" type="radio" checked="checked">
+                               <input name="active"  id="radio_active" value="1" type="radio" checked="checked">
                                <label for="radio_active">Active</label>
                            </div>
                            <div class="ml-3">
-                               <input name="visibility"  id="radio-deactive" value="0" type="radio" >
+                               <input name="active"  id="radio-deactive" value="0" type="radio" >
                                <label for="radio-deactive">Deactive</label>
                            </div>
                        </div>
@@ -222,16 +212,16 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $("#itemForm").submit(function(e) {
+    $("#formAccount").submit(function(e) {
         e.preventDefault();
         $("#submitBtn").prop("disabled", true);
 
-        var formData= new FormData($("#itemForm")[0]);
+        var formData= new FormData($("#formAccount")[0]);
         // console.log('my message' + formData);
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url().version_prefix.'database/insert_item_type' ?>",
+            url: "<?php echo base_url().version_prefix.'database/insert_account' ?>",
             data: formData,
             processData: false,
             contentType: false,

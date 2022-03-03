@@ -120,7 +120,7 @@
                                      <label for="radio_active">Active</label>
                                  </div>
                                  <div class="ml-3">
-                                     <input name="visibility"  id="radio-deactive" value="2" type="radio" >
+                                     <input name="visibility"  id="radio-deactive" value="0" type="radio" >
                                      <label for="radio-deactive">Deactive</label>
                                  </div>
                              </div>

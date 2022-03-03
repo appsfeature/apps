@@ -21,8 +21,10 @@ class Home extends CI_Controller{
 
         $categories = $this->database_model->get_category($whereClause);
         $contents = $this->database_model->get_content($whereClause);
+        $accounts = $this->database_model->get_accounts();
         $data['categories'] = $categories;
         $data['contents'] = $contents;
+        $data['accounts'] = $accounts;
         $data['mainModule'] = 'dashboard';
 
         $this->load->view('admin/dashboard', $data);

@@ -42,6 +42,7 @@ class Login extends CI_Controller{
               $adminArray['username'] = $account['user_id'];
               $adminArray['pkg_id']   = $account['pkg_id'];
               $adminArray['name']     = $account['name'];
+              $adminArray['role']     = $account['role'];
               $adminArray['app_name'] = $appDetail['app_name'];
               $this->session->set_userdata('admin', $adminArray);
               savePreferences();

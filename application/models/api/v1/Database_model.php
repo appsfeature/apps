@@ -12,6 +12,21 @@ class Database_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_accounts() {
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('table_account');
+        return $query->result_array();
+    }
+
+    public function get_account($whereClause = array(), $searchQuery = []) {
+        if ($searchQuery != null && count($searchQuery) > 0) {
+            $this->db->like($searchQuery);
+        }
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get_where("table_account", $whereClause);
+        return $query->result_array();
+    }
+
     public function get_pkg_id($pkgName) {
         if(isset($pkgName)){
             $whereClause['pkg_name'] = $pkgName;
@@ -398,6 +413,28 @@ class Database_model extends CI_Model {
         } else {
             return false;
         }
+    }
+
+    public function insert_account($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_account', $whereClause);
+        if ($query->num_rows() <= 0) {
+            return $this->db->insert("table_account", $data);
+        } else {
+            return false;
+        }
+    }
+
+    public function update_account($whereClause = array(), $data = array()) {
+        $query = $this->db->get_where('table_account', $whereClause);
+        if ($query->num_rows() > 0) {
+            return $this->db->update("table_account", $data, $whereClause);
+        } else {
+            return false;
+        }
+    }
+
+    public function delete_account($whereClause = array()) {
+        return $this->db->delete("table_account", $whereClause);
     }
 }
 ?>

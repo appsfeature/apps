@@ -30,7 +30,8 @@
               <div class="card-body text-left" style="height:450px">
 
                 <div class="row">
-                   <?php if(isVisibleDashboardMenu('Categories') == true) {?>
+                    <!-- Box Category start -->
+                    <?php if(isVisibleDashboardMenu('Categories') == true) {?>
                       <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-info">
@@ -45,9 +46,10 @@
                           <a href="<?php echo base_url().getMenuLink('admin/category/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                       </div>
-                      <!-- ./col -->
                     <?php } ?>
+                    <!-- Box Category end -->
 
+                    <!-- Box Content start -->
                     <?php if(isVisibleDashboardMenu('Contents') == true) {?>
                         <div class="col-lg-3 col-6">
                           <!-- small box -->
@@ -63,8 +65,27 @@
                             <a href="<?php echo base_url().getMenuLink('admin/content/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                           </div>
                         </div>
-                        <!-- ./col -->
                     <?php } ?>
+                    <!-- Box Content end -->
+
+                    <!-- Box Account start -->
+                    <?php if(isVisibleDashboardMenu('Account') == true) {?>
+                        <div class="col-lg-3 col-6">
+                          <!-- small box -->
+                          <div class="small-box bg-success">
+                            <div class="inner ml-2">
+                              <h3><?php echo count($accounts) ?></h3>
+                              <h4>Accounts</h4>
+                            </div>
+                            <div class="icon">
+                              <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <a href="<?php echo base_url().getMenuLink('admin/account/list');?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                          </div>
+                        </div>
+                    <?php } ?>
+                    <!-- Box Account end -->
+
                 </div>
 
               </div>
