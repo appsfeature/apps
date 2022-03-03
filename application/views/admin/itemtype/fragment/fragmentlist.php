@@ -5,8 +5,8 @@
     <table class="table">
       <tr>
         <th width="100" class="text-center">ItemType</th>
-        <th width="100" class="text-center">Flavour</th>
         <th>Title</th>
+        <th width="100" class="text-center">Flavour</th>
         <th width="100" class="text-center">Status</th>
         <th width="160" class="text-center">Action</th>
       </tr>
@@ -15,8 +15,8 @@
           <?php foreach ($itemtypes as $itemRow) {?>
               <tr>
                 <td class="text-center"><?php echo $itemRow['item_type'];?></td>
-                <td class="text-center"><?php echo $itemRow['flavour'];?></td>
                 <td><?php echo $itemRow['title'];?></td>
+                <td class="text-center"><?php echo $itemRow['flavour'];?></td>
 
                 <td class="text-center">
                     <?php if($itemRow['visibility'] == 1) {?>
