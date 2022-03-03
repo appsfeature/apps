@@ -93,24 +93,24 @@
                     </tr>
 
                     <?php if(!empty($categories)) {?>
-                        <?php foreach ($categories as $categoryRow) {?>
+                        <?php foreach ($categories as $itemRow) {?>
                             <tr>
-                              <td class="text-center"><?php echo $categoryRow['sub_cat_id'];?></td>
-                              <td class="text-center"><?php echo $categoryRow['cat_id'];?></td>
-                              <td><?php echo $categoryRow['title'];?></td>
-                              <td class="text-left"><p style="font-size:13px"><?php echo isset($itemTypeMap[$categoryRow['item_type']]) ? $itemTypeMap[$categoryRow['item_type']] : 'Undefined';?></p></td>
+                              <td class="text-center" ><p style="font-size:13px"><?php echo isset($categoryMap[$itemRow['sub_cat_id']]) ? $categoryMap[$itemRow['sub_cat_id']].'</br>'.$itemRow['sub_cat_id'].'' : 'No Parent</br>'.$itemRow['sub_cat_id'];?></p></td>
+                              <td class="text-center"><?php echo $itemRow['cat_id'];?></td>
+                              <td><?php echo $itemRow['title'];?></td>
+                              <td class="text-left"><p style="font-size:13px"><?php echo isset($itemTypeMap[$itemRow['item_type']]) ? $itemTypeMap[$itemRow['item_type']] : 'Undefined';?></p></td>
                               <td class="text-center">
-                                  <?php if($categoryRow['visibility'] == 1) {?>
+                                  <?php if($itemRow['visibility'] == 1) {?>
                                     <span class="badge badge-success">Active</span>
                                   <?php } else { ?>
                                     <span class="badge badge-danger">Block</span>
                                   <?php } ?>
                               </td>
                               <td class="text-center">
-                                  <a href="<?php echo base_url().$CI->module_url_edit.'/'.$categoryRow['cat_id']; ?>" class="btn btn-primary btn-sm">
+                                  <a href="<?php echo base_url().$CI->module_url_edit.'/'.$itemRow['cat_id']; ?>" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i> Edit
                                   </a>
-                                  <a href="javascript:void(0);" onclick="deleteRow(<?php echo $categoryRow['cat_id']; ?>)" class="btn btn-danger btn-sm">
+                                  <a href="javascript:void(0);" onclick="deleteRow(<?php echo $itemRow['cat_id']; ?>)" class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i> Delete
                                   </a>
                               </td>

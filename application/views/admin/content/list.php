@@ -93,24 +93,24 @@
                     </tr>
 
                     <?php if(!empty($contents)) {?>
-                        <?php foreach ($contents as $contentRow) {?>
+                        <?php foreach ($contents as $itemRow) {?>
                             <tr>
-                              <td class="text-center"><?php echo $contentRow['id'];?></td>
-                              <td class="text-center" ><p style="font-size:13px"><?php echo isset($categoryMap[$contentRow['sub_cat_id']]) ? $categoryMap[$contentRow['sub_cat_id']].'</br>'.$contentRow['sub_cat_id'].'' : 'Undefined';?></p></td>
-                              <td class="text-center"><p style="font-size:13px"><?php echo isset($itemTypeMap[$contentRow['item_type']]) ? $itemTypeMap[$contentRow['item_type']] : 'Undefined';?></p></td>
-                              <td><?php echo $contentRow['title'];?></td>
+                              <td class="text-center"><?php echo $itemRow['id'];?></td>
+                              <td class="text-center" ><p style="font-size:13px"><?php echo isset($categoryMap[$itemRow['sub_cat_id']]) ? $categoryMap[$itemRow['sub_cat_id']].'</br>'.$itemRow['sub_cat_id'].'' : 'Undefined</br>'.$itemRow['sub_cat_id'];?></p></td>
+                              <td class="text-center"><p style="font-size:13px"><?php echo isset($itemTypeMap[$itemRow['item_type']]) ? $itemTypeMap[$itemRow['item_type']] : 'Undefined';?></p></td>
+                              <td><?php echo $itemRow['title'];?></td>
                               <td class="text-center">
-                                  <?php if($contentRow['visibility'] == 1) {?>
+                                  <?php if($itemRow['visibility'] == 1) {?>
                                     <span class="badge badge-success">Active</span>
                                   <?php } else { ?>
                                     <span class="badge badge-danger">Block</span>
                                   <?php } ?>
                               </td>
                               <td class="text-center">
-                                  <a href="<?php echo base_url().$CI->module_url_edit.'/'.$contentRow['id']; ?>" class="btn btn-primary btn-sm">
+                                  <a href="<?php echo base_url().$CI->module_url_edit.'/'.$itemRow['id']; ?>" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i> Edit
                                   </a>
-                                  <a href="javascript:void(0);" onclick="deleteRow(<?php echo $contentRow['id'] ?>)" class="btn btn-danger btn-sm">
+                                  <a href="javascript:void(0);" onclick="deleteRow(<?php echo $itemRow['id'] ?>)" class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i> Delete
                                   </a>
                               </td>

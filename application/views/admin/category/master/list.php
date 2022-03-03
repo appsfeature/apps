@@ -89,8 +89,8 @@
                         <?php foreach ($categoriesMaster as $itemRow) {?>
                             <tr>
                               <td class="text-center"><?php echo $itemRow['id'];?></td>
-                              <td class="text-center" ><p style="font-size:13px"><?php echo isset($categoryMap[$itemRow['cat_id']]) ? $categoryMap[$itemRow['cat_id']].'</br>'.$itemRow['cat_id'].'' : 'No Parent';?></p></td>
-                              <td class="text-center"><p style="font-size:13px"><?php echo isset($categoryMap[$itemRow['sub_cat_id']]) ? $categoryMap[$itemRow['sub_cat_id']].'</br>'.$itemRow['sub_cat_id'].'' : 'No Parent';?></p></td>
+                              <td class="text-center" ><p style="font-size:13px"><?php echo isset($categoryMap[$itemRow['cat_id']]) ? $categoryMap[$itemRow['cat_id']].'</br>'.$itemRow['cat_id'].'' : 'No Parent</br>'.$itemRow['cat_id'];?></p></td>
+                              <td class="text-center"><p style="font-size:13px"><?php echo isset($categoryMap[$itemRow['sub_cat_id']]) ? $categoryMap[$itemRow['sub_cat_id']].'</br>'.$itemRow['sub_cat_id'].'' : 'No Parent</br>'.$itemRow['sub_cat_id'];?></p></td>
                               <td></td>
                               <td class="text-center">
                                   <a href="<?php echo base_url().$CI->module_url_editmaster.'/'.$itemRow['id']; ?>" class="btn btn-primary btn-sm">
