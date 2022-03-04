@@ -189,9 +189,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </a>
               </li>
               <li class="nav-item">
-                <a href="https://app.onesignal.com/login" target="_blank" class="nav-link ">
+                <a href="https://app.onesignal.com/apps/656370d9-dc90-47a4-9823-132fcbebcf3a/notifications/new?template_id=a3a363f6-b609-4237-af61-a80b7bfaca4b" target="_blank" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p> Login </p>
+                  <p> New Message </p>
                 </a>
               </li>
             </ul>
