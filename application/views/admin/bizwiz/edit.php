@@ -5,13 +5,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Home Item</h1>
+            <h1 class="m-0 text-dark">Home Slider</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/home' ?>">Home</a></li>
               <li class="breadcrumb-item"><a href="<?php echo base_url().$CI->module_url_list ?>"><?php echo $CI->module_title;?></a></li>
-              <li class="breadcrumb-item active">Edit Content</li>
+              <li class="breadcrumb-item active">Edit Slider</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,7 +27,7 @@
             <div class="card card-primary">
               <div class="card-header">
                 <div class="card-title">
-                    Edit Item "<?php echo $content['title']; ?>"
+                    Edit Slider "<?php echo $content['title']; ?>"
                 </div>
 
               </div>

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Home Items</h1>
+            <h1 class="m-0 text-dark">Home Slider</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url().'admin/home';?>">Home</a></li>
-              <li class="breadcrumb-item active">Items</li>
+              <li class="breadcrumb-item active">Sliders</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

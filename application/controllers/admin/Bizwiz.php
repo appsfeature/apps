@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit ('No direct script access allowed');
 
 class Bizwiz extends CI_Controller{
 
-    public $module_title = 'Item';
+    public $module_title = 'Sliders';
     public $module_url = 'admin/bizwiz';
     public $module_url_list = 'admin/bizwiz';
     public $module_url_create = 'admin/bizwiz/create';
