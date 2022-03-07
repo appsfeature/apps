@@ -44,7 +44,7 @@ class Database extends REST_Controller {
         if (count($apps) > 0) {
             return $apps[0]['pkg_id'];
         } else {
-            return null;
+            return $pkg_id;
         }
     }
 
