@@ -169,7 +169,7 @@ class Database extends REST_Controller {
     }
 
     public function insertCategoryMaster($pkg_id, $cat_id, $sub_cat_id, $ranking, $subCatIdsString){
-        if(!empty($subCatIdsString)){
+        if(!isEmpty($subCatIdsString)){
             $subCatIds = explode(",",$subCatIdsString);
             if(count($subCatIds) == 1){
                 $this->insertCategoryMasterData($pkg_id, $cat_id, $subCatIds[0], $ranking);
@@ -181,11 +181,13 @@ class Database extends REST_Controller {
                         $mCatId = $subCatIds[$key];
                         $this->insertCategoryMasterData($pkg_id, $mCatId, $mSubCatId, $ranking);
                     }
-                    if(!empty($subCatId)){
+                    if(!isEmpty($subCatId)){
                         $lastCatId = $subCatId;
                     }
                 }
-                $this->insertCategoryMasterData($pkg_id, $cat_id, $lastCatId, $ranking);
+                if(!isEmpty($lastCatId)){
+                    $this->insertCategoryMasterData($pkg_id, $cat_id, $lastCatId, $ranking);
+                }
             }
         }
     }
@@ -226,18 +228,16 @@ class Database extends REST_Controller {
     }
 
     public function insertCategoryMasterData($pkg_id, $cat_id, $subCatId, $ranking){
-        if($subCatId != null && $subCatId != '' && $cat_id != $subCatId){
-            if($subCatId != null){
-                $data = array(
-                    "pkg_id" => $pkg_id,
-                    "cat_id" => $cat_id,
-                    "sub_cat_id" => $subCatId,
-                    "ranking" => $ranking == null ? 0 : $ranking
-                );
-                $whereClause = getCategoryWhereClause($pkg_id, $cat_id, $subCatId);
-                $this->database_model->insert_category_master($whereClause, $data);
-                return true;
-            }
+        if(!isEmpty($subCatId) && $cat_id != $subCatId){
+            $data = array(
+                "pkg_id" => $pkg_id,
+                "cat_id" => $cat_id,
+                "sub_cat_id" => $subCatId,
+                "ranking" => $ranking == null ? 0 : $ranking
+            );
+            $whereClause = getCategoryWhereClause($pkg_id, $cat_id, $subCatId);
+            $this->database_model->insert_category_master($whereClause, $data);
+            return true;
         }
         return false;
     }
@@ -425,8 +425,8 @@ class Database extends REST_Controller {
     }
 
     public function insertContentMasterData($pkg_id, $content_id, $subCatId, $ranking){
-        if(!empty($subCatId) && !empty($content_id)){
-            if($subCatId != null && $subCatId > 0){
+        if(!isEmpty($subCatId) && !isEmpty($content_id)){
+            if($subCatId > 0){
                 $data = array(
                     "pkg_id" => $pkg_id,
                     "content_id" => $content_id,

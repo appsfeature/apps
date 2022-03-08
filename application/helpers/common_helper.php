@@ -1,5 +1,9 @@
 <?php
 
+function isEmpty($str){
+    return ($str === null || trim($str) === '');
+}
+
 function resizeImage($sourcePath, $newPath, $width, $height){
 
     $CI =& get_instance();
@@ -203,7 +207,6 @@ function dd($data){
 }
 
 function ee($data){
-    echo "<pre>";
     echo($data);
     die;
 }
