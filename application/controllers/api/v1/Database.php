@@ -86,8 +86,7 @@ class Database extends REST_Controller {
             $pkg_id = $this->input->post("pkg_id");
         }
         $cat_id = $this->input->post("cat_id");
-        $sub_cat_id = $this->input->post("sub_cat_id");
-        $subCatIds = $this->input->post("sub_cat_ids");
+        $subCatIds = $this->input->post("sub_cat_ids"); // Comma Seperated Ids
         $title = $this->input->post("title");
         if ($isUpdateOnly) {
             $whereClause = getCategoryWhereClause($pkg_id, $cat_id, null);
@@ -103,6 +102,7 @@ class Database extends REST_Controller {
         $updated_at = $this->input->post("updated_at");
         $this->form_validation->set_rules("pkg_id", "Package Id", "required");
         $this->form_validation->set_rules("title", "Category Name", "required");
+        $this->form_validation->set_rules("sub_cat_ids", "Parent Category", "required");
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
@@ -151,7 +151,7 @@ class Database extends REST_Controller {
             if ($isUpdateOnly) {
                 $resultCatId = $this->database_model->update_category($whereClause, $category);
                 if ($resultCatId > 0) {
-                    $this->insertCategoryMaster($pkg_id, $resultCatId, $sub_cat_id, $ranking, $subCatIds);
+                    $this->insertCategoryMaster($pkg_id, $resultCatId, $ranking, $subCatIds);
                     $this->responseStatus(STATUS_SUCCESS, "Category has been updated");
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to update Category");
@@ -159,7 +159,7 @@ class Database extends REST_Controller {
             } else {
                 $resultCatId = $this->database_model->insert_category($isInsertUpdate, $whereClause, $category);
                 if ($resultCatId > 0) {
-                    $this->insertCategoryMaster($pkg_id, $resultCatId, $sub_cat_id, $ranking, $subCatIds);
+                    $this->insertCategoryMaster($pkg_id, $resultCatId, $ranking, $subCatIds);
                     $this->responseStatus(STATUS_SUCCESS, "Category has been " . ($isInsertUpdate ? "updated" : "created"));
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to " . ($isInsertUpdate ? "update" : "create") . " Category");
@@ -168,7 +168,7 @@ class Database extends REST_Controller {
         }
     }
 
-    public function insertCategoryMaster($pkg_id, $cat_id, $sub_cat_id, $ranking, $subCatIdsString){
+    public function insertCategoryMaster($pkg_id, $cat_id, $ranking, $subCatIdsString){
         if(!isEmpty($subCatIdsString)){
             $subCatIds = explode(",",$subCatIdsString);
             if(count($subCatIds) == 1){
