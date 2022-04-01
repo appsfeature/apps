@@ -102,7 +102,9 @@ class Database extends REST_Controller {
         $updated_at = $this->input->post("updated_at");
         $this->form_validation->set_rules("pkg_id", "Package Id", "required");
         $this->form_validation->set_rules("title", "Category Name", "required");
-        $this->form_validation->set_rules("sub_cat_ids", "Parent Category", "required");
+        if(isset($_POST['sub_cat_ids']) ){
+            $this->form_validation->set_rules("sub_cat_ids", "Parent Category", "required");
+        }
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
