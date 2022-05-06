@@ -12,13 +12,14 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="<?php echo base_url()?>public/admin/plugins/jquery/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url()?>public/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url()?>public/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url()?>public/admin/plugins/toast/build/toastr.min.js"></script>
+<script src="<?php echo base_url()?>public/admin/plugins/summernote/summernote-bs4.min.js"></script>
 
 <script type="text/javascript">
 
