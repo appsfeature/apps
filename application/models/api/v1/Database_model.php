@@ -107,11 +107,19 @@ class Database_model extends CI_Model {
 
     public function delete_category($whereClause = array()) {
         $this->delete_category_master($whereClause);
-        return $this->db->delete("table_category", $whereClause);
+        if(in_array("cat_id", $whereClause) || in_array("title", $whereClause)){
+            return $this->db->delete("table_category", $whereClause);
+        }else {
+            return false;
+        }
     }
 
     public function delete_category_master($whereClause = array()) {
-        return $this->db->delete("table_category_master", $whereClause);
+        if(in_array("cat_id", $whereClause)){
+            return $this->db->delete("table_category_master", $whereClause);
+        }else {
+            return false;
+        }
     }
 
     // public function get_category_selected($whereClause = array(), $searchQuery = []) {
@@ -232,14 +240,25 @@ class Database_model extends CI_Model {
     }
 
     public function delete_content($whereClause = array()) {
+        print_r($whereClause);
         $this->delete_content_master($whereClause);
-        return $this->db->delete("table_content", $whereClause);
+        if(in_array('id', $whereClause)){
+            echo("true"); die();
+            return $this->db->delete("table_content", $whereClause);
+        }else {
+            echo("false"); die();
+            return false;
+        }
     }
 
     public function delete_content_master($whereClause = array()) {
         $whereClause2['pkg_id'] = $whereClause['pkg_id'];
         $whereClause2['content_id'] = $whereClause['id'];
-        return $this->db->delete("table_content_master", $whereClause2);
+        if(in_array("content_id", $whereClause2)){
+            return $this->db->delete("table_content_master", $whereClause2);
+        }else {
+            return false;
+        }
     }
 
     // public function get_content_selected($whereClause = array(), $searchQuery = []) {

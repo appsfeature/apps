@@ -79,7 +79,7 @@
 
                                 <td class="text-center">
                                     <a href="<?php echo base_url().$CI->module_url_edit.'/'.$itemRow['app_id']; ?>" class="btn btn-primary btn-sm"> <i class="far fa-edit"></i> Edit </a>
-                                    <a href="javascript:void(0);" onclick="deleteRow('<?php echo $itemRow['app_id'] ?>')" class="btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i> Delete </a>
+                                    <a href="javascript:void(0);" onclick="deleteApps('<?php echo $itemRow['app_id'] ?>')" class="btn btn-danger btn-sm"> <i class="far fa-trash-alt"></i> Delete </a>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -172,7 +172,7 @@
 </script>
 
 <script type="text/javascript">
-    function deleteRow(id) {
+    function deleteApps(id) {
         if (confirm("Are you sure you want to delete item?")) {
             window.location.href = "<?php echo base_url().$CI->module_url_delete."/"; ?>" + id;
         }

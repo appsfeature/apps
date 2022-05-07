@@ -201,7 +201,7 @@ $(document).ready(function() {
 </script>
 
 <script type="text/javascript">
-    function deleteRow(id) {
+    function deleteItemType(id) {
         if(confirm("Are you sure you want to delete item?")){
             window.location.href='<?php echo base_url().$CI->module_url_delete.'/'; ?>' + id;
         }
