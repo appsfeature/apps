@@ -243,10 +243,8 @@ class Database_model extends CI_Model {
         print_r($whereClause);
         $this->delete_content_master($whereClause);
         if(in_array('id', $whereClause)){
-            echo("true"); die();
             return $this->db->delete("table_content", $whereClause);
         }else {
-            echo("false"); die();
             return false;
         }
     }
