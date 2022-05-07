@@ -110,7 +110,7 @@
                                   <a href="<?php echo base_url().$CI->module_url_edit.'/'.$itemRow['id']; ?>" class="btn btn-primary btn-sm">
                                     <i class="far fa-edit"></i> Edit
                                   </a>
-                                  <a href="javascript:void(0);" onclick="deleteRow(<?php echo $itemRow['id'] ?>)" class="btn btn-danger btn-sm">
+                                  <a href="javascript:void(0);" onclick="deleteRowContent(<?php echo $itemRow['id'] ?>)" class="btn btn-danger btn-sm">
                                     <i class="far fa-trash-alt"></i> Delete
                                   </a>
                               </td>
@@ -148,7 +148,7 @@
 </script>
 
 <script type="text/javascript">
-    function deleteRow(id) {
+    function deleteRowContent(id) {
         if(confirm("Are you sure you want to delete content?")){
             window.location.href='<?php echo base_url().$CI->module_url_delete.'/'; ?>' + id;
         }
