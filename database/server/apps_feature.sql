@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 06, 2022 at 06:05 AM
+-- Generation Time: May 07, 2022 at 12:55 AM
 -- Server version: 5.7.37-cll-lve
 -- PHP Version: 7.3.32
 
@@ -44,12 +44,14 @@ CREATE TABLE `table_account` (
 --
 
 INSERT INTO `table_account` (`id`, `name`, `role`, `pkg_id`, `user_id`, `password`, `active`, `validity`) VALUES
-(1, 'Admin', 1, 'p1', 'admin', '123', 1, '2024-01-31 19:15:44'),
+(1, 'Admin', 1, 'p1', 'admin', 'asxcv@123', 1, '2024-01-31 19:15:44'),
 (3, 'Amit Jain', 0, 'p2', 'amit', 'amit@123', 1, '2023-05-17 19:16:26'),
 (4, 'Rajat Sukla', 0, 'p3', 'school', '123', 1, '2023-02-14 07:20:53'),
 (5, 'Rajat Sukla', 0, 'p4', 'academy', '123', 1, '2023-02-14 07:20:53'),
 (6, 'Abhijit Rao', 0, 'p5', 'dynamicapps', '123', 1, '2024-01-01 12:00:00'),
-(7, 'Shopping App', 0, 'p6', 'shoppingapp', '123', 1, '2024-01-01 12:00:00');
+(7, 'Shopping App', 0, 'p6', 'shoppingapp', '123', 1, '2024-01-01 12:00:00'),
+(8, 'Ashutosh Rana', 0, 'p7', 'babusona', 'sona@123', 1, '2024-01-01 12:00:00'),
+(9, 'Hari Ram', 0, 'p8', 'result4u', 'hari@123', 1, '2024-01-01 12:00:00');
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,9 @@ INSERT INTO `table_app` (`app_id`, `pkg_id`, `pkg_name`, `app_name`, `visibility
 (3, 'p3', 'com.katyayanschool.katyayanschool', 'Katyayan School', 1),
 (4, 'p4', 'com.katyayanacademy.katyayanacademy', 'Katyayan Academy', 1),
 (5, 'p5', 'com.appsfeature.dynamicapps', 'DynamicApps', 1),
-(6, 'p6', 'com.appsfeature.shoppingapp', 'ShoppingApp', 1);
+(6, 'p6', 'com.appsfeature.shoppingapp', 'ShoppingApp', 1),
+(7, 'p7', 'com.appsfeature.babusona', 'BabuSona', 1),
+(8, 'p8', 'com.appsfeature.result4u', 'Result4U', 1);
 
 -- --------------------------------------------------------
 
@@ -114,18 +118,13 @@ INSERT INTO `table_category` (`pkg_id`, `cat_id`, `title`, `item_type`, `image`,
 ('p3', 121, 'Home Slider', 6, '5324853ebc38baa76df534044924f7a3.jpeg', 1, 1, '', '{\"hide_title\": true}', NULL, '2022-02-14 11:01:10'),
 ('p2', 124, 'Dashboard', 0, NULL, 0, 1, '', '', NULL, '2022-03-03 07:25:13'),
 ('p5', 125, 'Dashboard', 0, NULL, 0, 1, '', '', NULL, '2022-03-07 12:47:17'),
-('p5', 126, 'Home Slider', 6, NULL, 1, 1, '', '', NULL, '2022-03-07 13:09:22'),
-('p5', 127, 'Menu', 1, NULL, 2, 1, '', '', NULL, '2022-03-11 05:29:14'),
 ('p6', 133, 'Dashboard', 0, NULL, 0, 1, '', '', NULL, '2022-03-13 09:12:03'),
 ('p6', 134, 'Slider', 6, NULL, 0, 1, '', '', NULL, '2022-03-13 09:17:49'),
 ('p6', 135, 'Menu', 1, NULL, 0, 1, '', '', NULL, '2022-03-15 17:33:32'),
-('p5', 139, 'Social', 10, '650ac42a05acf1ac4ba6b56b43abd8a1.png', 0, 1, '', '', NULL, '2022-03-16 17:45:32'),
-('p5', 140, 'Social Media1', 10, NULL, 0, 1, '', '', NULL, '2022-03-16 17:45:53'),
-('p6', 147, 'Education', 1, 'a8dd1b4f54be15e7f3b694b07afaafec.png', 0, 1, '', '', NULL, '2022-05-04 07:56:15'),
-('p6', 148, 'Medical', 1, 'bb59a6ba4907247bed1cadd156404134.png', 0, 1, '', '', NULL, '2022-05-04 07:56:35'),
-('p5', 149, 'PlayList', 11, '8cca4e7436441079ccd5e4e33a440160.png', 0, 1, '', '{\"isPlayerStyleMinimal\":true}', NULL, '2022-05-04 12:51:12'),
-('p6', 150, 'Youtube', 11, '32c4908171aedae749fe188aa98b9b75.png', 0, 1, '', '', NULL, '2022-05-04 14:34:56'),
-('p5', 151, 'Books', 4, NULL, 10, 1, '', '{\"is_portrait\":true,\"height\":200}', NULL, '2022-05-05 06:21:30');
+('p7', 152, 'Dashboard', 0, NULL, 0, 1, '', '', NULL, '2022-05-07 05:55:37'),
+('p8', 153, 'Dashboard', 0, NULL, 0, 1, '', '', NULL, '2022-05-07 06:00:48'),
+('p8', 154, 'Menu', 1, NULL, 0, 1, '', '', NULL, '2022-05-07 06:09:39'),
+('p8', 155, 'Board Result', 10, 'f0d278b701eb31ee6a29b3f9b6a20457.png', 0, 1, '', '', NULL, '2022-05-07 06:10:37');
 
 -- --------------------------------------------------------
 
@@ -160,18 +159,16 @@ INSERT INTO `table_category_master` (`pkg_id`, `id`, `cat_id`, `sub_cat_id`, `vi
 ('p3', 10, 121, 115, 1, 0, '2022-02-14 11:01:10'),
 ('p2', 12, 124, 0, 1, 0, '2022-03-03 07:59:58'),
 ('p5', 14, 125, 0, 1, 0, '2022-03-07 12:47:31'),
-('p5', 15, 126, 125, 1, 0, '2022-03-07 13:09:22'),
-('p5', 16, 127, 125, 1, 0, '2022-03-11 05:29:14'),
 ('p6', 22, 133, 0, 1, 0, '2022-03-13 09:12:03'),
 ('p6', 23, 134, 133, 1, 0, '2022-03-13 09:17:49'),
 ('p6', 24, 135, 133, 1, 0, '2022-03-15 17:33:32'),
-('p5', 28, 139, 127, 1, 0, '2022-03-16 17:45:32'),
-('p5', 29, 140, 139, 1, 0, '2022-03-16 17:45:53'),
 ('p6', 36, 147, 135, 1, 0, '2022-05-04 07:56:15'),
 ('p6', 37, 148, 135, 1, 0, '2022-05-04 07:56:35'),
-('p5', 38, 149, 127, 1, 0, '2022-05-04 12:51:12'),
 ('p6', 39, 150, 147, 1, 0, '2022-05-04 14:34:56'),
-('p5', 40, 151, 125, 1, 0, '2022-05-05 06:21:30');
+('p7', 41, 152, 0, 1, 0, '2022-05-07 05:55:37'),
+('p8', 42, 153, 0, 1, 0, '2022-05-07 06:00:48'),
+('p8', 43, 154, 153, 1, 0, '2022-05-07 06:09:39'),
+('p8', 44, 155, 154, 1, 0, '2022-05-07 06:10:37');
 
 -- --------------------------------------------------------
 
@@ -183,7 +180,7 @@ CREATE TABLE `table_content` (
   `pkg_id` varchar(100) NOT NULL,
   `id` int(100) NOT NULL,
   `title` varchar(1000) NOT NULL,
-  `description` text,
+  `description` longtext,
   `item_type` int(100) DEFAULT '0',
   `image` varchar(100) DEFAULT NULL,
   `link` varchar(1000) DEFAULT NULL,
@@ -218,15 +215,8 @@ INSERT INTO `table_content` (`pkg_id`, `id`, `title`, `description`, `item_type`
 ('p3', 55, 'Chemistry 2', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-02-16 14:30:15'),
 ('p2', 56, 'Slider 1', '', 0, 'a7c821801eb46f6e19dbc509d729ad81.jpg', '', 1, 0, NULL, '2022-03-25T11:10', '2022-03-01T18:43', '2022-03-04 05:40:55'),
 ('p2', 57, 'Slider 2', '', NULL, '1282a5e5f3014493667aef13129b0103.jpg', '', 1, 0, NULL, '', '', '2022-03-04 05:41:11'),
-('p5', 58, 'Slider 1', '                               <h3>Make work faster and easier</h3>  <p><strong>Find and retrieve data quickly in Excel</strong>—We heard your feedback about the <a href=\"https://support.office.com/en-us/article/VLOOKUP-function-0BBC8083-26FE-4963-8AB8-93A18AD188A1\" target=\"_blank\" rel=\"noopener noreferrer\">VLOOKUP</a> formula for working with data in Excel—that it requires sorted data, fails to discover results on left-hand columns, and takes wildcards by default. So this month, <a href=\"https://techcommunity.microsoft.com/t5/Excel-Blog/Announcing-XLOOKUP/ba-p/811376\" target=\"_blank\" rel=\"noopener noreferrer\">we introduced XLOOKUP</a>, our successor to the VLOOKUP, and <a href=\"https://support.office.com/en-us/article/HLOOKUP-function-A3034EEC-B719-4BA3-BB65-E1AD662ED95F\" target=\"_blank\" rel=\"noopener noreferrer\">HLOOKUP</a> formulas. XLOOKUP addresses our most common user feedback and takes advantage of recent backend changes to improve calculation time. It‘s available today to <a href=\"https://insider.office.com/en-us/\" target=\"_blank\" rel=\"noopener noreferrer\">Office Insiders</a>, with general availability coming later this year1.</p>                             ', 103, '5dcc8c7617a81f51061fd8a6b7c2f8e8.jpg', 'https://play.google.com/store1', 1, 0, '', '', NULL, '2022-03-07 13:09:45'),
-('p5', 59, 'Slider 2', '', 102, 'b3ac8a7740044ea5144af6485cc0c3f5.jpg', 'https://play.google.com/store', 1, 0, '', '', NULL, '2022-03-07 13:10:00'),
-('p5', 60, 'Google', '', 102, '16df3878e4964397a949a40c7d7d633a.png', 'https://www.google.com/', 1, 0, '', '', NULL, '2022-03-11 05:38:41'),
-('p5', 61, 'Meta', '', 102, 'dfec0d8d678f75dd6e1f396737742f33.png', 'https://about.facebook.com/meta/', 1, 0, '', '', NULL, '2022-03-11 05:39:08'),
-('p5', 62, 'Youtube', '', 106, '85e56fd7d770b51ea957570c837d5c0c.png', 'G0Hx6uN2AJE', 1, 0, '', '', NULL, '2022-03-11 05:40:05'),
-('p5', 63, 'Twitter', '', 101, '30d9c34ac309f46a0fc96afd7fab5530.png', 'https://www.ets.org/Media/Tests/GRE/pdf/gre_research_validity_data.pdf', 1, 0, '', '', NULL, '2022-03-11 05:40:21'),
 ('p6', 68, 'Slider1', '', 102, '96470a541a522ce81914367cb1c0e6d1.jpg', 'https://m.dailyhunt.in/news/india/english/money+control+english-epaper-mconten/bitcoin+falls+74+to+40632-newsid-n360295962?s=a&uu=0x3fe296264bbbfce7&ss=wsp', 1, 0, '', '', NULL, '2022-03-13 09:22:36'),
 ('p6', 69, 'Geocery ', '', 103, NULL, '', 1, 1, '', '', NULL, '2022-03-14 04:56:15'),
-('p5', 73, 'WhatsApp', '', 102, '17f6b9fe8846e1dcf9aac3a2c49a8a02.png', 'https://web.whatsapp.com/', 1, 0, '', '', NULL, '2022-05-04 07:02:41'),
 ('p6', 74, 'image', '', 100, '241f81f8a7e19c9d13385b4126337757.jpg', '', 1, 0, '', '', NULL, '2022-05-04 07:04:51'),
 ('p6', 75, 'Schools', '', 102, '51844b4b8d64dfa184676a6da75b05b6.png', 'http://katyayanacademy.com/cp', 1, 0, '', '', NULL, '2022-05-04 07:57:06'),
 ('p6', 76, 'Colleges', '', 102, '54f4df29cd67b3bdf91f8477cf1e2f45.png', 'http://katyayanacademy.com/cp/', 1, 0, '', '', NULL, '2022-05-04 09:37:50'),
@@ -235,16 +225,9 @@ INSERT INTO `table_content` (`pkg_id`, `id`, `title`, `description`, `item_type`
 ('p6', 79, 'Hospitals', '', 102, '6d7825db2ca5d4cfeb064a2480092acb.png', '', 1, 0, '', '', NULL, '2022-05-04 09:44:16'),
 ('p6', 80, 'Medical Clinic', '', 102, 'd21412a3502eb55b7fee12c600aa4468.png', '', 1, 0, '', '', NULL, '2022-05-04 09:45:30'),
 ('p6', 81, 'Medical Stores', '', 102, '9fea8f7a41f9762207b3ab9bade6b3e7.png', '', 1, 0, '', '', NULL, '2022-05-04 09:46:09'),
-('p5', 82, 'Learn Ethical Hacking Full Course in 10 Hours', '', 106, NULL, 'Rgvzt0D8bR4', 1, 0, '', '', NULL, '2022-05-04 12:52:24'),
-('p5', 83, 'Make Money From Money - Sandeep Maheshwari', 'Sandeep Maheshwari is a name among millions who struggled, failed and surged ahead in search of success, happiness and contentment. Just like any middle class guy, he too had a bunch of unclear dreams and a blurred vision of his goals in life. All he had was an undying learning attitude to hold on to. Rowing through ups and downs, it was time that taught him the true meaning of his life.', 106, NULL, 'LknADkbbekc', 1, 0, '', '', NULL, '2022-05-04 12:53:06'),
 ('p6', 84, '   Namo Namo - Lyrical | Kedarnath | Sushant Rajput | Sara Ali Khan | Amit Trivedi | Amitabh B', '    0:36 / 5:28   Namo Namo - Lyrical | Kedarnath | Sushant Rajput | Sara Ali Khan | Amit Trivedi | Amitabh B', 106, NULL, 'dx4Teh-nv3A', 1, 0, '', '', NULL, '2022-05-04 14:36:57'),
-('p5', 85, 'Book 1', '', 101, '70996a8e35ef83475410b671bff0387b.jpg', 'http://appsfeature.com/pdf/sample_pdf_1.pdf', 1, 0, '', '', NULL, '2022-05-05 06:55:56'),
-('p5', 86, 'Book 2', '', 101, 'f1b49ef507c1b38b81e769ef7f1f182c.jpg', 'http://appsfeature.com/pdf/sample_pdf_2.pdf', 1, 0, '', '', NULL, '2022-05-05 06:56:15'),
-('p5', 87, 'Book 3', '', 101, 'adf6e9e68ca84770c2dc922638134bca.jpg', 'http://appsfeature.com/pdf/sample_pdf_3.pdf', 1, 0, '', '', NULL, '2022-05-05 06:56:34'),
-('p5', 88, 'Book 4', '', 101, '05365ae55a3087a372ac658b103ad651.jpg', 'http://appsfeature.com/pdf/sample_pdf_4.pdf', 1, 0, '', '', NULL, '2022-05-05 06:56:55'),
-('p5', 89, 'Book 5', '', 101, '71534e38ffa6b2edf2cfbf8eb2722bb8.jpg', 'http://appsfeature.com/pdf/sample_pdf_5.pdf', 1, 0, '', '', NULL, '2022-05-05 06:57:09'),
-('p5', 90, 'Book 6', '', 101, 'f4ad8eefa9d9de3f50084e1bcbef2434.jpg', 'http://appsfeature.com/pdf/sample_pdf_1.pdf', 1, 0, '', '', NULL, '2022-05-05 07:35:49'),
-('p5', 91, 'asdasd', '', 101, NULL, '', 1, 0, '', '', NULL, '2022-05-06 13:01:17');
+('p8', 92, 'MP Board 10th Result 2022 Latest Updates: MPBSE Results 29th April at 1 PM – mpbse.nic.in', '<header class=\"entry-header\" style=\"overflow-wrap: break-word; color: rgb(58, 58, 58); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 17px;\"><h1 class=\"entry-title\" itemprop=\"headline\" style=\"border: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; font-family: Monda, sans-serif; font-size: 40px; font-style: inherit; line-height: 1.2em;\">MP Board 10th Result 2022 Latest Updates: MPBSE Results 29th April at 1 PM – mpbse.nic.in</h1><div class=\"entry-meta\" style=\"border: 0px; margin: 0.5em 0px 0px; padding: 0px; font-size: 14.45px; line-height: 1.5; color: rgb(89, 89, 89);\"><span class=\"posted-on\" style=\"border: 0px; margin: 0px; padding: 0px;\"><a href=\"https://result4u.in/mp-board-10th-result/\" title=\"10:43 am\" rel=\"bookmark\" style=\"color: rgb(89, 89, 89); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\">April 28, 2022</a></span>&nbsp;<span class=\"byline\" style=\"border: 0px; margin: 0px; padding: 0px; display: inline;\">by&nbsp;<span class=\"author vcard\" itemprop=\"author\" itemtype=\"https://schema.org/Person\" itemscope=\"\" style=\"border: 0px; margin: 0px; padding: 0px;\"><a class=\"url fn n\" href=\"https://result4u.in/author/admin/\" title=\"View all posts by admin\" rel=\"author\" itemprop=\"url\" style=\"color: rgb(89, 89, 89); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\"><span class=\"author-name\" itemprop=\"name\" style=\"border: 0px; margin: 0px; padding: 0px;\">admin</span></a></span></span></div></header><div class=\"entry-content\" itemprop=\"text\" style=\"border: 0px; margin: 2em 0px 0px; padding: 0px; color: rgb(58, 58, 58); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 17px;\"><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board Class 10th result 2022 Latest Updates:</span> <span style=\"border: 0px; margin: 0px; padding: 0px; color: rgb(128, 0, 0);\">Madhya Pradesh Board will be Declared the MP Board class 10th result on 29 April 2022 at 1 PM</span>, mpbse.nic.in, mpresults.nic.in. The results can also be checked on Result4u&nbsp; portal at result4u.in. Check direct link,</p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board MPBSE 10th result 2022 Updates:</span> <span style=\"border: 0px; margin: 0px; padding: 0px; color: rgb(0, 0, 255);\">Madhya Pradesh Board will announce the class 10th results on 29 April 2022 at 1 PM. The merit list will also be announced online 29 April 2022</span>. This year over 11.5 lakh students have taken the MP Board 10<span style=\"border: 0px; margin: 0px; padding: 0px; font-size: 12.75px; height: 0px; line-height: 0; position: relative; vertical-align: baseline; bottom: 1ex;\">th</span>&nbsp;Class examinations. The results can be checked online at &nbsp;mbpse.mponline.gov.in, mpbse.nic.in, jagranjosh.com, fastresult.in, livehindustan.com, mp10.abplive.com, and hindi.news18.com. The MP Board 10th result can also be checked on our  Result4u portal at result4u.in. The results can also be checked on several mobile apps including MPBSE Mobile app, MP Mobile app, and Fastresults app available on Google Play Store or MP Mobile App on Window App store. Here in the blog we will provide you the latest information on result, direct link, steps to check result online, pass percentage, topper list and other details.&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Check Now:</span><span id=\"more-1405\" style=\"border: 0px; margin: 0px; padding: 0px;\"></span></p><h2 style=\"border: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; font-size: 30px; font-style: inherit; line-height: 1.2em;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-size: 14pt;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Many Website given here you can check result</span></span></h2><ul style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 3em; padding: 0px; list-style-position: initial; list-style-image: initial;\"><li style=\"border: 0px; margin: 0px; padding: 0px;\"><a title=\"\" href=\"http://mpbse.nic.in/\" style=\"color: rgb(30, 115, 190); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\">mpbse.nic.in</a></li><li style=\"border: 0px; margin: 0px; padding: 0px;\"><a title=\"\" href=\"http://mpresults.nic.in/\" style=\"color: rgb(30, 115, 190); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\">mpresults.nic.in</a></li><li style=\"border: 0px; margin: 0px; padding: 0px;\">hindi.news18.com</li><li style=\"border: 0px; margin: 0px; padding: 0px;\">livehindustan.com</li><li style=\"border: 0px; margin: 0px; padding: 0px;\">fastresult.in</li></ul></div>                                <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->\r\n                            ', 103, NULL, '', 1, 0, '', '', NULL, '2022-05-07 06:18:34'),
+('p8', 93, 'MP Board 12th Result 2022 ( 29 April), MPBSE 12th Result @mpresults.nic.in', '<header class=\"entry-header\" style=\"overflow-wrap: break-word; color: rgb(58, 58, 58); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 17px;\"><h1 class=\"entry-title\" itemprop=\"headline\" style=\"border: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; font-family: Monda, sans-serif; font-size: 40px; font-style: inherit; line-height: 1.2em;\">MP Board 12th Result 2022 ( 29 April), MPBSE 12th Result @mpresults.nic.in</h1><div class=\"entry-meta\" style=\"border: 0px; margin: 0.5em 0px 0px; padding: 0px; font-size: 14.45px; line-height: 1.5; color: rgb(89, 89, 89);\"><span class=\"posted-on\" style=\"border: 0px; margin: 0px; padding: 0px;\"><a href=\"https://result4u.in/mp-board-12th-result/\" title=\"9:30 am\" rel=\"bookmark\" style=\"color: rgb(89, 89, 89); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\">April 27, 2022</a></span>&nbsp;<span class=\"byline\" style=\"border: 0px; margin: 0px; padding: 0px; display: inline;\">by&nbsp;<span class=\"author vcard\" itemprop=\"author\" itemtype=\"https://schema.org/Person\" itemscope=\"\" style=\"border: 0px; margin: 0px; padding: 0px;\"><a class=\"url fn n\" href=\"https://result4u.in/author/admin/\" title=\"View all posts by admin\" rel=\"author\" itemprop=\"url\" style=\"color: rgb(89, 89, 89); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\"><span class=\"author-name\" itemprop=\"name\" style=\"border: 0px; margin: 0px; padding: 0px;\">admin</span></a></span></span></div></header><div class=\"entry-content\" itemprop=\"text\" style=\"border: 0px; margin: 2em 0px 0px; padding: 0px; color: rgb(58, 58, 58); font-family: &quot;Open Sans&quot;, sans-serif; font-size: 17px;\"><h2 style=\"border: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; font-size: 30px; font-style: inherit; line-height: 1.2em;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-size: 12pt;\">MP Board Class 12 Result will be Declared on 29- April 2022 at 1 PM&nbsp;</span></span></h2><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board Class 12 Result 2022</span>&nbsp;will be declared at 29th April 2022 at 1 PM. According to the official resources,&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; color: rgb(128, 0, 0);\">it is declared official notice for the&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">12th MP Board 2022 Result</span>&nbsp;in the 29th April 2022 at 1 PM.</span>&nbsp;Around 7.8 lakh students who have given the 12th class examination are eagerly waiting for&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board Class 12 Result 2022</span>&nbsp;release date. However, due to the postponement of examination of last year 2021, this no exam of in the release of the result 2021. Last year, MP Board Result was released on July, 2021, and around 5.42 candidates out of 7.5 lakh qualified the exams successfully.</p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\">The notification was shared by the Madhya Pradesh Education Minister, Inder Singh Parmar. Taking to his official twitter account, Parmar has been announced that both the Class 10 and Class 12 results would be announced on April 29.<span id=\"more-1309\" style=\"border: 0px; margin: 0px; padding: 0px;\"></span></p><h2 style=\"border: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; font-size: 30px; font-style: inherit; line-height: 1.2em;\">MP Board Class 12th Date &amp; Time</h2><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\">The MP Board 2022 result of class 12<span style=\"border: 0px; margin: 0px; padding: 0px; font-size: 12.75px; height: 0px; line-height: 0; position: relative; vertical-align: baseline; bottom: 1ex;\">th</span>&nbsp;will be released on the official website i.e.&nbsp;<a title=\"MP 12th Result 2020\" href=\"http://mpresults.nic.in/\" style=\"color: rgb(30, 115, 190); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">mpresults.nic.in</span></a>. and Result Date</p><table border=\"1px solid black\" width=\"100%\" cellspacing=\"2\" cellpadding=\"2\" style=\"border-width: 1px 0px 0px 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px 0px 1.5em; padding: 0px; border-collapse: separate; border-spacing: 0px; width: 725px;\"><tbody style=\"border: 0px; margin: 0px; padding: 0px;\"><tr align=\"center\" bgcolor=\"#FBA919\" style=\"border: 0px; margin: 0px; padding: 0px;\"><td colspan=\"4\" style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\"><center><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board 12th Class exams&nbsp; and Result Date 2022</span></center></td></tr><tr align=\"center\" bgcolor=\"#CCC9F1\" style=\"border: 0px; margin: 0px; padding: 0px;\"><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\"><center><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">State Board</span></center></td><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\"><center><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Exam Name</span></center></td><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\"><center><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Exam Dates</span></center></td><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\"><center><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MPBSE Result Date</span></center></td></tr><tr align=\"center\" style=\"border: 0px; margin: 0px; padding: 0px;\"><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\"><center>MP Board</center></td><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\">12th</td><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\">17-Feb-To-12- March- 2022</td><td style=\"border-width: 0px 1px 1px 0px; border-style: solid; border-color: rgba(0, 0, 0, 0.1); border-image: initial; margin: 0px; padding: 8px; text-align: left;\">29th Aril 2022 at 1 PM</td></tr></tbody></table><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px;\">&nbsp;</p><h2 style=\"border: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; font-size: 30px; font-style: inherit; line-height: 1.2em; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">How to Check MP Board 2022 Result for 12th Class?</span></h2><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\">The process of checking&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board Class 12 Result 2022&nbsp;</span>for 12th is very easy. What they need to do is to follow these simple steps carefully. Below is a procedure mentioned that you need to go through:</p><ul style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 3em; padding: 0px; list-style-position: initial; list-style-image: initial; text-align: justify;\"><li style=\"border: 0px; margin: 0px; padding: 0px;\">To check<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">&nbsp;MP Board Class 12th Result 2022&nbsp;</span>online, you should mpresults.nic.in.</li><li style=\"border: 0px; margin: 0px; padding: 0px;\">In the next step, you come across a login window that you get after clicking on the MP board HSSC result 2022.</li><li style=\"border: 0px; margin: 0px; padding: 0px;\">Now, you need to enter your roll number in the respective field and make sure there are no errors and typos.</li><li style=\"border: 0px; margin: 0px; padding: 0px;\">Click on the ‘submit’ button and your computer screen will show you the&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Class 12th Result.</span></li></ul><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Note:</span></p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\">It is a suggestion to all the students to verify the details mentioned in the mark sheet. After the complete verification, you should download and take a print of&nbsp;<a title=\"MP Board Class 12th Result 2022\" href=\"https://result4u.in/mp-board-12th-result/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color: rgb(30, 115, 190); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board Class 12th result 2022</span></a>. In case, you find anything wrong or mistake in your mark sheet, you should contact the MP board for assistance.<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">&nbsp;</span></p><h2 style=\"border: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; font-size: 30px; font-style: inherit; line-height: 1.2em; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board 12th Result 2022: Supplementary Exams</span></h2><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\">MP Board puts forward an opportunity to all the students who are unfortunately failed to clear any particular subject. To prove themselves, these candidates will have to apply and then appear for the supplementary examination that the MP Board will conduct in the month of August 2022. After the release of&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MP Board 12th Result 2022</span>&nbsp;in the month of July 2022 (highly expected), the supplementary examination will be conducted to take place. The students can visit the official website of the MP Board to check out the notification in regards to&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Class 12th Result.</span></p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\">On the other hand, students are suggested to bookmark&nbsp;<a href=\"https://result4u.in/\" style=\"color: rgb(30, 115, 190); cursor: pointer; border: 0px; margin: 0px; padding: 0px; transition: color 0.1s ease-in-out 0s, background-color 0.1s ease-in-out 0s;\">www.result4u.in</a>&nbsp;for any update regarding&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MPBSE 10th, 12th Result 2022</span>. Apart from that, if any kind of problem regarding the same takes place, you can get in touch with us at anytime from anywhere. We are here 24 hours a day to fetch the exact details from the officials and provide you with the right information in regards to the&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">MPBSE 12th Result 2022</span>.</p><h3 style=\"border: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; padding: 0px; font-size: 20px; font-style: inherit; line-height: 1.2em;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-size: 12pt;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Regarding FAQ Page For MP Board 12th Result 2022.</span></span></h3><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Que: What is a Official Website for MP Board Class 12th Result?</span></p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Ans:&nbsp;</span>mpresults.nic.in is a MP Board Official Website.</p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Que.</span>&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">When will the result for MP Board 12th will be declared?</span></p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Ans.</span>&nbsp;Madhya Pradesh Board has been declared MP Board 12th result in the 29 April 2022 at 1 PM.</p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Que.</span>&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">What is the passing marks to the MP Board class 12th exam?</span></p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Ans.</span>&nbsp;To Pass MP Board class 12th you will need 27th Mark instead of 33 Marks.</p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 1.5em; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Que.</span>&nbsp;<span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">When will MP Board 12th supplementary exams be conducted date?</span></p><p style=\"border: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; text-align: justify;\"><span style=\"border: 0px; margin: 0px; padding: 0px; font-weight: 700;\">Ans.</span>&nbsp;MP Board will be conducting supplementary exams in the month of August 2022.</p></div>                                <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->\r\n                            ', 103, NULL, '', 1, 0, '', '', NULL, '2022-05-07 06:19:27');
 
 -- --------------------------------------------------------
 
@@ -285,15 +268,8 @@ INSERT INTO `table_content_master` (`pkg_id`, `id`, `content_id`, `sub_cat_id`, 
 ('p3', 16, 55, 122, 1, 0, '2022-02-16 14:30:15'),
 ('p2', 18, 56, 114, 1, 0, '2022-03-04 05:40:55'),
 ('p2', 19, 57, 114, 1, 0, '2022-03-04 05:41:11'),
-('p5', 20, 58, 126, 1, 0, '2022-03-07 13:09:45'),
-('p5', 21, 59, 126, 1, 0, '2022-03-07 13:10:00'),
-('p5', 22, 60, 127, 1, 0, '2022-03-11 05:38:41'),
-('p5', 23, 61, 127, 1, 0, '2022-03-11 05:39:08'),
-('p5', 24, 62, 127, 1, 0, '2022-03-11 05:40:05'),
-('p5', 25, 63, 127, 1, 0, '2022-03-11 05:40:21'),
 ('p6', 31, 68, 134, 1, 0, '2022-03-13 09:22:36'),
 ('p6', 32, 69, 133, 1, 1, '2022-03-14 04:56:15'),
-('p5', 36, 73, 139, 1, 0, '2022-05-04 07:02:41'),
 ('p6', 37, 74, 134, 1, 0, '2022-05-04 07:04:51'),
 ('p6', 38, 75, 147, 1, 0, '2022-05-04 07:57:06'),
 ('p6', 39, 76, 147, 1, 0, '2022-05-04 09:37:50'),
@@ -302,16 +278,9 @@ INSERT INTO `table_content_master` (`pkg_id`, `id`, `content_id`, `sub_cat_id`, 
 ('p6', 42, 79, 148, 1, 0, '2022-05-04 09:44:16'),
 ('p6', 43, 80, 148, 1, 0, '2022-05-04 09:45:30'),
 ('p6', 44, 81, 148, 1, 0, '2022-05-04 09:46:09'),
-('p5', 45, 82, 149, 1, 0, '2022-05-04 12:52:24'),
-('p5', 46, 83, 149, 1, 0, '2022-05-04 12:53:06'),
 ('p6', 47, 84, 150, 1, 0, '2022-05-04 14:36:57'),
-('p5', 48, 85, 151, 1, 0, '2022-05-05 06:55:56'),
-('p5', 49, 86, 151, 1, 0, '2022-05-05 06:56:15'),
-('p5', 50, 87, 151, 1, 0, '2022-05-05 06:56:34'),
-('p5', 51, 88, 151, 1, 0, '2022-05-05 06:56:55'),
-('p5', 52, 89, 151, 1, 0, '2022-05-05 06:57:09'),
-('p5', 53, 90, 151, 1, 0, '2022-05-05 07:35:49'),
-('p5', 54, 91, 151, 1, 0, '2022-05-06 13:01:17');
+('p8', 55, 92, 155, 1, 0, '2022-05-07 06:18:34'),
+('p8', 56, 93, 155, 1, 0, '2022-05-07 06:19:27');
 
 -- --------------------------------------------------------
 
@@ -378,7 +347,8 @@ INSERT INTO `table_item_type` (`pkg_id`, `id`, `flavour`, `item_type`, `title`, 
 ('common', 24, 0, 9, 'Title Only', 0, 1),
 ('common', 25, 0, 10, 'Title With Count', 0, 1),
 ('p3', 26, 1, 109, 'Previous Classes', 0, 1),
-('common', 27, 0, 11, 'Youtube Video PlayList', 0, 1);
+('common', 27, 0, 11, 'Youtube Video PlayList', 0, 1),
+('p8', 28, 0, 1121, 'NCERT Solutions For Class 12 Maths', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -462,37 +432,37 @@ ALTER TABLE `table_json`
 -- AUTO_INCREMENT for table `table_account`
 --
 ALTER TABLE `table_account`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `table_app`
 --
 ALTER TABLE `table_app`
-  MODIFY `app_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `app_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `table_category`
 --
 ALTER TABLE `table_category`
-  MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `cat_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `table_category_master`
 --
 ALTER TABLE `table_category_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `table_content`
 --
 ALTER TABLE `table_content`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `table_content_master`
 --
 ALTER TABLE `table_content_master`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `table_flavour`
@@ -504,7 +474,7 @@ ALTER TABLE `table_flavour`
 -- AUTO_INCREMENT for table `table_item_type`
 --
 ALTER TABLE `table_item_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `table_json`
