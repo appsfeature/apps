@@ -41,6 +41,8 @@
 
                     <input type="hidden" name="image_old" access="false" id="image_old" value="<?php echo $content['image']; ?>">
 
+                    <input type="hidden" name="item_type" access="false" id="item_type" value="<?php echo $content['item_type']; ?>">
+
                     <div class="row">
                         <div class="col-sm-3 mb-3">
                             <label for="cat_id" class="formbuilder-number-label">Category</label>

@@ -37,6 +37,8 @@
 
                     <input type="hidden" name="pkg_id" access="false" id="pkg_id" value="<?php echo isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:''; ?>">
 
+                    <input type="hidden" name="item_type" access="false" id="item_type" value="102">
+
                     <div class="row">
                         <div class="col-sm-3 mb-3">
                             <label for="sub_cat_id" class="formbuilder-number-label">Category <span style="color:red">*</span></label>
