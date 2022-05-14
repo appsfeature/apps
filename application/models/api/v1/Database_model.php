@@ -107,7 +107,7 @@ class Database_model extends CI_Model {
 
     public function delete_category($whereClause = array()) {
         $this->delete_category_master($whereClause);
-        if(in_array("cat_id", $whereClause) || in_array("title", $whereClause)){
+        if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
             return $this->db->delete("table_category", $whereClause);
         }else {
             return false;
@@ -115,7 +115,7 @@ class Database_model extends CI_Model {
     }
 
     public function delete_category_master($whereClause = array()) {
-        if(in_array("cat_id", $whereClause)){
+        if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
             return $this->db->delete("table_category_master", $whereClause);
         }else {
             return false;
@@ -149,7 +149,6 @@ class Database_model extends CI_Model {
     }
 
     public function get_category_master($whereClause = array(), $searchQuery = [], $isSortById = false) {
-
         if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
             $query = "SELECT table_category_master.sub_cat_id, table_category.* FROM table_category_master JOIN table_category ON table_category_master.cat_id=table_category.cat_id WHERE table_category_master.pkg_id='" .$whereClause['pkg_id']. "' AND table_category_master.cat_id='" .$whereClause['cat_id']. "'";
         }else if(isset($whereClause['pkg_id']) && isset($whereClause['sub_cat_id'])){
@@ -242,7 +241,7 @@ class Database_model extends CI_Model {
     public function delete_content($whereClause = array()) {
         print_r($whereClause);
         $this->delete_content_master($whereClause);
-        if(in_array('id', $whereClause)){
+        if(isset($whereClause['pkg_id']) && isset($whereClause['id'])){
             return $this->db->delete("table_content", $whereClause);
         }else {
             return false;
@@ -252,7 +251,7 @@ class Database_model extends CI_Model {
     public function delete_content_master($whereClause = array()) {
         $whereClause2['pkg_id'] = $whereClause['pkg_id'];
         $whereClause2['content_id'] = $whereClause['id'];
-        if(in_array("content_id", $whereClause2)){
+        if(isset($whereClause['pkg_id']) && isset($whereClause['content_id'])){
             return $this->db->delete("table_content_master", $whereClause2);
         }else {
             return false;
