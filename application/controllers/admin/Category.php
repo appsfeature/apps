@@ -215,6 +215,7 @@ class Category extends CI_Controller{
     public function deletemaster($id){
         $pkg_id = isset($_SESSION['admin']['pkg_id'])?$_SESSION['admin']['pkg_id']:'';;
 
+        $whereClause['pkg_id'] = $pkg_id;
         $whereClause['id'] = $id;
         $categoriesMaster = $this->database_model->get_cat_master($whereClause);
 

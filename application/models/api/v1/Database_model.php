@@ -116,7 +116,7 @@ class Database_model extends CI_Model {
     }
 
     public function delete_category_master($whereClause = array()) {
-        if(isset($whereClause['pkg_id']) && isset($whereClause['cat_id'])){
+        if(isset($whereClause['pkg_id']) && (isset($whereClause['id']) || isset($whereClause['cat_id']))){
             return $this->db->delete("table_category_master", $whereClause);
         }else {
             return false;
