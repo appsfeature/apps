@@ -54,23 +54,24 @@ class Database_model extends CI_Model {
     }
 
     public function insert_category($isUpdate = false, $whereClause = array(), $data = array()) {
-        $query = $this->db->get_where('table_category', $whereClause);
-        if ($query->num_rows() <= 0) {
+        // dd($whereClause);
+        // $query = $this->db->get_where('table_category', $whereClause);
+        // if ($query->num_rows() <= 0) {
             $this->db->insert("table_category", $data);
             $lastId = $this->db->insert_id();
             return $lastId;
-        } else {
-            if ($isUpdate) {
-                $this->db->update("table_category", $data, $whereClause);
-                if($this->db->affected_rows() > 0){
-                   return $whereClause['cat_id'];
-                } else {
-                   return 0;
-                }
-            } else {
-                return 0;
-            }
-        }
+        // } else {
+        //     if ($isUpdate) {
+        //         $this->db->update("table_category", $data, $whereClause);
+        //         if($this->db->affected_rows() > 0){
+        //            return $whereClause['cat_id'];
+        //         } else {
+        //            return 0;
+        //         }
+        //     } else {
+        //         return 0;
+        //     }
+        // }
     }
 
     public function update_category($whereClause = array(), $data = array()) {

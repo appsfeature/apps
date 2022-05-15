@@ -91,7 +91,7 @@ class Database extends REST_Controller {
         if ($isUpdateOnly) {
             $whereClause = getCategoryWhereClause($pkg_id, $cat_id, null);
         } else {
-            $whereClause = getCategoryWhereClause($pkg_id, $title, null);
+            $whereClause = getCategoryWhereClause($pkg_id, null, null);
         }
         $item_type = $this->input->post("item_type");
         $imageOld = $this->input->post("image_old");
