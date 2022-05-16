@@ -110,8 +110,6 @@
                     <div class="row">
                         <div class="col-sm-12 mb-3">
                             <label for="description" class="formbuilder-number-label">Description</label>
-                            <!-- <input type="text" placeholder="Enter Description" value="<?php echo $content['description'];?>" class="form-control" name="description" access="false" id="description"> -->
-
                             <textarea id="description" name="description" access="false" id="description" placeholder="Enter here" class="form-control">
                                <?php echo $content['description'];?>
                              </textarea>

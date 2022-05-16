@@ -108,7 +108,6 @@
                         <div class="col-sm-12 mb-3">
                             <label for="description" class="formbuilder-number-label">Description / Html Body</label>
                             <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control">
-                                <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->
                             </textarea>
                         </div>
                     </div>
