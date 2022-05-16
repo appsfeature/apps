@@ -177,7 +177,7 @@ class Database_model extends CI_Model {
         if($isSortById){
             $query .= " ORDER BY table_category.cat_id DESC";
         }else {
-            $query .= " ORDER BY table_category.ranking ASC, table_category.created_at ASC";
+            $query .= " ORDER BY table_category.ranking ASC, table_category.created_at DESC";
         }
 
         $q = $this->db->query($query)->result_array();
