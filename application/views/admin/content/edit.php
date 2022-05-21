@@ -110,9 +110,7 @@
                     <div class="row">
                         <div class="col-sm-12 mb-3">
                             <label for="description" class="formbuilder-number-label">Description</label>
-                            <textarea id="description" name="description" access="false" id="description" placeholder="Enter here" class="form-control">
-                               <?php echo $content['description'];?>
-                             </textarea>
+                            <textarea id="description" name="description" access="false" id="description" placeholder="Enter here" class="form-control"><?php echo $content['description'];?></textarea>
                         </div>
                     </div>
 
