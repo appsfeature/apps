@@ -637,16 +637,16 @@ class Database extends REST_Controller {
     //http://localhost/apps/api/v1/database/insert-update-data
     //where: pkg_id, title, sub_cat_id
     public function insert_update_data_post() {
-        $this->insertUpdateData(false);
+        $this->insertUpdateData(true);
     }
 
     //http://localhost/apps/api/v1/database/update-data
     //where: pkg_id, cat_id, sub_cat_id
     public function update_data_post() {
-        $this->insertUpdateData(true);
+        $this->insertUpdateData(true, true);
     }
 
-    private function insertUpdateData($isUpdateOnly = false) {
+    private function insertUpdateData($isInsertUpdate = false, $isUpdateOnly = false) {
         $pkg_name = $this->input->post("pkg_name");
         $pkg_rule = "pkg_name";
         if(isset($pkg_name)){
@@ -679,7 +679,7 @@ class Database extends REST_Controller {
                     $this->responseStatus(STATUS_FAILURE, "Failed to update Json");
                 }
             } else {
-                if ($this->database_model->insert_json(false, $whereClause, $content)) {
+                if ($this->database_model->insert_json($isInsertUpdate, $whereClause, $content)) {
                     $this->responseStatus(STATUS_SUCCESS, "Json has been created");
                 } else {
                     $this->responseStatus(STATUS_FAILURE, "Failed to create Json");
