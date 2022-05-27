@@ -648,17 +648,24 @@ class Database extends REST_Controller {
 
     private function insertUpdateData($isUpdateOnly = false) {
         $pkg_name = $this->input->post("pkg_name");
+        $pkg_rule = "pkg_name";
         if(isset($pkg_name)){
             $pkg_id = $this->getPackageId($pkg_name);
         }else {
             $pkg_id = $this->input->post("pkg_id");
+            $pkg_rule = "pkg_id";
         }
         $cat_id = $this->input->post("cat_id");
         $id = $this->input->post("id");
         $json_data = $this->input->post("json_data");
+        $json_rule = "json_data";
+        if(!isset($json_data)){
+            $json_data = $this->input->post("data");
+            $json_rule = "data";
+        }
         $whereClause = getDataWhereClause($pkg_id, null, $id);
-        $this->form_validation->set_rules("pkg_id", "Package Id", "required");
-        $this->form_validation->set_rules("json_data", "Json Data", "required");
+        $this->form_validation->set_rules($pkg_rule, "Package Id", "required");
+        $this->form_validation->set_rules($json_rule, "Json Data", "required");
         // checking form submittion have any error or not
         if ($this->form_validation->run() === FALSE) {
             // we have some errors
