@@ -111,6 +111,7 @@
                     </div>
 
                     <div class="row">
+<<<<<<< HEAD
                         <div class="col-sm-12 mb-3">
                             <label for="description" class="formbuilder-number-label">Description / Html Body</label>
                             <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control">
@@ -118,6 +119,13 @@
                             </textarea>
                         </div>
                     </div>
+=======
+                       <div class="col-sm-12 mb-3">
+                           <label for="description" class="formbuilder-number-label">Description / Html Body</label>
+                           <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control"> </textarea>
+                       </div>
+                   </div>
+>>>>>>> cb4b64b190666a8789d8f1b9958edfbfb4d4d50c
 
                     <div class="row">
                          <div class="col-sm-6 mb-3">
