@@ -391,14 +391,11 @@ class Database extends REST_Controller {
                 if ($this->upload->do_upload('pdf_file')) {
                     $pdfData = $this->upload->data();
                     $pdf = $pdfData['file_name'];
-                    // if (!empty($imageOld)) {
-                    //     if (file_exists('./' . path_image . $imageOld)) {
-                    //         unlink('./' . path_image . $imageOld);
-                    //     }
-                    //     if (file_exists('./' . path_image_thumb . $imageOld)) {
-                    //         unlink('./' . path_image_thumb . $imageOld);
-                    //     }
-                    // }
+                    if (!empty($link)) {
+                        if (file_exists('./' . path_pdf . $link)) {
+                            unlink('./' . path_pdf . $link);
+                        }
+                    }
                     $content['link'] = $pdf;
                 } else {
                     $this->responseStatus(STATUS_FAILURE, $this->upload->display_errors());

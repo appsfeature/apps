@@ -139,6 +139,11 @@ class Content extends CI_Controller{
                     unlink('./'.path_image_thumb.$content['image']);
                 }
             }
+            if(!empty($content['link'])){
+                if(file_exists('./'.path_pdf.$content['link'])){
+                    unlink('./'.path_pdf.$content['link']);
+                }
+            }
             if($this->database_model->delete_content($whereClause)){
                 $this->session->set_flashdata('success', 'Content has been deleted');
             }else{

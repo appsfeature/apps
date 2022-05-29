@@ -101,9 +101,13 @@
                             <label for="title" class="formbuilder-text-label">Title <span style="color:red">*</span></label>
                             <input type="text" placeholder="Enter Title" value="<?php echo $content['title'];?>" class="form-control" name="title" access="false" id="title">
                         </div>
-                        <div class="col-sm-6 mb-3">
-                            <label for="link" class="formbuilder-number-label">Link</label>
+                        <div class="col-sm-3 mb-3">
+                            <label for="link" class="formbuilder-number-label">Link / VideoId / PDF Name</label>
                             <input type="text" placeholder="Enter link" value="<?php echo $content['link']; ?>" class="form-control" name="link" access="false" id="link">
+                        </div>
+                        <div class="col-sm-3 mb-3">
+                            <label for="pdf_file" class="formbuilder-number-label">PDF File</label>
+                            <input type="file" class="form-control" name="pdf_file" access="false" multiple="false" id="pdf_file">
                         </div>
                     </div>
 

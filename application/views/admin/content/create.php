@@ -104,28 +104,18 @@
 
                         </div>
                             <div class="col-sm-3 mb-3">
-                          <label for="pdf_file" class="formbuilder-number-label">PDF File</label>
+                            <label for="pdf_file" class="formbuilder-number-label">PDF File</label>
 
                             <input type="file" class="form-control" name="pdf_file" access="false" multiple="false" id="pdf_file">
                         </div>
                     </div>
 
                     <div class="row">
-<<<<<<< HEAD
                         <div class="col-sm-12 mb-3">
                             <label for="description" class="formbuilder-number-label">Description / Html Body</label>
-                            <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control">
-
-                            </textarea>
+                            <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control"> </textarea>
                         </div>
                     </div>
-=======
-                       <div class="col-sm-12 mb-3">
-                           <label for="description" class="formbuilder-number-label">Description / Html Body</label>
-                           <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control"> </textarea>
-                       </div>
-                   </div>
->>>>>>> cb4b64b190666a8789d8f1b9958edfbfb4d4d50c
 
                     <div class="row">
                          <div class="col-sm-6 mb-3">
@@ -182,7 +172,7 @@
 $(document).ready(function() {
     $("#contentForm").submit(function(e) {
         e.preventDefault();
-        // $("#submitBtn").prop("disabled", true);
+        $("#submitBtn").prop("disabled", true);
 
         var formData= new FormData($("#contentForm")[0]);
         console.log('my message' + formData);
@@ -201,7 +191,7 @@ $(document).ready(function() {
               $("button[type='submit']").prop("disabled", false);
             } else {
               if(successURL!==null) {
-                // window.location.href=successURL;
+                window.location.href=successURL;
               }
             }
         });
