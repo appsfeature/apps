@@ -11,6 +11,7 @@ defined('appsfeature_url') OR define('appsfeature_url', 'http://appsfeature.com'
 
 defined('version_prefix') OR define('version_prefix', 'api/v1/');
 defined('path_image') OR define('path_image', 'public/uploads/images/');
+defined('path_pdf') OR define('path_pdf', 'public/uploads/pdf/');
 defined('path_image_thumb') OR define('path_image_thumb', 'public/uploads/images/thumb/');
 
 /*

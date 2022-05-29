@@ -98,9 +98,15 @@
                             <label for="title" class="formbuilder-text-label">Title <span style="color:red">*</span></label>
                             <input type="text" placeholder="Enter here" class="form-control <?php echo (form_error('title') != "") ? 'is-invalid' : ''; ?>" name="title" access="false" id="title">
                         </div>
-                        <div class="col-sm-6 mb-3">
-                            <label for="link" class="formbuilder-number-label">Link / PDF / VideoId</label>
+                        <div class="col-sm-3 mb-3">
+                            <label for="link" class="formbuilder-number-label">Link / VideoId / PDF Name</label>
                             <input type="text" placeholder="Enter here" class="form-control" name="link" access="false" id="link">
+
+                        </div>
+                            <div class="col-sm-3 mb-3">
+                          <label for="pdf_file" class="formbuilder-number-label">PDF File</label>
+
+                            <input type="file" class="form-control" name="pdf_file" access="false" multiple="false" id="pdf_file">
                         </div>
                     </div>
 
@@ -108,6 +114,7 @@
                         <div class="col-sm-12 mb-3">
                             <label for="description" class="formbuilder-number-label">Description / Html Body</label>
                             <textarea id="description" name="description" access="false" placeholder="Enter here" class="form-control">
+
                             </textarea>
                         </div>
                     </div>
@@ -167,7 +174,7 @@
 $(document).ready(function() {
     $("#contentForm").submit(function(e) {
         e.preventDefault();
-        $("#submitBtn").prop("disabled", true);
+        // $("#submitBtn").prop("disabled", true);
 
         var formData= new FormData($("#contentForm")[0]);
         console.log('my message' + formData);
@@ -186,7 +193,7 @@ $(document).ready(function() {
               $("button[type='submit']").prop("disabled", false);
             } else {
               if(successURL!==null) {
-                window.location.href=successURL;
+                // window.location.href=successURL;
               }
             }
         });

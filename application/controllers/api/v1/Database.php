@@ -361,6 +361,7 @@ class Database extends REST_Controller {
             // exit;
             $image = null;
             if (!empty($_FILES['image']['name'])) {
+
                 if ($this->upload->do_upload('image')) {
                     $imageData = $this->upload->data();
                     resizeImage($config['upload_path'] . $imageData['file_name'], $config['upload_path'] . 'thumb/' . $imageData['file_name'], 100, 100);
@@ -374,6 +375,31 @@ class Database extends REST_Controller {
                         }
                     }
                     $content['image'] = $image;
+                } else {
+                    $this->responseStatus(STATUS_FAILURE, $this->upload->display_errors());
+                    return;
+                }
+            }
+
+            $configPdf['upload_path'] = './' . path_pdf;
+            $configPdf['allowed_types'] = 'pdf';
+            $configPdf['encrypt_name'] = true;
+            $this->upload->initialize($configPdf);
+            // $this->load->library('upload', $configPdf);
+            $pdf = null;
+            if (!empty($_FILES['pdf_file']['name'])) {
+                if ($this->upload->do_upload('pdf_file')) {
+                    $pdfData = $this->upload->data();
+                    $pdf = $pdfData['file_name'];
+                    // if (!empty($imageOld)) {
+                    //     if (file_exists('./' . path_image . $imageOld)) {
+                    //         unlink('./' . path_image . $imageOld);
+                    //     }
+                    //     if (file_exists('./' . path_image_thumb . $imageOld)) {
+                    //         unlink('./' . path_image_thumb . $imageOld);
+                    //     }
+                    // }
+                    $content['link'] = $pdf;
                 } else {
                     $this->responseStatus(STATUS_FAILURE, $this->upload->display_errors());
                     return;

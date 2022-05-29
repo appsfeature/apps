@@ -895,13 +895,18 @@ class CI_Upload {
 
 		$ext = strtolower(ltrim($this->file_ext, '.'));
 
+
 		if ( ! in_array($ext, $this->allowed_types, TRUE))
 		{
 			return FALSE;
 		}
 
 		// Images get some additional checks
-		if (in_array($ext, array('gif', 'jpg', 'jpeg', 'jpe', 'png'), TRUE) && @getimagesize($this->file_temp) === FALSE)
+		if($ext=='pdf')
+		{
+			return TRUE;
+		}
+		elseif (in_array($ext, array('gif', 'jpg', 'jpeg', 'jpe', 'png', 'pdf'), TRUE) && @getimagesize($this->file_temp) === FALSE)
 		{
 			return FALSE;
 		}
