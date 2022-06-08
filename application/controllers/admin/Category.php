@@ -238,19 +238,25 @@ class Category extends CI_Controller{
 
         $categoryArray = $this->database_model->get_category($whereClause);
         if($categoryArray != null && count($categoryArray) == 1){
-            $category = $categoryArray[0];
-            if(!empty($category['image'])){
-                if(file_exists('./'.path_image.$category['image'])){
-                    unlink('./'.path_image.$category['image']);
+            $whereClause2 = getContentWhereClause($pkg_id, null, $catId, null, null);
+            $contentArray = $this->database_model->get_content_master($whereClause2);
+            if($contentArray == null || count($contentArray) <= 0){
+                $category = $categoryArray[0];
+                if(!empty($category['image'])){
+                    if(file_exists('./'.path_image.$category['image'])){
+                        unlink('./'.path_image.$category['image']);
+                    }
+                    if(file_exists('./'.path_image_thumb.$category['image'])){
+                        unlink('./'.path_image_thumb.$category['image']);
+                    }
                 }
-                if(file_exists('./'.path_image_thumb.$category['image'])){
-                    unlink('./'.path_image_thumb.$category['image']);
+                if($this->database_model->delete_category($whereClause)){
+                    $this->session->set_flashdata('success', 'Category has been deleted');
+                }else{
+                    $this->session->set_flashdata('error', 'Failed to delete category');
                 }
-            }
-            if($this->database_model->delete_category($whereClause)){
-                $this->session->set_flashdata('success', 'Category has been deleted');
-            }else{
-                $this->session->set_flashdata('error', 'Failed to delete category');
+            }else {
+                $this->session->set_flashdata('error', 'Failed due to Contents against category exists.');
             }
         }else {
             $this->session->set_flashdata('error', 'Category not found');
